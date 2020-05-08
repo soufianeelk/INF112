@@ -28,7 +28,7 @@ durationcanvas 134500 classinstance_ref 130276 // :Member
   xyzwh 553 196 2010 11 31
 end
 durationcanvas 134884 classinstance_ref 132452 // e:MemberAlreadyExistsException
-  xyzwh 821 253 2010 11 33
+  xyzwh 822 253 2010 11 33
 end
 msg 133860 synchronous
   from durationcanvas_ref 133604

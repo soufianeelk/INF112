@@ -1,8 +1,8 @@
-window_sizes 1920 1001 324 1590 947 0
+window_sizes 1920 1001 336 1578 947 0
 
 diagrams
-  classdiagram_ref 128258 // ClassDiagram
-    1464 819 90 Custom 197 0
+  active  classdiagram_ref 128258 // ClassDiagram
+    1578 947 100 Custom 173 0
   sequencediagram_ref 128228 // SequenceDiagram
     508 98 100 Custom 0 0
   sequencediagram_ref 128356 // SequenceDiagram_BEE
@@ -23,20 +23,12 @@ diagrams
     114 98 100 Custom 0 0
   sequencediagram_ref 155108 // reviewItemFilm_NIE
     114 98 100 Custom 0 0
-  active  sequencediagram_ref 155236 // reviewItemFilm_NME
+  sequencediagram_ref 155236 // reviewItemFilm_NME
     1590 947 100 Custom 0 0
 end
 show_stereotypes
-selected sequencediagram_ref 155236 // reviewItemFilm_NME
+selected classdiagram_ref 128258 // ClassDiagram
 open
   classinstance_ref 128100 // SocialNetwork
-  classinstance_ref 128228 // NewMember
-  classinstance_ref 155748 // ToutAvis
-  class_ref 135140 // Actor
-  classinstance_ref 141924 // ToutAvis
-  class_ref 142052 // ItemFilmAlreadyExistsException
-  classinstance_ref 148964 // The Film
-  class_ref 148708 // NotItemException
-  deploymentview_ref 128100 // CodeGeneration
 end
 end
