@@ -14,6 +14,11 @@ import exceptions.NotMemberException;
  * 
  */
 public class SocialNetwork implements ISocialNetwork {
+	
+	private LinkedList<Member> membersList;
+	private int nbMembers;
+	private int nbFilms;
+	public LinkedList<Film> filmsList;
 
 	@Override
 	public int nbMembers() {
