@@ -1,0 +1,42 @@
+window_sizes 1920 1001 324 1590 947 0
+
+diagrams
+  classdiagram_ref 128258 // ClassDiagram
+    1464 819 90 Custom 197 0
+  sequencediagram_ref 128228 // SequenceDiagram
+    508 98 100 Custom 0 0
+  sequencediagram_ref 128356 // SequenceDiagram_BEE
+    1464 819 100 Custom 0 0
+  sequencediagram_ref 128484 // SequenceDiagram_MAEE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 135140 // addItemFilm
+    1525 818 100 Custom 0 0
+  sequencediagram_ref 141668 // addItemFilm_BEE
+    119 98 100 Custom 0 0
+  sequencediagram_ref 141796 // addItemFilm_IFAEE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 141924 // addItemFilm_NME
+    114 98 100 Custom 0 0
+  sequencediagram_ref 148452 // reviewItemFilm
+    1525 818 100 Custom 0 0
+  sequencediagram_ref 154980 // reviewItemFilm_BEE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 155108 // reviewItemFilm_NIE
+    114 98 100 Custom 0 0
+  active  sequencediagram_ref 155236 // reviewItemFilm_NME
+    1590 947 100 Custom 0 0
+end
+show_stereotypes
+selected sequencediagram_ref 155236 // reviewItemFilm_NME
+open
+  classinstance_ref 128100 // SocialNetwork
+  classinstance_ref 128228 // NewMember
+  classinstance_ref 155748 // ToutAvis
+  class_ref 135140 // Actor
+  classinstance_ref 141924 // ToutAvis
+  class_ref 142052 // ItemFilmAlreadyExistsException
+  classinstance_ref 148964 // The Film
+  class_ref 148708 // NotItemException
+  deploymentview_ref 128100 // CodeGeneration
+end
+end

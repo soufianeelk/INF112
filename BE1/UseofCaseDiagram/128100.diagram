@@ -1,0 +1,36 @@
+format 222
+
+classcanvas 128228 class_ref 128228 // Utilisateur
+  simpleclassdiagramsettings end
+  xyz 120.6 385.4 2000
+end
+usecasecanvas 128484 usecase_ref 128228 // Poster Produit/Service
+  xyzwh 452 555.2 3005 197 73 label_xy 485 579
+end
+usecasecanvas 128612 usecase_ref 128356 // Commenter Produit/Service
+  xyzwh 452 479.2 3005 197 75 label_xy 472 508
+end
+usecasecanvas 128868 usecase_ref 128612 // Consulter Avis Produits/Services
+  xyzwh 449.8 323.2 3010 201 77 label_xy 453 349
+end
+usecasecanvas 128996 usecase_ref 128740 // Noter Produit/Service
+  xyzwh 451.8 402.6 3005 197 73 label_xy 488 429
+end
+usecasecanvas 134244 usecase_ref 128996 // Rechercher Produits/Services
+  xyzwh 450.8 248.8 3005 199 73 label_xy 466 275
+end
+usecasecanvas 135524 usecase_ref 129252 // S'Authentifier
+  xyzwh 458.6 631.6 3005 191 65 label_xy 517 653
+end
+line 131940 ---- decenter_begin 451
+  from ref 128996 z 3006 to ref 128228
+line 132068 ---- decenter_end 412
+  from ref 128228 z 3006 to ref 128612
+line 132196 ---- decenter_end 467
+  from ref 128228 z 3011 to ref 128868
+line 134628 ---- decenter_begin 479
+  from ref 134244 z 3006 to ref 128228
+line 135268 ----
+  from ref 128228 z 3006 to point 443 587.8
+  line 135396 z 3006 to ref 128484
+end

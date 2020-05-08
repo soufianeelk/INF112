@@ -1,0 +1,84 @@
+format 222
+
+classinstance 129636 class_ref 128002 // SocialNetwork
+  name "ToutAvis"   xyz 276 4 2005 life_line_z 2000
+classinstance 130276 class_ref 128612 // User
+  name ""   xyz 141 4 2000 life_line_z 2000
+classinstancecanvas 134116 classinstance_ref 128484 // 
+  xyz 574 4 2005 life_line_z 2000
+end
+note 134756 "Normal Use Case"
+  xyzwh 827.5 55.5 2000 191 63
+classinstancecanvas 137700 classinstance_ref 156004 // theMember
+  xyz 675 229 2005 life_line_z 2000
+end
+durationcanvas 134884 classinstance_ref 130276 // :User
+  xyzwh 153 100 2010 11 342
+end
+durationcanvas 135012 classinstance_ref 129636 // ToutAvis:SocialNetwork
+  xyzwh 344 101 2010 11 290
+  overlappingdurationcanvas 135268
+    xyzwh 350 121 2020 11 25
+  end
+  overlappingdurationcanvas 135524
+    xyzwh 350 182 2020 11 67
+  end
+  overlappingdurationcanvas 137316
+    xyzwh 350 351 2020 11 25
+  end
+end
+durationcanvas 135780 classinstance_ref 134116 // :Member
+  xyzwh 600 216 2010 11 30
+end
+durationcanvas 137828 classinstance_ref 137700 // theMember:Member
+  xyzwh 733 289 2010 11 33
+end
+msg 135140 synchronous
+  from durationcanvas_ref 134884
+  to durationcanvas_ref 135012
+  yz 105 2015 explicitmsg "addMember()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 216 89
+reflexivemsg 135396 synchronous
+  to durationcanvas_ref 135268
+  yz 121 2025 explicitmsg "Check Parameters"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 366 104
+reflexivemsg 135652 synchronous
+  to durationcanvas_ref 135524
+  yz 182 2025 explicitmsg "Check Authentification"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 366 164
+msg 135908 synchronous
+  from durationcanvas_ref 135524
+  to durationcanvas_ref 135780
+  yz 216 2025 explicitmsg "checkCredentials()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 423 200
+msg 136036 return
+  from durationcanvas_ref 135780
+  to durationcanvas_ref 135524
+  yz 232 2030 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+reflexivemsg 137444 synchronous
+  to durationcanvas_ref 137316
+  yz 351 2025 explicitmsg "Add Member In List"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 359 335
+msg 137572 return
+  from durationcanvas_ref 135012
+  to durationcanvas_ref 134884
+  yz 380 2015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 137956 synchronous
+  from durationcanvas_ref 135012
+  to durationcanvas_ref 137828
+  yz 289 2015 explicitmsg "new Member()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 487 273
+msg 138084 return
+  from durationcanvas_ref 137828
+  to durationcanvas_ref 135012
+  yz 309 3005 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+end

@@ -1,0 +1,41 @@
+Creating a git repository and linking your existing Eclipse java project to that repository 
+===========================================================================================
+
+This section assumes you already have a running Eclipse java project, and that you do not have any git repository associated to it. 
+
+To create your Eclipse java project with provided code, please refer to document HowToImportTheFilesIntoEclipse.
+
+To create a git repository and to link it with the existing java project, follow the following steps:
+
+1. Go to https://redmine-df.telecom-bretagne.eu/ and create a new project, associate to it a git repository
+
+2. In the "configuration" tab of your new redmine project you can find the url of your git repository. Copy this url.
+
+3. Using the command line, go to the folder where your Eclipse java project is located, step just before the src/ directory. For instance, if your project is called "Bibtel" and it is located in the default location: 
+
+cd ~/workspace/Bibtel
+
+4. You are going to link this directory to your git repository, for that, type the following commands:
+
+git init
+git add src/
+git commit -m 'message'
+git remote add origin <url>
+git push -u origin master
+
+You can from now on work on eclipse and keep your repository up to date by using command line git commands such as git pull, git add, git commit and git push
+
+Creating a new Eclipse java project and recover the code from an existing git repository 
+========================================================================================
+
+This section assumes you have no local Eclispe java project, but that you have existing code in a git repository.
+
+1. On a terminal, on your selected directory, clone the existing git repository:
+
+git clone <url> 
+
+where <url> is the url of your git repository. You can have created your repository as exmplained in the previous section, , you can obtain <url> from the redmine interface, tab "configuration".
+
+2. On Eclipse, Create a new java project, Untick "Use default location" and browse the git project path that you have just cloned by clicking browse button. 
+
+You can from now on work on eclipse and keep your repository up to date by using command line git commands such as git pull, git add, git commit and git push

@@ -1,0 +1,78 @@
+format 222
+
+classinstance 130404 class_ref 135140 // Actor
+  name ""   xyz 104 5 2000 life_line_z 2000
+classinstancecanvas 130788 classinstance_ref 135140 // ToutAvis
+  xyz 316 5 2005 life_line_z 2000
+end
+classinstancecanvas 130916 classinstance_ref 141796 // theMember
+  xyz 610 4 2005 life_line_z 2000
+end
+classinstance 133732 class_ref 142180 // NotMemberException
+  name "e"   xyz 783 216 2005 life_line_z 2000
+note 134372 "Login unknow or wrong password case: 
+NotMemberException"
+  xyzwh 944 121.5 2000 277 61
+durationcanvas 131044 classinstance_ref 130916 // theMember:Member
+  xyzwh 669 210 2010 11 28
+end
+durationcanvas 131172 classinstance_ref 130404 // :Actor
+  xyzwh 118 87 2010 11 484
+end
+durationcanvas 131428 classinstance_ref 130788 // ToutAvis:SocialNetwork
+  xyzwh 384 87 2010 11 421
+  overlappingdurationcanvas 131556
+    xyzwh 390 109 2020 11 25
+  end
+  overlappingdurationcanvas 131812
+    xyzwh 390 179 2020 11 116
+  end
+end
+durationcanvas 133860 classinstance_ref 133732 // e:NotMemberException
+  xyzwh 851 266 2010 11 36
+end
+msg 132196 return
+  from durationcanvas_ref 131044
+  to durationcanvas_ref 131812
+  yz 223 2030 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 132452 synchronous
+  from durationcanvas_ref 131172
+  to durationcanvas_ref 131428
+  yz 87 2015 msg operation_ref 128100 // "addItemFilm(in login : String, in password : String, in title : String, in kind : String, in director : String, in scriptwriter : String, in duration : int)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 214 72
+reflexivemsg 132836 synchronous
+  to durationcanvas_ref 131812
+  yz 179 2025 explicitmsg "checkAuthentification"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 399 157
+reflexivemsg 133220 synchronous
+  to durationcanvas_ref 131556
+  yz 109 2025 explicitmsg "checkParameters"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 400 93
+msg 133476 synchronous
+  from durationcanvas_ref 131812
+  to durationcanvas_ref 131044
+  yz 210 2025 explicitmsg "checkCredentials()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 506 193
+msg 133988 synchronous
+  from durationcanvas_ref 131812
+  to durationcanvas_ref 133860
+  yz 266 2025 explicitmsg "new NotMemberException()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 552 250
+msg 134116 return
+  from durationcanvas_ref 133860
+  to durationcanvas_ref 131812
+  yz 284 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 134244 return
+  from durationcanvas_ref 131428
+  to durationcanvas_ref 131172
+  yz 420 2015 explicitmsg "Error"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 239 404
+end

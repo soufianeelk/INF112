@@ -1,0 +1,12 @@
+window_sizes 1920 1001 177 1737 815 128
+
+diagrams
+  active  usecasediagram_ref 128100 // UseCaseDiagram
+    1737 815 110 A4 84 0
+end
+show_stereotypes
+selected usecasediagram_ref 128100 // UseCaseDiagram
+open
+  usecaseview_ref 128100 // UseCaseDiagram
+end
+end
