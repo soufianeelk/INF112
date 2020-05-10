@@ -190,10 +190,10 @@ public class ReviewItemFilmTest {
 		
 		try {
 			int nbReviews;
-			nbReviews = sn.searchFilmByTitle(title).nbReviews();
+			nbReviews = sn.searchFilmByTitle(title).getNbReviews();
 			sn.reviewItemFilm(login, pwd, title, mark, comment);
 			
-			if (sn.searchFilmByTitle(title).nbReviews() != nbReviews+1) {
+			if (sn.searchFilmByTitle(title).getNbReviews() != nbReviews+1) {
 				System.out.println("Err " + testId + " : the number of reviews (" + nbReviews + ") was not incremented");
 				return 1;
 			} else {

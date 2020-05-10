@@ -138,7 +138,7 @@ public class SocialNetwork implements ISocialNetwork {
 			}
 
 			}
-		return searchFilmByTitle(title).MeanReviews();
+		return searchFilmByTitle(title).getMeanReviews();
 		}
 	
 		

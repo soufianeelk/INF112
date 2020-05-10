@@ -11,7 +11,7 @@ public class Member {
 	private String login;
 	private String password;
 	private String profile;
-	private LinkedList<Review> memberReviewsList=new LinkedList<Review>();
+	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 
 	public Member(String login, String password, String profile) {
 		this.login = login.trim();			//Initialize parameters with no leading/trailing blanks except for password
@@ -44,7 +44,7 @@ public class Member {
 	}
 	
 	public void addReview(Review theReview) {
-		this.memberReviewsList.add(theReview);
+		this.reviewsList.add(theReview);
 	}
 
 	public Review getReviews() {

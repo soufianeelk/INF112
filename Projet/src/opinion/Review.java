@@ -8,19 +8,19 @@ public class Review {
 	private Film film;
 
 	public Review(float mark, String comment) {
-		this.mark=mark;
-		this.comment=comment;
+		this.mark = mark;
+		this.comment = comment.trim();
 	 }
 
-	public  Review(float mark) {
+	public Review(float mark) {
 	 }
 
 	public String getComment( ) {
-		return null;
+		return this.comment;
 	 }
 
-	public int getMark( ) {
-		return 0;
+	public float getMark() {
+		return this.mark;
 	 }
 
 	public void setComment(String comment) {
@@ -30,7 +30,7 @@ public class Review {
 	 }
 
 	public Member getMember() {
-		return null;
+		return this.member;
 	  }
 
 	}

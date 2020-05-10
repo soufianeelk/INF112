@@ -1,6 +1,6 @@
 format 222
 "Class_Diagram_BE3"
-  revision 7
+  revision 8
   modified_by 100 "soufi"
   java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
 
@@ -153,7 +153,7 @@ ${members}}
 	  param in name "title" explicit_type "String"
 	  param in name "kind" explicit_type "String"
 	  param in name "director" explicit_type "String"
-	  param in name "scriptwriter" explicit_type "String"
+	  param in name "scenarist" explicit_type "String"
 	  param in name "duration" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}${)}${throws}${staticnl}{
@@ -198,30 +198,6 @@ ${members}}
 	  b parent class_ref 128386 // Member
       end
 
-      attribute 128100 "nbMembers"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 134628 "nbFilms"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
       classrelation 128100 // filmsList ()
 	relation 128100 ---> name ""
 	  a role_name "filmsList" multiplicity "*" public
@@ -229,6 +205,19 @@ ${members}}
 "
 	    classrelation_ref 128100 // filmsList ()
 	  b parent class_ref 135396 // Film
+      end
+
+      operation 157668 "searchFilmByTitle"
+	public return_type class_ref 135396 // Film
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
       end
     end
 
@@ -296,20 +285,6 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      operation 128898 "Member"
-	public explicit_return_type ""
-	nparams 2
-	  param in name "login" explicit_type "String"
-	  param in name "password" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws} {
-  ${body}}
-"
-	
-	
-	
-      end
-
       operation 129410 "Member"
 	public explicit_return_type ""
 	nparams 3
@@ -375,7 +350,7 @@ ${members}}
       end
 
       operation 137700 "checkCredentials"
-	public explicit_return_type "boolean"
+	public explicit_return_type "int"
 	nparams 2
 	  param in name "login" explicit_type "String"
 	  param in name "password" explicit_type "login"
@@ -388,48 +363,6 @@ ${members}}
 	
       end
 
-      operation 129026 "getProfile"
-	public explicit_return_type "String"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129538 "setProfile"
-	public explicit_return_type "void"
-	nparams 1
-	  param in name "profile" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129666 "setLogin"
-	public explicit_return_type "void"
-	nparams 1
-	  param in name "login" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      classrelation 134884 // <association>
-	relation_ref 134756 // <association>
-      end
-
       operation 137572 "getReviews"
 	public return_type class_ref 135524 // Review
 	nparams 0
@@ -440,6 +373,10 @@ ${members}}
 	
 	
 	
+      end
+
+      classrelation 147940 // reviewsList (<association>)
+	relation_ref 134756 // <association>
       end
     end
 
@@ -505,7 +442,7 @@ ${members}}
 	MysqlColumn
       end
 
-      attribute 135396 "scriptwriter"
+      attribute 135396 "scenarist"
 	private explicit_type "String"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -535,7 +472,7 @@ ${members}}
 	  param in name "title" explicit_type "String"
 	  param in name "kind" explicit_type "String"
 	  param in name "director" explicit_type "String"
-	  param in name "scriptwriter" explicit_type "String"
+	  param in name "scenarist" explicit_type "String"
 	  param in name "duration" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
@@ -551,117 +488,6 @@ ${members}}
 	nparams 0
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 128740 "getKind"
-	public explicit_return_type "String"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 128868 "getDirector"
-	public explicit_return_type "String"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 128996 "getScriptwriter"
-	public explicit_return_type "String"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129124 "getDuration"
-	public explicit_return_type "int"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129252 "setTitle"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "title" explicit_type "String"
-	
-	
-	
-	
-	
-      end
-
-      operation 129380 "setKind"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "kind" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129508 "setDirector"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "director" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129636 "setScriptwriter"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "scriptwriter" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 129764 "setDuration"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "duration" explicit_type "int"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -714,38 +540,13 @@ ${members}}
 	
       end
 
-      operation 137316 "searchTitle"
-	public return_type class_ref 135396 // Film
-	nparams 1
-	  param in name "title" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 144228 "setReview"
+      operation 144228 "addReview"
 	public explicit_return_type ""
 	nparams 2
 	  param in name "comment" explicit_type "String"
 	  param in name "mark" explicit_type "int"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 150756 "checkExistingTitle"
-	public explicit_return_type "boolean"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -885,8 +686,8 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 134756 // member (<association>)
-	  b role_name "reviews" multiplicity "*" package
-	    classrelation_ref 134884 // <association>
+	  b role_name "reviewsList" multiplicity "*" package
+	    classrelation_ref 147940 // reviewsList (<association>)
       end
 
       operation 137444 "getMember"

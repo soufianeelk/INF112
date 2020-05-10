@@ -54,11 +54,11 @@ public class Film {
 	  }
 
 
-	public float MeanReviews() {
+	public float getMeanReviews() {
 		return this.meanReviews;
 	  }
 	
-	public int nbReviews() {
+	public int getNbReviews() {
 		return this.nbReviews;
 	}
 	/**
