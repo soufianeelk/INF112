@@ -16,33 +16,40 @@ import exceptions.NotMemberException;
 public class SocialNetwork implements ISocialNetwork {
 	
 	private LinkedList<Member> membersList = new LinkedList<Member>();
-	private int nbMembers;
-	private int nbFilms;
 	public LinkedList<Film> filmsList = new LinkedList<Film>();
 
 	@Override
 	public int nbMembers() {
-		// TODO Auto-generated method stub
-		return 0;
+		return membersList.size();
 	}
 
 	@Override
 	public int nbFilms() {
-		// TODO Auto-generated method stub
-		return 0;
+		return filmsList.size();
 	}
 
 	@Override
 	public int nbBooks() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
-		this.membersList.add(new Member(login,password,profile));
-		this.nbMembers++;
+		
+		if (login == null) throw new BadEntryException("The login must be instanciated");
+		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
+		if (password == null) throw new BadEntryException("The password must be instanciated");
+		if (profile == null) throw new BadEntryException("The profile must be instanciated");
+		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 character");
+		
+		for (int i=0; i < membersList.size(); i++) {
+			if (membersList.get(i).checkExistingLogin(login)) {
+				
+				throw new MemberAlreadyExistsException("Login already used");
+			}
+		}
+		membersList.add(new Member(login, password, profile));
 	}
 
 	@Override
@@ -51,9 +58,35 @@ public class SocialNetwork implements ISocialNetwork {
 			throws BadEntryException, NotMemberException,
 			ItemFilmAlreadyExistsException {
 		
-		this.filmsList.add(new Film(title, kind, director, scenarist, duration)); //adding a new film in the films list
-		this.nbFilms++; //incrementing the film counter
 
+		//Elements which catch BadEntryException
+		if (login == null) throw new BadEntryException("The login must be instanciated");
+		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
+		if (password == null) throw new BadEntryException("The password must be instanciated");
+		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 character");
+		if (title == null) throw new BadEntryException("The title must be instanciated");
+		if (kind == null) throw new BadEntryException("The kind must be instanciated");
+		if (director == null) throw new BadEntryException("The director must be instanciated");
+		if (scenarist == null) throw new BadEntryException("The scenarist must be instanciated");
+		if (duration < 0) throw new BadEntryException("The duration must be positive");
+		
+		//Elements which catch NotMemberException
+		for (int i=0; i<membersList.size(); i++) {
+			int flag=0;
+			switch (membersList.get(i).checkCredentials(login, password)) {
+				
+				case 1: throw new NotMemberException("Wrong Password !");
+						
+				case 2: if (this.searchFilmByTitle(title) == null) filmsList.add(new Film(title, kind, director, scenarist, duration));
+						else throw new ItemFilmAlreadyExistsException("This film already exists !");
+						flag=1;
+						break;
+										
+			}
+			 if (flag==0) {
+			 throw new NotMemberException("Unknown login");
+			 }
+		}
 	}
 
 	@Override
@@ -82,21 +115,31 @@ public class SocialNetwork implements ISocialNetwork {
 	//Check Authentication 
 		
 		// NotMemberException checks
-		Member theMember=authenticateMember(login,password);
-		if (theMember==null) throw new NotMemberException("The member doesn't exists"); //Throw a new NotMemberException if the member doesn't exist. 
-		
-	//Check Existing Film 
-		
-		// NotItemException checks 
-		if (searchFilmByTitle(title)==null) throw new NotItemException("The title doesn't exists"); //Throw a new NotItemException if the title doesn't exist
-
-		
-		Film theFilm=searchFilmByTitle(title);
-		if(!theFilm.checkMemberExistingReview(login)){
-			theFilm.setReview(theMember,comment, mark);
+		for (int i=0; i<membersList.size(); i++) {
+			switch (membersList.get(i).checkCredentials(login, password)) {
+				
+				
+			
+				case 1: throw new NotMemberException("Wrong Password !");
+				case 2: 		
+					//Check Existing Film 
+					
+					// NotItemException checks 
+					if (searchFilmByTitle(title)==null) throw new NotItemException("The title doesn't exists"); //Throw a new NotItemException if the title doesn't exist
+					
+					Film theFilm=searchFilmByTitle(title);
+					if(!theFilm.checkMemberExistingReview(login)){
+						theFilm.addReview(membersList.get(i),comment, mark);
+					}
+					return theFilm.MeanReviews();
+				
+				default: throw new NotMemberException("The member doesn't exists"); //Throw a new NotMemberException if the member doesn't exist. 
+			}
+			}
 		}
-		return theFilm.getMeanReviews();
-	}
+	
+		
+
 	
 
 	@Override
@@ -122,28 +165,11 @@ public class SocialNetwork implements ISocialNetwork {
 	public Film searchFilmByTitle(String title) {
 		int i=0;
 		for (i=0;i<filmsList.size();i++) {
-			if (filmsList.get(i).checkExistingTitle(title)) return filmsList.get(i);
+			if (filmsList.get(i).getTitle().equalsIgnoreCase(title.trim())) return filmsList.get(i);
 		}
 		return null;
 	}
 	
-	/**
-	 * Authenticate a member among the member list of the social network by using the given credentials (login, password). 
-	 * 
-	 * @param login
-	 * 
-	 * @param password
-	 *           
-	 * @return Member object if the the member is found, else null. 
-	 */
-	public Member authenticateMember(String login, String password) {
-		int i=0;
-		for (i=0;i<membersList.size();i++) {
-			if (membersList.get(i).checkCredentials(login,password)) return membersList.get(i); //checking credentials on each member in the members list
-		}
-		return null;
-	}
-
 	/**
 	 * @param args
 	 */

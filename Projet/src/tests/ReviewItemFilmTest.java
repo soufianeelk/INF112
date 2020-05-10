@@ -7,6 +7,13 @@ import exceptions.NotItemException;
 import opinion.ISocialNetwork;
 import opinion.SocialNetwork;
 
+/**
+ * Tests for the SocialNetwork.<i>addReviewItemFilm()</i> method.
+ * 
+ * @author S. EL KALDAOUI, H. MEZAZIGH
+ * @version V2.0 - April 2020
+ */
+
 public class ReviewItemFilmTest {
 	
 	/**

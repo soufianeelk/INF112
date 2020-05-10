@@ -13,31 +13,32 @@ public class Film {
 	private LinkedList<Review> reviewsList;
 
 	public Film(String title, String kind, String director, String scenarist, int duration) {
-		this.title=title;
-		this.kind=kind;
-		this.director=director;
-		this.scenarist=scenarist;
-		this.duration=duration;
+
+		this.title = title.trim();
+		this.kind = kind.trim();
+		this.director = director.trim();
+		this.scenarist = scenarist.trim();
+		this.duration = duration;
 	  }
 
 	public String getTitle() {
-		return null;
+		return this.title;
 	  }
 
 	public String getKind() {
-		return null;
+		return this.kind;
 	  }
 
 	public String getDirector() {
-		return null;
+		return this.director;
 	  }
 
-	public String getScriptwriter() {
-		return null;
+	public String getScenarist() {
+		return this.scenarist;
 	  }
 
 	public int getDuration() {
-		return 0;
+		return duration;
 	  }
 
 	public void setKind(String kind) {
@@ -53,8 +54,8 @@ public class Film {
 	  }
 
 
-	public float getMeanReviews() {
-		return 0;
+	public float MeanReviews() {
+		return this.meanReviews;
 	  }
 	
 	public int nbReviews() {
@@ -69,16 +70,17 @@ public class Film {
 	 *           
 	 * @return Member object if the the member is found, else null. 
 	 */
-	public void setReview(Member theMember,String comment, float mark) {
+	public void addReview(Member theMember,String comment, float mark) {
 		
 		reviewsList.add(new Review(mark,comment));
 		this.meanReviews=(this.meanReviews+mark)/2;
-		theMember.setReview(this.reviewsList.get(nbReviews-1));
+		theMember.addReview(this.reviewsList.get(nbReviews-1));
 		this.nbReviews++;
 	}
 
 	public boolean checkExistingTitle(String title) {
 		return (this.title.equalsIgnoreCase(title.trim()));
+
 	  }
 
 	public boolean checkMemberExistingReview(String login) {

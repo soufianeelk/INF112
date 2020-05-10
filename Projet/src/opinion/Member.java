@@ -1,6 +1,11 @@
 package opinion;
 import java.util.LinkedList;
 
+/**
+ * Class of objects Members
+ * 
+ */
+
 public class Member {
 	
 	private String login;
@@ -9,21 +14,27 @@ public class Member {
 	private LinkedList<Review> memberReviewsList=new LinkedList<Review>();
 
 	public Member(String login, String password, String profile) {
-		this.login=login;
-		this.password=password;
-		this.profile=profile;
+		this.login = login.trim();			//Initialize parameters with no leading/trailing blanks except for password
+		this.password = password;
+		this.profile = profile.trim();
 	  }
 
+	
 	public boolean checkExistingLogin(String login) {
-		return true;
+		return (this.login.equalsIgnoreCase(login.trim())); // Replace spaces by nothing and put string to lower
 	  }
 	
-	public boolean checkCredentials(String login, String password) {
-		return (this.login.equalsIgnoreCase(login.trim()) && this.password.equals(password));
+	public int checkCredentials(String login, String password) {
+		int flag = 0; // default value : the login is not found yet
+		if (this.login.equalsIgnoreCase(login.trim())) {
+			flag = 1; // value 1 : the login is found 
+			if (this.password.equals(password) ) flag = 2; //value 2 : the login is found & the password match
+		}
+		return flag;
 	 }
 
 	public String getProfile() {
-		return null;
+		return this.profile;
 	 }
 	
 	public void setProfile(String profile) {
@@ -32,7 +43,7 @@ public class Member {
 	public void setLogin(String login) {
 	}
 	
-	public void setReview(Review theReview) {
+	public void addReview(Review theReview) {
 		this.memberReviewsList.add(theReview);
 	}
 

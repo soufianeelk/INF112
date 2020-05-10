@@ -1,0 +1,9 @@
+- Corriger constructeur de Member: profile dans la classe Member OBLIGATOIRE
+- getReviews renvois une liste de Reviews et non une Review
+- searchTitle dans SocialNetwork et non dans Film
+- getNbReview à rajouter dans Film
+- nbMember inutile?
+
+-Member: l30: retourne un int afin d'etre plus fin car 3 états
+
+- Pq renseigner un login pour ajouter un film? Un membre doit ensuite etre associer au film? Sinon un film peut etre ajouter anonymement

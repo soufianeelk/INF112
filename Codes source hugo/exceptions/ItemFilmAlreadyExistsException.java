@@ -8,9 +8,10 @@ package exceptions;
  * 
  */
 public class ItemFilmAlreadyExistsException extends Exception {
-	
-	public ItemFilmAlreadyExistsException(String message) {
+
+	public ItemFilmAlreadyExistsException(String message)
+	{
 		super(message);
 	}
-
+	
 }
