@@ -9,28 +9,54 @@ import opinion.ISocialNetwork;
 import opinion.SocialNetwork;
 
 /**
- * Tests for the SocialNetwork.<i>addMember()</i> method.
+ * Tests for the SocialNetwork.<i>addItemFilm()</i> method.
+ * 
+ * @author S. EL KALDAOUI, H. MEZAZIGH
+ * @version V2.0 - April 2020
  */
 
 public class AddItemFilmTest {
-
+	
+	/**
+	 * Check that trying to add this new film (login, password, title, kind, director, scenarist, duration) raises a
+	 * BadEntry exception and does not change content of the
+	 * <i>ISocialNetwork</i>. If OK, the method just returns 0. If not OK,
+	 * displays an error message and returns 1.
+	 * 
+	 * @param sn
+	 *            - the <i>ISocialNetwork</i>
+	 * @param login
+	 *            - member's login
+	 * @param password
+	 *            - member's password
+	 * @param title
+	 *            - film's title
+	 * @param kind
+	 *            - film's kind            
+	 * @param director
+	 *            - film's director	 
+	 * @param errorMessage
+	 *            - the error message that will be displayed if no exception is
+	 *            thrown when adding this film
+	 * @return 0 if the test is OK, 1 if not
+	 */
 	private static int addItemFilmBadEntryTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId, String errorMessage) {
 		
-		int nbFilms = sn.nbFilms();
+		int nbFilms = sn.nbFilms();		//Get the nbFilms before addItemFilm to compare after
 		
 		try {
-			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);
-			System.out.println("Err " + testId + " : " + errorMessage);
+			sn.addItemFilm(login, password, title, kind, director, scenarist, duration); //Trying to add the film
+			System.out.println("Err " + testId + " : " + errorMessage);	//If the film is added print error message
 			return 1;
 
-		} catch (BadEntryException e) {
-			if (sn.nbFilms() != nbFilms) {
-				System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of members was changed");
+		} catch (BadEntryException e) {		//Check if the BadEntryException is correctly caught
+			if (sn.nbFilms() != nbFilms) {	//Check if no films were added by comparing nbFilms before and now
+				System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of members was changed");	//If yes print error message
 				return 1;
 			} else
 				return 0;
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			
 			System.out.println("Err " + testId + " : unexpected exception. "+ e);
 			e.printStackTrace();
@@ -150,11 +176,11 @@ public class AddItemFilmTest {
 		
 		//1.7: Test with a non instantiated film director
 		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", "director", "scriptwriter", 10, "1.7", "addItemFilms() doesn't reject non instanciated film directors names.");
+		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", null, "scriptwriter", 10, "1.7", "addItemFilms() doesn't reject non instanciated film directors names.");
 		
-		//1.8: Test with a non instantiated
+		//1.8: Test with a non instantiated scenarist 
 		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", "director", "scriptwriter", 10, "1.8", "addItemFilms() doesn't reject non instaciated scenarist.");
+		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", "director", null, 10, "1.8", "addItemFilms() doesn't reject non instaciated scenarist.");
 		
 		//1.9: Test with a negative duration
 		nbTests++;
@@ -167,7 +193,6 @@ public class AddItemFilmTest {
 		try {
 			sn.addMember("login", "password", "profile");
 		} catch (BadEntryException | MemberAlreadyExistsException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -180,6 +205,8 @@ public class AddItemFilmTest {
 		
 		nbTests++;
 		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title2", new String("kind"), new String("director"), new String("scriptwriter"), 10, "2.1c");
+		
+		nbFilms = 3;
 		
 		//2.2: Test with an existing title
 		nbTests++;
@@ -195,11 +222,11 @@ public class AddItemFilmTest {
 		
 		//2.5: Test with leading/trailing blanks
 		nbTests++;
-		nbErrors += addItemFilmAlreadyExistsTest(sn,new String("login"), new String("password"), " title4 ","kind4", "director4", "scriptwriter4", 4, "2.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new film");
+		nbErrors += addItemFilmAlreadyExistsTest(sn,new String("login"), new String("password"), " title1 ","kind4", "director4", "scriptwriter4", 4, "2.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new film");
 		
 		//2.6: Test with not existing login
 		nbTests++;
-		nbErrors += addItemFilmNotMemberExceptionTest(sn, new String("login"), new String("password"), "title5", "kind5", "director5", "scriptwriter5", 5, "2.6", "The login not existing was accepted as login to add a new film");
+		nbErrors += addItemFilmNotMemberExceptionTest(sn, new String("login1"), new String("password"), "title5", "kind5", "director5", "scriptwriter5", 5, "2.6", "The login not existing was accepted as login to add a new film");
 		
 		//2.7: Test with wrong password
 		nbTests++;

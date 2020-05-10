@@ -10,12 +10,10 @@ import exceptions.NotItemException;
 import exceptions.NotMemberException;
 
 /** 
- * @author - A. Beugnard
- * @author - E. Cousin
- * @author - G. Ouvradou
- * @author - B. Prou
- * @date 2011-2018
- * @version V2018.1
+ * @author - S. EL KALDAOUI
+ * @author - H. MEZAZIGH
+ * @date 2019-2020
+ * @version V2020.1
  */
 
 /**

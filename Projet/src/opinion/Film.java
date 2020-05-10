@@ -6,33 +6,38 @@ public class Film {
 	private String title;
 	private String kind;
 	private String director;
-	private String scriptwriter;
+	private String scenarist;
 	private int duration;
 	private float meanReviews;
 	private int nbReviews;
 	private LinkedList<Review> reviewsList;
 
-	public Film(String title, String kind, String director, String scriptwriter, int duration) {
+	public Film(String title, String kind, String director, String scenarist, int duration) {
+		this.title = title.trim();
+		this.kind = kind.trim();
+		this.director = director.trim();
+		this.scenarist = scenarist.trim();
+		this.duration = duration;
 	  }
 
 	public String getTitle() {
-		return null;
+		return this.title;
 	  }
 
 	public String getKind() {
-		return null;
+		return this.kind;
 	  }
 
 	public String getDirector() {
-		return null;
+		return this.director;
 	  }
 
-	public String getScriptwriter() {
-		return null;
+	public String getScenarist() {
+		return this.scenarist;
 	  }
 
 	public int getDuration() {
-		return 0;
+		return duration;
 	  }
 
 	public void setKind(String kind) {
@@ -48,19 +53,16 @@ public class Film {
 	  }
 
 
-	public float getMeanReviews() {
+	public float MeanReviews() {
 		return 0;
-	  }
-
-	public Film searchTitle(String title) {
-		return null;
 	  }
 
 	public void setReview(String comment, int mark) {
 	  }
 
 	public boolean checkExistingTitle() {
-		return false;
+		if (this.title.trim().equalsIgnoreCase(title.trim())) return true;
+		else return false;
 	  }
 
 	public boolean checkMemberReviewExisting() {

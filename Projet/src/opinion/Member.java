@@ -1,27 +1,39 @@
 package opinion;
 
+/**
+ * Class of objects Members
+ * 
+ */
+
 public class Member {
 	
 	private String login;
 	private String password;
 	private String profile;
-	
-	public Member(String login, String password) {
-	  }
 
 	public Member(String login, String password, String profile) {
+		this.login = login.trim();			//Initialise paramaters with no leading/trailing blanks except for password
+		this.password = password;
+		this.profile = profile.trim();
 	  }
 
+	
+	
 	public boolean checkExistingLogin(String login) {
-		return true;
+		return (this.login.equalsIgnoreCase(login.trim())); // Replace spaces by nothing and put string to lower
 	  }
 	
-	public boolean checkCredentials() {
-		return true;
+	public int checkCredentials(String login, String password) {
+		int flag = 0;
+		if (this.login.equalsIgnoreCase(login.trim())) {
+			flag = 1;
+			if (this.password.equals(password) ) flag = 2;
+		}
+		return flag;
 	 }
 
 	public String getProfile() {
-		return null;
+		return this.profile;
 	 }
 	
 	public void setProfile(String profile) {
