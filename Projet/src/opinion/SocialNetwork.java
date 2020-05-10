@@ -121,6 +121,7 @@ public class SocialNetwork implements ISocialNetwork {
 				
 			
 				case 1: throw new NotMemberException("Wrong Password !");
+				
 				case 2: 		
 					//Check Existing Film 
 					
@@ -131,11 +132,13 @@ public class SocialNetwork implements ISocialNetwork {
 					if(!theFilm.checkMemberExistingReview(login)){
 						theFilm.addReview(membersList.get(i),comment, mark);
 					}
-					return theFilm.MeanReviews();
-				
+					break;
+					
 				default: throw new NotMemberException("The member doesn't exists"); //Throw a new NotMemberException if the member doesn't exist. 
 			}
+
 			}
+		return searchFilmByTitle(title).MeanReviews();
 		}
 	
 		
