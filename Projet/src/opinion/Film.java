@@ -6,13 +6,18 @@ public class Film {
 	private String title;
 	private String kind;
 	private String director;
-	private String scriptwriter;
+	private String scenarist;
 	private int duration;
 	private float meanReviews;
 	private int nbReviews;
 	private LinkedList<Review> reviewsList;
 
-	public Film(String title, String kind, String director, String scriptwriter, int duration) {
+	public Film(String title, String kind, String director, String scenarist, int duration) {
+		this.title=title;
+		this.kind=kind;
+		this.director=director;
+		this.scenarist=scenarist;
+		this.duration=duration;
 	  }
 
 	public String getTitle() {
@@ -51,20 +56,35 @@ public class Film {
 	public float getMeanReviews() {
 		return 0;
 	  }
-
-	public Film searchTitle(String title) {
-		return null;
-	  }
-
-	public void setReview(String comment, int mark) {
-	  }
-
-	public boolean checkExistingTitle() {
-		return false;
-	  }
-
-	public boolean checkMemberReviewExisting() {
-		return false;
-	  }
-
+	
+	public int nbReviews() {
+		return this.nbReviews;
 	}
+	/**
+	 * Authenticate a member among the member list of the social network by using the given credentials (login, password). 
+	 * 
+	 * @param login
+	 * 
+	 * @param password
+	 *           
+	 * @return Member object if the the member is found, else null. 
+	 */
+	public void setReview(Member theMember,String comment, float mark) {
+		
+		reviewsList.add(new Review(mark,comment));
+		this.meanReviews=(this.meanReviews+mark)/2;
+		theMember.setReview(this.reviewsList.get(nbReviews-1));
+		this.nbReviews++;
+	}
+
+	public boolean checkExistingTitle(String title) {
+		return (this.title.equalsIgnoreCase(title.trim()));
+	  }
+
+	public boolean checkMemberExistingReview(String login) {
+		for(Review thereview : reviewsList){ 
+			if(thereview.getMember().checkExistingLogin(login)) return true;
+		}
+		return false;
+	}
+}

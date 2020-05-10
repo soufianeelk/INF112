@@ -124,42 +124,7 @@ public class AddItemFilmTest {
 		// check if incorrect parameters cause addItemFilm() to throw BadEntry
 		// exception
 		
-		// 1.1 : Test with non instanciated login
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,null, "password", "title","kind", "director", "scriptwriter", 10, "1.1", "addItemFilms() doesn't reject null login.");
 		
-		//1.2 : Test with login which don't contains at least one character other than space
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn," ", "password", "title","kind", "director", "scriptwriter", 10, "1.2", "addItemFilms() doesn't reject logins that don't contain at least one character other than space.");
-		
-		//1.3: Test with non instanciated password
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", null, "title","kind", "director", "scriptwriter", 10, "1.3", "addItemFilms() doesn't reject null password.");
-		
-		//1.4: Test with password which contains less than 4 characters '
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "B", "title","kind", "director", "scriptwriter", 10, "1.4", "addItemFilms() doesn't reject password that contains less than 4 characters.");
-		
-		//1.5: Test with a non instantiated title
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", null,"kind", "director", "scriptwriter", 10, "1.5", "addItemFilms() doesn't reject non instanciated titles.");
-		
-		//1.6: Test with a non instantiated kind
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title",null, "director", "scriptwriter", 10, "1.6", "addItemFilms() doesn't reject non instanciated kinds.");
-		
-		//1.7: Test with a non instantiated film director
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", "director", "scriptwriter", 10, "1.7", "addItemFilms() doesn't reject non instanciated film directors names.");
-		
-		//1.8: Test with a non instantiated
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", "director", "scriptwriter", 10, "1.8", "addItemFilms() doesn't reject non instaciated scenarist.");
-		
-		//1.9: Test with a negative duration
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,"login", "password", "title","kind", "director", "scriptwriter", -10, "1.9", "addItemFilms() doesn't reject negative film duration.");
-
 		
 		// <=> test n°2
 		

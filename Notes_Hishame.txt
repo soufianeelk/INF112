@@ -1,0 +1,13 @@
+- Ajout d'une méthode authenticateMember dans la classe social network 
+
+
+
+- Dissociation de searchTitle et de CheckExistingLogin inutile
+
+
+
+- setReview() : changer le nom en création de nouvelle review
+
+
+
+- Review : constructeur avec member

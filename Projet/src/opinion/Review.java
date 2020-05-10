@@ -3,14 +3,16 @@ package opinion;
 public class Review {
 	
 	private String comment;
-	private int mark;
+	private float mark;
 	private Member member;
 	private Film film;
 
-	public Review(int mark, String comment) {
+	public Review(float mark, String comment) {
+		this.mark=mark;
+		this.comment=comment;
 	 }
 
-	public  Review(int mark) {
+	public  Review(float mark) {
 	 }
 
 	public String getComment( ) {
@@ -24,7 +26,7 @@ public class Review {
 	public void setComment(String comment) {
 	 }
 
-	public void setMark(int mark) {
+	public void setMark(float mark) {
 	 }
 
 	public Member getMember() {
