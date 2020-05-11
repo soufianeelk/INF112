@@ -81,11 +81,26 @@ public class Film {
 	 *           
 	 * @return Member object if the the member is found, else null. 
 	 */
-	public void addReview(Member theMember,String comment, float mark) {
-		reviewsList.add(new Review(theMember,mark,comment,this));//adding the new review in the review list
-		this.nbReviews++; //incrementing the film number counter
-		theMember.addReview(this.reviewsList.getLast()); //adding the new review in the member's list
-		this.meanReviews=(this.meanReviews+mark)/nbReviews; //computing the new mean of the review for the film. 
+	public void addReview(Member theMember, String comment, float mark) {
+		
+		Review thePotentialReview = this.checkMemberExistingReview(theMember);
+		if(thePotentialReview==null) {
+			
+			reviewsList.add(new Review(theMember,mark,comment,this));//adding the new review in the review list
+			this.nbReviews++; //incrementing the film number counter
+			theMember.addMemberReview(this.reviewsList.getLast()); //adding the new review in the member's list
+			this.meanReviews=(this.meanReviews+mark)/nbReviews; }//computing the new mean of the review for the film.
+		
+		else {
+			for(Review theReviewtoReplace : reviewsList) {
+				if (theReviewtoReplace==thePotentialReview) {
+					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/nbReviews; //Compute the new mean value
+					theReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
+					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
+				}
+				
+		}
+		}
 	}
 
 	public boolean checkExistingTitle(String title) {
@@ -93,13 +108,13 @@ public class Film {
 
 	  }
 
-	public boolean checkMemberExistingReview(String login) {
+	public Review checkMemberExistingReview(Member theMember) {
 
-		if (this.reviewsList.size()==0) return false;
+		if (this.reviewsList.size()==0) return null;
 
 		for(Review thereview : reviewsList){
-			if(thereview.getMember().checkExistingLogin(login)) return true;
+			if(thereview.getMember()==theMember) return thereview;
 		}
-		return false;
+		return null;
 	}
 }

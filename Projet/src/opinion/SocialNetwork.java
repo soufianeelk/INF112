@@ -104,11 +104,12 @@ public class SocialNetwork implements ISocialNetwork {
 		if (comment==null) throw new BadEntryException("The comment is null."); // Throw a new BadEntryException if the comment is null
 		
 		// Check Authentication and check that the film exists
-		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
-		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists"); 
+		Member thePotentialMember = this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throw a NotMemberException if the member is not registered
+		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throw a NotItemException if the title doesn't exists
 		
-		Film theFilm = searchFilmByTitle(title);
-		if(!theFilm.checkMemberExistingReview(login)) theFilm.addReview(authenticateMember(login,password),comment, mark);
+		Film theFilm = searchFilmByTitle(title); 
+		theFilm.addReview(thePotentialMember,comment, mark); //Adding a new review or editing an existing review. 
 		return searchFilmByTitle(title).getMeanReviews();
 		
 	}
@@ -135,6 +136,9 @@ public class SocialNetwork implements ISocialNetwork {
 	 * @return Film object if the the film is found, else null. 
 	 */
 	public Film searchFilmByTitle(String title) {
+		if (title==null) {
+			return null;
+		}
 		int i=0;
 		for (i=0;i<filmsList.size();i++) {
 			if (filmsList.get(i).getTitle().equalsIgnoreCase(title.trim())) return filmsList.get(i);
