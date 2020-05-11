@@ -719,6 +719,67 @@ ${members}}
       relations
         end
     end
+
+    class 155492 "InitTest"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 155620 "AddMemberTest"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 155748 "SocialNetworkTest"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 155876 "TestReport"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classdiagram 161764 "Exceptions"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
   end
 
   usecaseview 128100 "Members"

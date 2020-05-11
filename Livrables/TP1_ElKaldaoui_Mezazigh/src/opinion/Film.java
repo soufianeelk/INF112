@@ -1,17 +1,6 @@
 package opinion;
 import java.util.LinkedList;
 
-/** 
- * @author - S. EL KALDAOUI
- * @author - H. MEZAZIGH
- * @date 2019-2020
- * @version V2020.1
- */
-
-/**
- * The Film class create films
- */
-
 public class Film {
 	
 	private String title;
@@ -21,7 +10,7 @@ public class Film {
 	private int duration;
 	private float meanReviews;
 	private int nbReviews;
-	private LinkedList<Review> reviewsList=new LinkedList<Review>();
+	private LinkedList<Review> reviewsList;
 
 	public Film(String title, String kind, String director, String scenarist, int duration) {
 
@@ -82,10 +71,11 @@ public class Film {
 	 * @return Member object if the the member is found, else null. 
 	 */
 	public void addReview(Member theMember,String comment, float mark) {
-		reviewsList.add(new Review(theMember,mark,comment,this));//adding the new review in the review list
-		this.nbReviews++; //incrementing the film number counter
-		theMember.addReview(this.reviewsList.getLast()); //adding the new review in the member's list
-		this.meanReviews=(this.meanReviews+mark)/nbReviews; //computing the new mean of the review for the film. 
+		
+		reviewsList.add(new Review(mark,comment));
+		this.meanReviews=(this.meanReviews+mark)/2;
+		theMember.addReview(this.reviewsList.get(nbReviews-1));
+		this.nbReviews++;
 	}
 
 	public boolean checkExistingTitle(String title) {
@@ -94,10 +84,7 @@ public class Film {
 	  }
 
 	public boolean checkMemberExistingReview(String login) {
-
-		if (this.reviewsList.size()==0) return false;
-
-		for(Review thereview : reviewsList){
+		for(Review thereview : reviewsList){ 
 			if(thereview.getMember().checkExistingLogin(login)) return true;
 		}
 		return false;
