@@ -286,7 +286,7 @@ public class ReviewItemFilmTest {
 			
 		}
 		
-//		System.out.println("Testing reviewItemFilmTest()");
+		System.out.println("Testing reviewItemFilmTest()");
 		//OK Tests 
 		
 		nbTests++;
