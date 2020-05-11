@@ -1,6 +1,17 @@
 package opinion;
 import java.util.LinkedList;
 
+/** 
+ * @author - S. EL KALDAOUI
+ * @author - H. MEZAZIGH
+ * @date 2019-2020
+ * @version V2020.1
+ */
+
+/**
+ * The Film class create films
+ */
+
 public class Film {
 	
 	private String title;
@@ -71,7 +82,6 @@ public class Film {
 	 * @return Member object if the the member is found, else null. 
 	 */
 	public void addReview(Member theMember,String comment, float mark) {
-		
 		reviewsList.add(new Review(mark,comment));
 		this.meanReviews=(this.meanReviews+mark)/2;
 		theMember.addReview(this.reviewsList.get(nbReviews-1));
@@ -84,7 +94,7 @@ public class Film {
 	  }
 
 	public boolean checkMemberExistingReview(String login) {
-		for(Review thereview : reviewsList){ 
+		for(Review thereview : reviewsList){
 			if(thereview.getMember().checkExistingLogin(login)) return true;
 		}
 		return false;

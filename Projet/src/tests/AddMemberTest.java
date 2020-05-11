@@ -11,7 +11,7 @@ import exceptions.NotTestReportException;
 /**
  * Tests for the SocialNetwork.<i>addMember()</i> method.
  * 
- * @author B. Prou, E. Cousin, GO
+ * @author S. EL KALDAOUI, H. MEZAZIGH
  * @version V2.0 - April 2018
  */
 

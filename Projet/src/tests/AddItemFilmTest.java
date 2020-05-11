@@ -65,6 +65,29 @@ public class AddItemFilmTest {
 		
 	}
 	
+	/**
+	 * Check that trying to add this new film (login, password, title, kind, director, scenarist, duration) raises an
+	 * ItemFilmAlreadyExists Exception and does not change content of the
+	 * <i>ISocialNetwork</i>. If OK, the method just returns 0. If not OK,
+	 * displays an error message and returns 1.
+	 * 
+	 * @param sn
+	 *            - the <i>ISocialNetwork</i>
+	 * @param login
+	 *            - member's login
+	 * @param password
+	 *            - member's password
+	 * @param title
+	 *            - film's title
+	 * @param kind
+	 *            - film's kind            
+	 * @param director
+	 *            - film's director	 
+	 * @param errorMessage
+	 *            - the error message that will be displayed if no exception is
+	 *            thrown when adding this film
+	 * @return 0 if the test is OK, 1 if not
+	 */
 	private static int addItemFilmAlreadyExistsTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId, String errorMessage) {
 		int nbFilms = sn.nbFilms();
@@ -87,6 +110,30 @@ public class AddItemFilmTest {
 		}
 	}
 	
+
+	/**
+	 * Check that trying to add this new film (login, password, title, kind, director, scenarist, duration) raises an
+	 * NotMember Exception and does not change content of the
+	 * <i>ISocialNetwork</i>. If OK, the method just returns 0. If not OK,
+	 * displays an error message and returns 1.
+	 * 
+	 * @param sn
+	 *            - the <i>ISocialNetwork</i>
+	 * @param login
+	 *            - member's login
+	 * @param password
+	 *            - member's password
+	 * @param title
+	 *            - film's title
+	 * @param kind
+	 *            - film's kind            
+	 * @param director
+	 *            - film's director	 
+	 * @param errorMessage
+	 *            - the error message that will be displayed if no exception is
+	 *            thrown when adding this film
+	 * @return 0 if the test is OK, 1 if not
+	 */
 	private static int addItemFilmNotMemberExceptionTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId, String errorMessage) {
 		
@@ -110,6 +157,29 @@ public class AddItemFilmTest {
 		}
 	}
 			
+	/**
+	 * Check that this new film (login, password, title, kind, director, scenarist, duration) can be (and <i>is</i>)
+	 * added to the <i>ISocialNetwork</i>.</br> If OK, the method just returns 0
+	 * : the new film was added.</br> If not OK, an error message is displayed
+	 * and 1 is returned ; the new film was not correctly added.
+	 * 
+	 * @param sn
+	 *            - the <i>ISocialNetwork</i>
+	 * @param login
+	 *            - member's login
+	 * @param password
+	 *            - member's password
+	 * @param title
+	 *            - film's title
+	 * @param kind
+	 *            - film's kind            
+	 * @param director
+	 *            - film's director	 
+	 * @param errorMessage
+	 *            - the error message that will be displayed if no exception is
+	 *            thrown when adding this film
+	 * @return 0 if the test is OK, 1 if not
+	 */
 	private static int addItemFilmOKTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId) {
 		

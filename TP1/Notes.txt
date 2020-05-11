@@ -7,3 +7,5 @@
 -Member: l30: retourne un int afin d'etre plus fin car 3 états
 
 - Pq renseigner un login pour ajouter un film? Un membre doit ensuite etre associer au film? Sinon un film peut etre ajouter anonymement
+
+- Une méthode check authentication dans SocialNetwork qui utilisera checkCredentials
