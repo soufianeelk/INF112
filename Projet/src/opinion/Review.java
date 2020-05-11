@@ -7,12 +7,11 @@ public class Review {
 	private Member member;
 	private Film film;
 
-	public Review(float mark, String comment) {
+	public Review(Member theMember,float mark, String comment, Film theFilm) {
+		this.member=theMember;
 		this.mark = mark;
 		this.comment = comment.trim();
-	 }
-
-	public Review(float mark) {
+		this.film=theFilm;
 	 }
 
 	public String getComment( ) {

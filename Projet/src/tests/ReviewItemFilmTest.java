@@ -44,7 +44,7 @@ public class ReviewItemFilmTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	private static int addReviewItemFilmBadEntryTest(ISocialNetwork sn, String login,
-			String pwd, String title, int mark, String comment,String testId,String errorMessage) {
+			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review
@@ -53,7 +53,6 @@ public class ReviewItemFilmTest {
 			return 1;
 		}
 		catch (BadEntryException e) { 
-			System.out.println("Err "+ testId+ " : BadEntry was thrown"); // Display
 			return 0; 
 		}
 		catch (Exception e) {// An exception was thrown by reviewItemFilm(), but
@@ -91,7 +90,7 @@ public class ReviewItemFilmTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	private static int addReviewItemFilmNotMemberExceptionTest(ISocialNetwork sn, String login,
-			String pwd, String title, int mark, String comment,String testId,String errorMessage) {
+			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -100,7 +99,6 @@ public class ReviewItemFilmTest {
 			return 1;
 		}
 		catch (NotMemberException e) {
-			System.out.println("Err "+ testId+ " : NotMemberException was thrown."); // Display
 			return 0;
 		}
 		
@@ -139,7 +137,7 @@ public class ReviewItemFilmTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	private static int addReviewItemFilmNotItemExceptionTest(ISocialNetwork sn, String login,
-			String pwd, String title, int mark, String comment,String testId,String errorMessage) {
+			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -148,7 +146,6 @@ public class ReviewItemFilmTest {
 			return 1;
 		}
 		catch (NotItemException e) {
-			System.out.println("Err "+ testId+ " : NotItemException was thrown."); // Display
 			return 0;
 		}
 		
@@ -186,11 +183,11 @@ public class ReviewItemFilmTest {
 	 */
 	
 	private static int addReviewItemFilmOKTest(SocialNetwork sn, String login,
-			String pwd, String title, int mark,String testId,String comment) {
+			String pwd, String title, float mark,String testId,String comment) {
 		
 		try {
 			int nbReviews;
-			nbReviews = sn.searchFilmByTitle(title).getNbReviews();
+			nbReviews = sn.searchFilmByTitle(title).getNbReviews(); // get the number of review for the film
 			sn.reviewItemFilm(login, pwd, title, mark, comment);
 			
 			if (sn.searchFilmByTitle(title).getNbReviews() != nbReviews+1) {
@@ -211,7 +208,7 @@ public class ReviewItemFilmTest {
 	
 	public static TestReport test(){
 
-		ISocialNetwork sn = new SocialNetwork();
+		SocialNetwork sn = new SocialNetwork();
 
 		int nbTests = 0; // total number of performed tests
 		int nbErrors = 0; // total number of failed tests
@@ -220,13 +217,20 @@ public class ReviewItemFilmTest {
 		// Creating a user and a film in order to realize tests
 		try {
 			sn.addMember("user1","password", "profile");
+			sn.addMember("user5","password", "profile");
 			sn.addItemFilm("user1","password", "title","kind", "director", "scriptwriter", 120);
+			sn.reviewItemFilm("user1", "password", "title", 4, "thecomment");
 		}
 		
 		catch (Exception e) {
 			
 		}
 		
+//		System.out.println("Testing reviewItemFilmTest()");
+		//OK Tests 
+		
+		nbTests++;
+		nbErrors=addReviewItemFilmOKTest(sn,"user1","password","title", (float) 3.5 ,"1.a","thecomment");
 		// test n°1 : BadEntryException tests
 		
 		// 1.1 : Test with non instantiated login

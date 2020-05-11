@@ -10,7 +10,7 @@ public class Film {
 	private int duration;
 	private float meanReviews;
 	private int nbReviews;
-	private LinkedList<Review> reviewsList;
+	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 
 	public Film(String title, String kind, String director, String scenarist, int duration) {
 
@@ -72,10 +72,10 @@ public class Film {
 	 */
 	public void addReview(Member theMember,String comment, float mark) {
 		
-		reviewsList.add(new Review(mark,comment));
-		this.meanReviews=(this.meanReviews+mark)/2;
-		theMember.addReview(this.reviewsList.get(nbReviews-1));
-		this.nbReviews++;
+		reviewsList.add(new Review(theMember,mark,comment,this));//adding the new review in the review list
+		this.nbReviews++; //incrementing the film number counter
+		theMember.addReview(this.reviewsList.getLast()); //adding the new review in the member's list
+		this.meanReviews=(this.meanReviews+mark)/nbReviews; //computing the new mean of the review for the film. 
 	}
 
 	public boolean checkExistingTitle(String title) {
@@ -84,6 +84,7 @@ public class Film {
 	  }
 
 	public boolean checkMemberExistingReview(String login) {
+		if (this.reviewsList.size()==0) return false;
 		for(Review thereview : reviewsList){ 
 			if(thereview.getMember().checkExistingLogin(login)) return true;
 		}
