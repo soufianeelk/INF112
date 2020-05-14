@@ -43,8 +43,13 @@ public class ReviewItemFilmTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemFilmBadEntryTest(ISocialNetwork sn, String login,
+	private static int addReviewItemFilmBadEntryTest(SocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
+		
+		int nbFilms=sn.nbFilms();
+		int nbBooks=sn.nbBooks();
+		if (sn.searchFilmByTitle(title)==null) return 0;
+		int nbReview=sn.searchFilmByTitle(title).getNbReviews();
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review
@@ -53,6 +58,21 @@ public class ReviewItemFilmTest {
 			return 1;
 		}
 		catch (BadEntryException e) { 
+
+			
+			if (sn.searchFilmByTitle(title).getNbReviews() != nbReview) {
+				System.out.println("Err " + testId + " : the number of reviews (" + nbReview + ") was incremented");
+				return 1;
+			}
+			if (sn.nbFilms() != nbFilms) {
+				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
+				return 1;
+			}	
+			if (sn.nbBooks() != nbBooks) {
+				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
+				return 1;
+			}
+			
 			return 0; 
 		}
 		catch (Exception e) {// An exception was thrown by reviewItemFilm(), but
@@ -89,8 +109,12 @@ public class ReviewItemFilmTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemFilmNotMemberExceptionTest(ISocialNetwork sn, String login,
+	private static int addReviewItemFilmNotMemberExceptionTest(SocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
+		
+		int nbFilms=sn.nbFilms();
+		int nbBooks=sn.nbBooks();
+		int nbReview=sn.searchFilmByTitle(title).getNbReviews();
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -99,6 +123,20 @@ public class ReviewItemFilmTest {
 			return 1;
 		}
 		catch (NotMemberException e) {
+			
+			if (sn.searchFilmByTitle(title).getNbReviews() != nbReview) {
+				System.out.println("Err " + testId + " : the number of reviews (" + nbReview + ") was incremented");
+				return 1;
+			}
+			if (sn.nbFilms() != nbFilms) {
+				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
+				return 1;
+			}	
+			if (sn.nbBooks() != nbBooks) {
+				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
+				return 1;
+			}
+			
 			return 0;
 		}
 		
@@ -136,8 +174,13 @@ public class ReviewItemFilmTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemFilmNotItemExceptionTest(ISocialNetwork sn, String login,
+	private static int addReviewItemFilmNotItemExceptionTest(SocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
+		
+		int nbFilms=sn.nbFilms();
+		int nbBooks=sn.nbBooks();
+		if (sn.searchFilmByTitle(title)==null) return 0;
+		int nbReview=sn.searchFilmByTitle(title).getNbReviews();
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -146,6 +189,20 @@ public class ReviewItemFilmTest {
 			return 1;
 		}
 		catch (NotItemException e) {
+			
+			if (sn.searchFilmByTitle(title).getNbReviews() != nbReview) {
+				System.out.println("Err " + testId + " : the number of reviews (" + nbReview + ") was incremented");
+				return 1;
+			}
+			if (sn.nbFilms() != nbFilms) {
+				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
+				return 1;
+			}	
+			if (sn.nbBooks() != nbBooks) {
+				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
+				return 1;
+			}
+			
 			return 0;
 		}
 		
@@ -185,6 +242,10 @@ public class ReviewItemFilmTest {
 	private static int addReviewItemFilmOKTest(SocialNetwork sn, String login,
 			String pwd, String title, float mark,String testId,String comment) {
 		
+		int nbFilms=sn.nbFilms();
+		int nbBooks=sn.nbBooks();
+		int nbReview=sn.searchFilmByTitle(title).getNbReviews();
+		
 		try {
 			int nbReviews;
 			nbReviews = sn.searchFilmByTitle(title).getNbReviews(); // get the number of review for the film
@@ -217,6 +278,7 @@ public class ReviewItemFilmTest {
 		// Creating a user and a film in order to realize tests
 		try {
 			sn.addMember("user1","password", "profile");
+			sn.addMember("user5","password","profile");
 			sn.addItemFilm("user1","password", "title","kind", "director", "scriptwriter", 120);
 		}
 		
@@ -224,12 +286,11 @@ public class ReviewItemFilmTest {
 			
 		}
 		
-//		System.out.println("Testing reviewItemFilmTest()");
+		System.out.println("Testing reviewItemFilmTest()");
 		//OK Tests 
 		
 		nbTests++;
-		nbErrors=addReviewItemFilmOKTest(sn,"user1","password","title", (float) 3.5 ,"1.a","thecomment");
-		// test n°1 : BadEntryException tests
+		nbErrors=addReviewItemFilmOKTest(sn,"user1","password","title", (float) 4 ,"1.a","Commentaire 1");
 		
 		// 1.1 : Test with non instantiated login
 		nbTests++;

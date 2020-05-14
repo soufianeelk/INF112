@@ -43,7 +43,7 @@ public class Member {
 	public void setLogin(String login) {
 	}
 	
-	public void addReview(Review theReview) {
+	public void addMemberReview(Review theReview) {
 		this.reviewsList.add(theReview);
 	}
 

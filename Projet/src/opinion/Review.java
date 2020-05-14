@@ -23,9 +23,11 @@ public class Review {
 	 }
 
 	public void setComment(String comment) {
+		this.comment=comment;
 	 }
 
 	public void setMark(float mark) {
+		this.mark=mark;
 	 }
 
 	public Member getMember() {
