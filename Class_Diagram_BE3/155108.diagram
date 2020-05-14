@@ -1,0 +1,102 @@
+format 222
+
+classinstance 128100 class_ref 135140 // Actor
+  name ""   xyz 90 4 2000 life_line_z 2000
+classinstancecanvas 128228 classinstance_ref 148580 // ToutAvis
+  xyz 212 4 2005 life_line_z 2000
+end
+classinstance 128356 class_ref 135396 // Film
+  name ""   xyz 645 5 2005 life_line_z 2000
+classinstance 130020 class_ref 148708 // NotItemException
+  name "e"   xyz 776 328 2005 life_line_z 2000
+classinstance 130916 class_ref 128386 // Member
+  name ""   xyz 473 4 2005 life_line_z 2000
+note 131428 "Film not existing case:
+NotItemException
+"
+  xyzwh 953 99 2000 195 53
+durationcanvas 128484 classinstance_ref 128100 // :Actor
+  xyzwh 104 86 2010 11 404
+end
+durationcanvas 128612 classinstance_ref 128228 // ToutAvis:SocialNetwork
+  xyzwh 280 87 2010 11 403
+  overlappingdurationcanvas 129124
+    xyzwh 286 101 2020 11 32
+  end
+  overlappingdurationcanvas 129380
+    xyzwh 286 277 2020 11 134
+  end
+  overlappingdurationcanvas 130660
+    xyzwh 286 184 2020 11 58
+  end
+end
+durationcanvas 129636 classinstance_ref 128356 // :Film
+  xyzwh 664 311 2010 11 34
+end
+durationcanvas 130148 classinstance_ref 130020 // e:NotItemException
+  xyzwh 833 378 2010 11 33
+end
+durationcanvas 131044 classinstance_ref 130916 // :Member
+  xyzwh 499 205 2010 11 41
+end
+msg 128740 synchronous
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 128612
+  yz 88 2015 explicitmsg "reviewItemFilm()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 151 72
+reflexivemsg 129252 synchronous
+  to durationcanvas_ref 129124
+  yz 101 2025 explicitmsg "Check Parameters"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 299 83
+reflexivemsg 129508 synchronous
+  to durationcanvas_ref 129380
+  yz 277 2025 explicitmsg "Check Existing Film"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 308 261
+msg 129764 synchronous
+  from durationcanvas_ref 129380
+  to durationcanvas_ref 129636
+  yz 314 2030 explicitmsg "checkExistingTitle()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 449 294
+msg 129892 return
+  from durationcanvas_ref 129636
+  to durationcanvas_ref 129380
+  yz 334 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 130276 synchronous
+  from durationcanvas_ref 129380
+  to durationcanvas_ref 130148
+  yz 379 2030 explicitmsg "new NotItemException()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 486 361
+msg 130404 return
+  from durationcanvas_ref 130148
+  to durationcanvas_ref 129380
+  yz 400 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 130532 return
+  from durationcanvas_ref 128612
+  to durationcanvas_ref 128484
+  yz 479 2015 explicitmsg "Error"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 183 463
+reflexivemsg 130788 synchronous
+  to durationcanvas_ref 130660
+  yz 184 2025 explicitmsg "Check Authentification"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 296 161
+msg 131172 synchronous
+  from durationcanvas_ref 130660
+  to durationcanvas_ref 131044
+  yz 205 2025 explicitmsg "checkCredentials()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 355 190
+msg 131300 return
+  from durationcanvas_ref 131044
+  to durationcanvas_ref 130660
+  yz 230 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+end

@@ -20,7 +20,7 @@ public class Member {
 	  }
 
 	
-	public boolean checkExistingLogin(String login) {
+	public boolean compareLogin(String login) {
 		return (this.login.equalsIgnoreCase(login.trim())); // Replace spaces by nothing and put string to lower
 	  }
 	
@@ -43,9 +43,9 @@ public class Member {
 	public void setLogin(String login) {
 	}
 	
-	public void addMemberReview(Review theReview) {
+	/*public void addMemberReview(Review theReview) {
 		this.reviewsList.add(theReview);
-	}
+	}*/
 
 	public Review getReviews() {
 		return null;

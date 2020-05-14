@@ -1,13 +1,5 @@
-- Ajout d'une méthode authenticateMember dans la classe social network 
+####################################  14/05/2020 ################################
 
-
-
-- Dissociation de searchTitle et de CheckExistingLogin inutile
-
-
-
-- setReview() : changer le nom en création de nouvelle review
-
-
-
-- Review : constructeur avec member
+- checkExistingTitle to compareTitle
+- checkExistingLogin to compareLogin
+- Ajouter les reviews laissées par le membre à l'avenir?

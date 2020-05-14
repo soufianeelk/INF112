@@ -5,15 +5,14 @@ public class Review {
 	private String comment;
 	private float mark;
 	private Member member;
-	private Film film;
 
-	public Review(Member theMember,float mark, String comment, Film theFilm) {
+	public Review(Member theMember,float mark, String comment) {
 		this.member=theMember;
 		this.mark = mark;
 		this.comment = comment.trim();
-		this.film=theFilm;
 	 }
-
+	
+	
 	public String getComment( ) {
 		return this.comment;
 	 }

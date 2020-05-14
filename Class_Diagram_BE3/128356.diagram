@@ -1,0 +1,52 @@
+format 222
+
+classinstancecanvas 133732 classinstance_ref 128100 // SocialNetwork
+  xyz 445 5 2005 life_line_z 2000
+end
+note 133860 "Wrong parameters case: BadEntryException"
+  xyzwh 918.5 118 2000 191 63
+classinstance 133988 class_ref 128612 // User
+  name ""   xyz 229 5 2000 life_line_z 2000
+classinstance 134244 class_ref 128130 // BadEntryException
+  name "e"   xyz 748 69 2005 life_line_z 2000
+durationcanvas 134500 classinstance_ref 133988 // :User
+  xyzwh 241 57 2010 11 221
+end
+durationcanvas 134628 classinstance_ref 133732 // SocialNetwork:ToutAvis
+  xyzwh 513 75 2010 11 163
+  overlappingdurationcanvas 134756
+    xyzwh 519 89 2020 11 74
+  end
+end
+durationcanvas 136804 classinstance_ref 134244 // e:BadEntryException
+  xyzwh 810 119 2010 11 41
+end
+msg 135396 synchronous
+  from durationcanvas_ref 134500
+  to durationcanvas_ref 134628
+  yz 76 2015 explicitmsg "addMember()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 348 44
+reflexivemsg 135524 synchronous
+  to durationcanvas_ref 134756
+  yz 89 2025 explicitmsg "Check Paramaters"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 553 84
+msg 135908 return
+  from durationcanvas_ref 134628
+  to durationcanvas_ref 134500
+  yz 183 2025 explicitmsg "Error"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 368 167
+msg 136932 synchronous
+  from durationcanvas_ref 134756
+  to durationcanvas_ref 136804
+  yz 120 2025 explicitmsg "new BadEntryException"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 594 104
+msg 137060 return
+  from durationcanvas_ref 136804
+  to durationcanvas_ref 134756
+  yz 149 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+end

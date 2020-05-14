@@ -1,3 +1,5 @@
+//V1.
+
 package opinion;
 
 import java.util.LinkedList;
@@ -16,7 +18,8 @@ import exceptions.NotMemberException;
 public class SocialNetwork implements ISocialNetwork {
 	
 	private LinkedList<Member> membersList = new LinkedList<Member>();
-	public LinkedList<Film> filmsList = new LinkedList<Film>();
+	private LinkedList<Film> filmsList = new LinkedList<Film>();
+	private LinkedList<Book> booksList = new LinkedList<Book>();
 
 	@Override
 	public int nbMembers() {
@@ -46,7 +49,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 		// Check if the login is available
 		for (int i=0; i < membersList.size(); i++) {
-			if (membersList.get(i).checkExistingLogin(login)) {
+			if (membersList.get(i).compareLogin(login)) {
 				
 				throw new MemberAlreadyExistsException("Login already used"); // Throw the exception if the login isn't available
 			}
@@ -104,14 +107,15 @@ public class SocialNetwork implements ISocialNetwork {
 		if (comment==null) throw new BadEntryException("The comment is null."); // Throw a new BadEntryException if the comment is null
 		
 		// Check Authentication and check that the film exists
+
 		Member thePotentialMember = this.authenticateMember(login, password);
 		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throw a NotMemberException if the member is not registered
 		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throw a NotItemException if the title doesn't exists
 		
 		Film theFilm = searchFilmByTitle(title); 
 		theFilm.addReview(thePotentialMember,comment, mark); //Adding a new review or editing an existing review. 
-		return searchFilmByTitle(title).getMeanReviews();
-		
+		return theFilm.getMeanReviews();
+
 	}
 	
 
@@ -128,6 +132,7 @@ public class SocialNetwork implements ISocialNetwork {
 			throws BadEntryException {
 		return new LinkedList<String>();
 	}
+	
 	/**
 	 * Search a film among the film list of the social network using the given title. 
 	 * 
@@ -141,7 +146,17 @@ public class SocialNetwork implements ISocialNetwork {
 		}
 		int i=0;
 		for (i=0;i<filmsList.size();i++) {
-			if (filmsList.get(i).getTitle().equalsIgnoreCase(title.trim())) return filmsList.get(i);
+			if (filmsList.get(i).compareTitle(title)) return filmsList.get(i);
+		}
+		return null;
+	}
+	
+	public Book searchBookByTitle(String title) {
+		if (title == null ) {
+			return null;
+		}
+		for (int i=0; i<booksList.size();i++) {
+			if (booksList.get(i).compareTitle(title)) return booksList.get(i);
 		}
 		return null;
 	}

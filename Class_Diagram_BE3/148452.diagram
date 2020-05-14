@@ -1,0 +1,178 @@
+format 222
+
+classinstancecanvas 128100 classinstance_ref 148580 // ToutAvis
+  xyz 303 4 2005 life_line_z 2000
+end
+classinstance 128228 class_ref 135140 // Actor
+  name ""   xyz 94 4 2000 life_line_z 2000
+classinstancecanvas 128740 classinstance_ref 148708 // 
+  xyz 667 4 2005 life_line_z 2000
+end
+classinstancecanvas 129380 classinstance_ref 148836 // 
+  xyz 1099 6 2005 life_line_z 2000
+end
+classinstancecanvas 131300 classinstance_ref 148964 // The Film
+  xyz 793 4 2005 life_line_z 2000
+end
+classinstance 131940 class_ref 135524 // Review
+  name ""   xyz 951 4 2005 life_line_z 2000
+note 137700 "Normal Use Case"
+  xyzwh 1248.5 80.5 2000 135 45
+classinstance 137828 class_ref 135524 // Review
+  name "theReview"   xyz 1194 667 2005 life_line_z 2000
+durationcanvas 128356 classinstance_ref 128228 // :Actor
+  xyzwh 108 90 2010 11 774
+end
+durationcanvas 128484 classinstance_ref 128100 // ToutAvis:SocialNetwork
+  xyzwh 371 93 2010 11 1205
+  overlappingdurationcanvas 128868
+    xyzwh 377 111 2020 11 25
+  end
+  overlappingdurationcanvas 129124
+    xyzwh 377 179 2020 11 67
+  end
+  overlappingdurationcanvas 137060
+    xyzwh 377 373 2020 11 86
+  end
+end
+durationcanvas 129508 classinstance_ref 129380 // :Member
+  xyzwh 1125 200 2010 11 29
+end
+durationcanvas 133220 classinstance_ref 131300 // The Film:Film
+  xyzwh 833 710 2010 11 112
+  overlappingdurationcanvas 133860
+    xyzwh 839 767 2020 11 25
+  end
+end
+durationcanvas 134884 classinstance_ref 131300 // The Film:Film
+  xyzwh 833 525 2010 11 137
+  overlappingdurationcanvas 136036
+    xyzwh 839 550 2020 11 80
+  end
+end
+durationcanvas 136292 classinstance_ref 131940 // :Review
+  xyzwh 973 577 2010 11 53
+end
+durationcanvas 136548 classinstance_ref 129380 // :Member
+  xyzwh 1125 593 2010 11 28
+end
+durationcanvas 137316 classinstance_ref 128740 // :Film
+  xyzwh 686 402 2010 11 58
+end
+durationcanvas 137956 classinstance_ref 137828 // theReview:Review
+  xyzwh 1245 717 2010 11 35
+end
+msg 128612 synchronous
+  from durationcanvas_ref 128356
+  to durationcanvas_ref 128484
+  yz 97 2015 explicitmsg "reviewItemFilm()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 199 81
+reflexivemsg 128996 synchronous
+  to durationcanvas_ref 128868
+  yz 111 2025 explicitmsg "Check Parameters"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 388 90
+reflexivemsg 129252 synchronous
+  to durationcanvas_ref 129124
+  yz 179 2025 explicitmsg "Check Authentification"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 384 161
+msg 129636 synchronous
+  from durationcanvas_ref 129124
+  to durationcanvas_ref 129508
+  yz 200 2025 explicitmsg "checkCredentials()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 533 184
+msg 129764 return
+  from durationcanvas_ref 129508
+  to durationcanvas_ref 129124
+  yz 216 2030 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 133348 synchronous
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 133220
+  yz 711 2015 explicitmsg "setReview()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 539 695
+reflexivemsg 133988 synchronous
+  to durationcanvas_ref 133860
+  yz 767 2025 explicitmsg "Add Review In List"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 857 750
+msg 134116 return
+  from durationcanvas_ref 133220
+  to durationcanvas_ref 128484
+  yz 811 2015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 134244 return
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 128356
+  yz 852 2015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 135012 synchronous
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 134884
+  yz 525 2025 explicitmsg "checkMemberExistingReview()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 488 509
+msg 135908 return
+  from durationcanvas_ref 134884
+  to durationcanvas_ref 128484
+  yz 651 2020 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+reflexivemsg 136164 synchronous
+  to durationcanvas_ref 136036
+  yz 550 2025 explicitmsg "Check Reviews"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 856 534
+msg 136420 synchronous
+  from durationcanvas_ref 136036
+  to durationcanvas_ref 136292
+  yz 577 3005 explicitmsg "getMember()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 872 563
+msg 136676 synchronous
+  from durationcanvas_ref 136292
+  to durationcanvas_ref 136548
+  yz 593 3010 explicitmsg "checkExistingLogin()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 996 577
+msg 136804 return
+  from durationcanvas_ref 136548
+  to durationcanvas_ref 136292
+  yz 610 3015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 136932 return
+  from durationcanvas_ref 136292
+  to durationcanvas_ref 136036
+  yz 619 3020 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+reflexivemsg 137188 synchronous
+  to durationcanvas_ref 137060
+  yz 373 2025 explicitmsg "searchFilmByTitle()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 386 353
+msg 137444 synchronous
+  from durationcanvas_ref 137060
+  to durationcanvas_ref 137316
+  yz 406 2025 explicitmsg "Check Existing Title"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 446 390
+msg 137572 return
+  from durationcanvas_ref 137316
+  to durationcanvas_ref 137060
+  yz 448 2030 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 138084 synchronous
+  from durationcanvas_ref 133220
+  to durationcanvas_ref 137956
+  yz 717 3005 explicitmsg "new Review()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1004 701
+msg 138212 return
+  from durationcanvas_ref 137956
+  to durationcanvas_ref 133220
+  yz 738 3005 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+end
