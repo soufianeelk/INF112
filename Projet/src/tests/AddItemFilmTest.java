@@ -276,7 +276,7 @@ public class AddItemFilmTest {
 		nbTests++;
 		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title2", new String("kind"), new String("director"), new String("scriptwriter"), 10, "2.1c");
 		
-		nbFilms = 3;
+		nbFilms += 3;
 		
 		//2.2: Test with an existing title
 		nbTests++;

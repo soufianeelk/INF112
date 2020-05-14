@@ -102,6 +102,9 @@ public class SocialNetwork implements ISocialNetwork {
 		if (author == null) throw new BadEntryException("The author must be instanciated");
 		if (nbPages < 0) throw new BadEntryException("The number of pages must be positive");
 		
+		// Check if the book already exists in the list 
+		if (this.searchBookByTitle(title)!=null) throw new ItemBookAlreadyExistsException("The book already exists !");
+		
 		// Check Authentication 
 		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
 		if (this.searchBookByTitle(title) == null) booksList.add(new Book(title, kind, author,nbPages));
