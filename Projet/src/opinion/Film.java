@@ -82,7 +82,7 @@ public class Film {
 	 * @return Member object if the the member is found, else null. 
 	 */
 	public void addReview(Member theMember,String comment, float mark) {
-		reviewsList.add(new Review(theMember,mark,comment,this));//adding the new review in the review list
+		reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the review list
 		this.nbReviews++; //incrementing the film number counter
 		theMember.addReview(this.reviewsList.getLast()); //adding the new review in the member's list
 		this.meanReviews=(this.meanReviews+mark)/nbReviews; //computing the new mean of the review for the film. 

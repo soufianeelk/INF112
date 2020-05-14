@@ -52,7 +52,7 @@ public class AddItemFilmTest {
 
 		} catch (BadEntryException e) {		//Check if the BadEntryException is correctly caught
 			if (sn.nbFilms() != nbFilms) {	//Check if no films were added by comparing nbFilms before and now
-				System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of members was changed");	//If yes print error message
+				System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of films was changed");	//If yes print error message
 				return 1;
 			} else
 				return 0;
@@ -99,7 +99,7 @@ public class AddItemFilmTest {
 
 		} catch (ItemFilmAlreadyExistsException e) {
 			if (sn.nbFilms() != nbFilms) {
-				System.out.println("Err "+ testId+ " : ItemFilmAlreadyExistsException was thrown but the number of members was changed");
+				System.out.println("Err "+ testId+ " : ItemFilmAlreadyExistsException was thrown but the number of films was changed");
 				return 1;
 			} else
 				return 0;
@@ -146,7 +146,7 @@ public class AddItemFilmTest {
 
 		} catch (NotMemberException e) {
 			if (sn.nbFilms() != nbFilms) {
-				System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of members was changed");
+				System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of films was changed");
 				return 1;
 			} else
 				return 0;
