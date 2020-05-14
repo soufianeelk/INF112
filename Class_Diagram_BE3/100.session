@@ -1,0 +1,38 @@
+window_sizes 1920 1001 336 1578 947 0
+
+diagrams
+  active  classdiagram_ref 128258 // ClassDiagram
+    1578 947 100 Custom 221 0
+  sequencediagram_ref 128228 // SequenceDiagram
+    508 98 100 Custom 0 0
+  sequencediagram_ref 128356 // SequenceDiagram_BEE
+    1464 819 100 Custom 0 0
+  sequencediagram_ref 128484 // SequenceDiagram_MAEE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 135140 // addItemFilm
+    1525 818 100 Custom 0 0
+  sequencediagram_ref 141668 // addItemFilm_BEE
+    119 98 100 Custom 0 0
+  sequencediagram_ref 141796 // addItemFilm_IFAEE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 141924 // addItemFilm_NME
+    114 98 100 Custom 0 0
+  sequencediagram_ref 148452 // reviewItemFilm
+    1525 818 100 Custom 0 0
+  sequencediagram_ref 154980 // reviewItemFilm_BEE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 155108 // reviewItemFilm_NIE
+    114 98 100 Custom 0 0
+  sequencediagram_ref 155236 // reviewItemFilm_NME
+    1578 947 100 Custom 0 0
+  classdiagram_ref 161764 // Exceptions
+    114 98 100 A4 0 0
+end
+show_stereotypes
+selected operation_ref 129282 // checkExistingLogin
+open
+  class_ref 128386 // Member
+  classinstance_ref 128100 // SocialNetwork
+  usecaseview_ref 134628 // Films
+end
+end

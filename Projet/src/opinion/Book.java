@@ -12,83 +12,59 @@ import java.util.LinkedList;
  * The Film class create films
  */
 
-public class Film {
+public class Book {
 	
 	private String title;
 	private String kind;
-	private String director;
-	private String scenarist;
-	private int duration;
-	private float meanReviews;
+	private String author;
+	private int nbPages;
 	private int nbReviews;
+	private float meanReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
-
-	public Film(String title, String kind, String director, String scenarist, int duration) {
-
-		this.title = title.trim();
-		this.kind = kind.trim();
-		this.director = director.trim();
-		this.scenarist = scenarist.trim();
-		this.duration = duration;
-	  }
-
+	
+	public Book (String title, String kind, String author, int nbPages) {
+		this.title = title;
+		this.kind = kind;
+		this.author = author;
+		this.nbPages = nbPages;
+	}
+	
 	public String getTitle() {
 		return this.title;
-	  }
-
+	}
+	
 	public String getKind() {
 		return this.kind;
-	  }
-
-	public String getDirector() {
-		return this.director;
-	  }
-
-	public String getScenarist() {
-		return this.scenarist;
-	  }
-
-	public int getDuration() {
-		return duration;
-	  }
-
-	public void setKind(String kind) {
-	  }
-
-	public void setDirector(String director) {
-	  }
-
-	public void setScriptwriter(String scriptwriter) {
-	  }
-
-	public void setDuration(int duration) {
-	  }
-
-
+	}
+	
+	public String getAuthor() {
+		return this.author;
+	}
+	
+	public int getNbPages() {
+		return this.nbPages;
+	}
+	
 	public float getMeanReviews() {
 		return this.meanReviews;
-	  }
+	}
 	
 	public int getNbReviews() {
 		return this.nbReviews;
 	}
-	/**
-	 * Authenticate a member among the member list of the social network by using the given credentials (login, password). 
-	 * 
-	 * @param login
-	 * 
-	 * @param password
-	 *           
-	 * @return Member object if the the member is found, else null. 
-	 */
-
+	
+	
+	public boolean compareTitle(String title) {
+		return (this.title.equalsIgnoreCase(title.trim()));
+	  }
+	
 	public void addReview(Member theMember, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the review list
-			this.nbReviews++; //incrementing the film number counter
+			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the reviews list
+			this.nbReviews++; //incrementing the book reviews counter
 			this.meanReviews=(this.meanReviews+mark)/nbReviews; }//computing the new mean of the review for the film.
 		
 		else {
@@ -102,11 +78,7 @@ public class Film {
 		}
 		}
 	}
-
-	public boolean compareTitle(String title) {
-		return (this.title.equalsIgnoreCase(title.trim()));
-	  }
-
+	
 	public Review checkMemberExistingReview(Member theMember) {
 
 		if (this.reviewsList.size()==0) return null;
@@ -116,4 +88,5 @@ public class Film {
 		}
 		return null;
 	}
+
 }

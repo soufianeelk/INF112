@@ -1,4 +1,5 @@
 //V2
+
 package opinion;
 
 import java.util.LinkedList;
@@ -18,8 +19,7 @@ public class SocialNetwork implements ISocialNetwork {
 	
 	private LinkedList<Member> membersList = new LinkedList<Member>();
 	private LinkedList<Film> filmsList = new LinkedList<Film>();
-	private LinkedList<Film> booksList = new LinkedList<Book>();
-	private LinkedList<String> itemList = new LinkedList<String>();
+	private LinkedList<Book> booksList = new LinkedList<Book>();
 
 
 	@Override
@@ -50,7 +50,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 		// Check if the login is available
 		for (int i=0; i < membersList.size(); i++) {
-			if (membersList.get(i).checkExistingLogin(login)) {
+			if (membersList.get(i).compareLogin(login)) {
 				
 				throw new MemberAlreadyExistsException("Login already used"); // Throw the exception if the login isn't available
 			}
@@ -105,7 +105,8 @@ public class SocialNetwork implements ISocialNetwork {
 		// Check Authentication 
 		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
 		if (this.searchBookByTitle(title) == null) booksList.add(new Book(title, kind, author,nbPages));
-		else throw new ItemFilmAlreadyExistsException("This book already exists !");
+		else throw new ItemBookAlreadyExistsException("This book already exists !");
+		
 
 
 	}
@@ -125,13 +126,15 @@ public class SocialNetwork implements ISocialNetwork {
 		if (comment==null) throw new BadEntryException("The comment is null."); // Throw a new BadEntryException if the comment is null
 		
 		// Check Authentication and check that the film exists
-		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
-		if (this.searchBookByTitle(title) == null) throw new NotItemException("The title doesn't exists"); 
+
+		Member thePotentialMember = this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throw a NotMemberException if the member is not registered
+		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throw a NotItemException if the title doesn't exist
 		
-		Film theBook = searchBookByTitle(title);
-		theBook.addReview(authenticateMember(login,password),comment, mark); //Adding or editing a review 
-		return searchBookByTitle(title).getMeanReviews();
-		
+		Film theFilm = searchFilmByTitle(title); 
+		theFilm.addReview(thePotentialMember,comment, mark); //Adding a new review or editing an existing review. 
+		return theFilm.getMeanReviews();
+
 	}
 	
 
@@ -149,7 +152,11 @@ public class SocialNetwork implements ISocialNetwork {
 		if (title==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the title is null
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); //Throw a new BadEntryException if the title is empty
-		return 0;
+		
+		Book theBook = searchBookByTitle(title);
+		theBook.addReview(authenticateMember(login,password),comment, mark); //Adding or editing a review 
+		return searchBookByTitle(title).getMeanReviews();
+		
 	}
 
 	@Override
@@ -159,26 +166,53 @@ public class SocialNetwork implements ISocialNetwork {
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
 		
-		Film thePotentialFilm=searchFilmByTitle(title);
-		Book thePotentialBook=searchBookByTitle(title);
 		
-		if (thePotentialFilm!=null) itemList.add(thePotentialFilm.getTitle()) ;
-		if (thePotentialBook!=null) itemList.add(thePotentialBook.getTitle());
-
+		Film thePotentialFilm=searchFilmByTitle(title); //Researching a film 
+		Book thePotentialBook=searchBookByTitle(title); //Researching a movie 
 		
-		return itemList;
+		
+		if (thePotentialFilm!=null || thePotentialBook!=null) { //Checking if one item (book or film) is found
+			LinkedList<String> itemList = new LinkedList<String>();
+			if (thePotentialFilm!=null) itemList.add(thePotentialFilm.getTitle()) ; //Adding the film found in the list
+			if (thePotentialBook!=null) itemList.add(thePotentialBook.getTitle()); //Adding the book found in the list
+			return itemList;
+		}
+		else return null; //No item with a matching title was found
+		
 	}
+	
 	/**
 	 * Search a film among the film list of the social network using the given title. 
 	 * 
 	 * @param title
 	 *           
-	 * @return Film object if the the film is found, else null. 
+	 * @return Film object if the film is found, else null. 
 	 */
 	public Film searchFilmByTitle(String title) {
+		if (title==null) {
+			return null;
+		}
 		int i=0;
 		for (i=0;i<filmsList.size();i++) {
-			if (filmsList.get(i).getTitle().equalsIgnoreCase(title.trim())) return filmsList.get(i);
+			if (filmsList.get(i).compareTitle(title)) return filmsList.get(i);
+		}
+		return null;
+	}
+	
+	/**
+	 * Search a book among the book list of the social network using the given title. 
+	 * 
+	 * @param title
+	 *           
+	 * @return Book object if the book is found, else null. 
+	 */
+	
+	public Book searchBookByTitle(String title) {
+		if (title == null ) {
+			return null;
+		}
+		for (int i=0; i<booksList.size();i++) {
+			if (booksList.get(i).compareTitle(title)) return booksList.get(i);
 		}
 		return null;
 	}
@@ -204,10 +238,12 @@ public class SocialNetwork implements ISocialNetwork {
 	
 	/**
 	 * @param args
+	 * @throws BadEntryException 
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	
 	}
+	
 
 }
