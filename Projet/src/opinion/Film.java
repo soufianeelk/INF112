@@ -93,12 +93,12 @@ public class Film {
 
 	  }
 
-	public boolean checkMemberExistingReview(String login) {
+	public Member checkMemberExistingReview(String login) {
 
-		if (this.reviewsList.size()==0) return false;
+		//if (this.reviewsList.size()==0) return false;
 
-		for(Review thereview : reviewsList){
-			if(thereview.getMember().checkExistingLogin(login)) return true;
+		for(Review theReview : reviewsList){
+			if(theReview.getMember().checkExistingLogin(login)) return theReview;
 		}
 		return false;
 	}

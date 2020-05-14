@@ -1,0 +1,1226 @@
+format 222
+"Class_Diagram_BE3"
+  revision 9
+  modified_by 100 "soufi"
+  java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  
+  classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no hide_ports no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_context no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_relation_visibility no show_infonote no shadow yes gradient none show_stereotype_properties no end
+  
+  classcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  usecasediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes gradient none show_stereotype_properties no end
+  
+  sequencediagramsettings show_full_operations_definition no show_class_of_operation no write_horizontally yes instances_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes gradient none show_stereotype_properties no show_class_context_mode no show_msg_context_mode no end
+  
+  collaborationdiagramsettings show_full_operations_definition no show_class_of_operation no show_hierarchical_rank no write_horizontally yes instances_drawing_mode natural drawing_language uml package_name_in_tab no show_class_pack_context_mode no show_msg_context_mode no draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectdiagramsettings write_horizontally yes package_name_in_tab no show_class_pack_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  componentdiagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  deploymentdiagramsettings package_name_in_tab no show_context_mode no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  statediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes write_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes gradient none
+   show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no end
+  
+  activitydiagramsettings package_name_in_tab no show_context_mode no show_opaque_action_definition no auto_label_position yes write_label_horizontally no draw_all_relations yes shadow yes gradient none
+   show_infonote yes drawing_language uml show_stereotype_properties no end
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white generalization_color black 
+  dpi 96
+  font_size 8
+  diagram_format A4
+
+  image_root_dir ""
+
+
+  mark_for_import
+  
+  classview 128002 "Diagramme de Classe"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128258 "ClassDiagram"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size 3000x3000
+    end
+
+    class 128002 "SocialNetwork"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 136676 "SocialNetwork"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128258 "nbMembers"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151140 "nbFilms"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128514 "addMember"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	  param in name "String" explicit_type "profile"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128770 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128100 "addItemFilm"
+	public explicit_return_type ""
+	nparams 7
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	  param in name "title" explicit_type "String"
+	  param in name "kind" explicit_type "String"
+	  param in name "director" explicit_type "String"
+	  param in name "scenarist" explicit_type "String"
+	  param in name "duration" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128228 "reviewItemFilm"
+	public explicit_return_type "float"
+	nparams 5
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	  param in name "title" explicit_type "String"
+	  param in name "mark" explicit_type "float"
+	  param in name "comment" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 128002 // <generalisation>
+	relation 128002 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128002 // <generalisation>
+	  b parent class_ref 128386 // Member
+      end
+
+      classrelation 128130 // membersList (<unidirectional association>)
+	relation 128130 --->
+	  a role_name "membersList" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128130 // membersList (<unidirectional association>)
+	  b parent class_ref 128386 // Member
+      end
+
+      classrelation 128100 // filmsList ()
+	relation 128100 ---> name ""
+	  a role_name "filmsList" multiplicity "*" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128100 // filmsList ()
+	  b parent class_ref 135396 // Film
+      end
+
+      operation 157668 "searchFilmByTitle"
+	public return_type class_ref 135396 // Film
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 164196 "authenticateMember"
+	public return_type class_ref 128386 // Member
+	nparams 2
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128130 "BadEntryException"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128002 "BadEntryException"
+	public return_type class_ref 128130 // BadEntryException
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128258 "MemberAlreadyExistsException"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128130 "MemberAlreadyExistsException"
+	public return_type class_ref 128258 // MemberAlreadyExistsException
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128386 "Member"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 129410 "Member"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	  param in name "profile" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 128002 "login"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128130 "password"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128258 "profile"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129282 "checkExistingLogin"
+	public return_type class_ref 128386 // Member
+	nparams 1
+	  param in name "login" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137700 "checkCredentials"
+	public explicit_return_type "int"
+	nparams 2
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "login"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137572 "getReviews"
+	public return_type class_ref 135524 // Review
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 147940 // <association>
+	relation_ref 134756 // <association>
+      end
+    end
+
+    class 128100 "ToutAvis"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 135396 "Film"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 134756 "title"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135140 "kind"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135268 "director"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135396 "scenarist"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135524 "duration"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128484 "Film"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "title" explicit_type "String"
+	  param in name "kind" explicit_type "String"
+	  param in name "director" explicit_type "String"
+	  param in name "scenarist" explicit_type "String"
+	  param in name "duration" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128612 "getTitle"
+	public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 135652 "meanReviews"
+	private explicit_type "float"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135780 "nbReviews"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 134628 // reviewsList (<unidirectional association>)
+	relation 134628 --->
+	  a role_name "reviewsList" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 134628 // reviewsList (<unidirectional association>)
+	  b parent class_ref 135524 // Review
+      end
+
+      operation 137188 "getMeanReviews"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144228 "addReview"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "comment" explicit_type "String"
+	  param in name "mark" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150884 "checkMemberReviewExisting"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 135524 "Review"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 142308 "comment"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142436 "mark"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 136932 "Review"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "mark" explicit_type "int"
+	  param in name "comment" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136548 "Review"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "mark" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136292 "getComment"
+	public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136420 "getMark"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136804 "setComment"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "comment" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137060 "setMark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "mark" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 134756 // member (<association>)
+	relation 134756 ----
+	  a role_name "member" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134756 // member (<association>)
+	  b role_name "reviewsList" multiplicity "*" package
+	    classrelation_ref 147940 // <association>
+      end
+
+      operation 137444 "getMember"
+	public return_type class_ref 128386 // Member
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 141412 // <unidirectional association>
+	relation 141284 --->
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141412 // <unidirectional association>
+	  b parent class_ref 135396 // Film
+      end
+    end
+
+    classinstance 128100 "SocialNetwork"
+      type class_ref 128100 // ToutAvis
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 155492 "InitTest"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 155620 "AddMemberTest"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 155748 "SocialNetworkTest"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 155876 "TestReport"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classdiagram 161764 "Exceptions"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
+
+  end
+
+  usecaseview 128100 "Members"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    sequencediagram 128228 "SequenceDiagram"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 128356 "SequenceDiagram_BEE"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 128484 "SequenceDiagram_MAEE"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    class 128356 "Actor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classinstance 128228 "NewMember"
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 128612 "User"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classinstance 128356 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128484 ""
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 128612 "e"
+      type class_ref 128258 // MemberAlreadyExistsException
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 155748 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 156004 "theMember"
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+  end
+
+  usecaseview 134628 "Films"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    sequencediagram 135140 "addItemFilm"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 141668 "addItemFilm_BEE"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 141924 "addItemFilm_NME"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 141796 "addItemFilm_IFAEE"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 148452 "reviewItemFilm"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 154980 "reviewItemFilm_BEE"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 155108 "reviewItemFilm_NIE"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    sequencediagram 155236 "reviewItemFilm_NME"
+      sequencediagramsettings end
+      overlapping_bars size 3000x3000
+    end
+
+    class 135140 "Actor"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classinstance 135140 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 135268 "ISocialNetwork"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classinstance 135268 "Films"
+      type class_ref 135268 // ISocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 141796 "theMember"
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 141924 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 142052 "e"
+      type class_ref 128130 // BadEntryException
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 142052 "ItemFilmAlreadyExistsException"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 142180 "NotMemberException"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classinstance 148580 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 148708 ""
+      type class_ref 135396 // Film
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 148836 ""
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 148964 "The Film"
+      type class_ref 135396 // Film
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 155492 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 148708 "NotItemException"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classinstance 155620 "ToutAvis"
+      type class_ref 128002 // SocialNetwork
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 155876 "theMember"
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+
+    class 148836 "theFilm"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 148964 "theReview"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+  end
+
+  deploymentview 128100 "CodeGeneration"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128100 "SocialNetwork"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128002 // SocialNetwork
+      end
+    end
+
+    artifact 128228 "Member"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128386 // Member
+      end
+    end
+
+    artifact 128356 "Film"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 135396 // Film
+      end
+    end
+
+    artifact 128484 "Review"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 135524 // Review
+      end
+    end
+  end
+end

@@ -1,3 +1,5 @@
+//V1.
+
 package opinion;
 
 import java.util.LinkedList;
@@ -104,12 +106,14 @@ public class SocialNetwork implements ISocialNetwork {
 		if (comment==null) throw new BadEntryException("The comment is null."); // Throw a new BadEntryException if the comment is null
 		
 		// Check Authentication and check that the film exists
-		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
+		Member thePotentialMember = authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login");
 		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists"); 
 		
 		Film theFilm = searchFilmByTitle(title);
-		if(!theFilm.checkMemberExistingReview(login)) theFilm.addReview(authenticateMember(login,password),comment, mark);
-		return searchFilmByTitle(title).getMeanReviews();
+		theFilm.addReview(theMember,comment, mark);
+		//if(!theFilm.checkMemberExistingReview(login)) theFilm.addReview(theMember,comment, mark);
+		return theFilm.getMeanReviews();
 		
 	}
 	

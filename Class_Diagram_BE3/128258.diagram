@@ -1,0 +1,41 @@
+format 222
+
+classcanvas 128002 class_ref 128002 // SocialNetwork
+  classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir no end
+  xyz 92.8 292.9 2000
+end
+classcanvas 128228 class_ref 135396 // Film
+  classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir no end
+  xyzwh 208.9 549.3 2000 493 271
+end
+classcanvas 128386 class_ref 128386 // Member
+  classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir no end
+  xyzwh 944.9 243.7 2000 389 239
+end
+classcanvas 128740 class_ref 135524 // Review
+  classdiagramsettings show_members_full_definition yes show_members_visibility yes show_members_stereotype no show_members_multiplicity no show_members_initialization yes member_max_width 0 show_parameter_dir no end
+  xyz 1019.1 586.3 2000
+end
+relationcanvas 128612 relation_ref 128100 // 
+  from ref 128002 z 2001 to ref 128228
+  role_a_pos 464 527 3000 no_role_b
+  multiplicity_a_pos 439 527 3000 no_multiplicity_b
+end
+relationcanvas 128770 relation_ref 128130 // <unidirectional association>
+  decenter_begin 148
+  decenter_end 323
+  from ref 128002 z 2001 to ref 128386
+  role_a_pos 858 299 3000 no_role_b
+  multiplicity_a_pos 928 328 3000 no_multiplicity_b
+end
+relationcanvas 128868 relation_ref 134628 // <unidirectional association>
+  from ref 128228 z 2001 to ref 128740
+  role_a_pos 945 660 3000 no_role_b
+  multiplicity_a_pos 1003 689 3000 no_multiplicity_b
+end
+relationcanvas 128996 relation_ref 134756 // <association>
+  from ref 128740 z 2001 to ref 128386
+  role_a_pos 1147 489 3000 role_b_pos 1147 564 3000
+  multiplicity_a_pos 1120 489 3000 multiplicity_b_pos 1122 564 3000
+end
+end

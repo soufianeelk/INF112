@@ -1,0 +1,11 @@
+format 222
+
+classcanvas 128100 class_ref 128258 // MemberAlreadyExistsException
+  classdiagramsettings member_max_width 0 end
+  xyz 413 199 2000
+end
+classcanvas 128228 class_ref 128130 // BadEntryException
+  classdiagramsettings member_max_width 0 end
+  xyz 430 338 2000
+end
+end

@@ -1,0 +1,51 @@
+format 222
+
+classinstance 128100 class_ref 135140 // Actor
+  name ""   xyz 89 4 2000 life_line_z 2000
+classinstancecanvas 128228 classinstance_ref 155492 // ToutAvis
+  xyz 268 4 2005 life_line_z 2000
+end
+classinstance 128996 class_ref 128130 // BadEntryException
+  name "e"   xyz 593 90 2005 life_line_z 2000
+note 129636 "Wrong parameters case: BadEntryException"
+  xyzwh 821 61.5 2000 191 63
+durationcanvas 128356 classinstance_ref 128100 // :Actor
+  xyzwh 103 82 2010 11 175
+end
+durationcanvas 128484 classinstance_ref 128228 // ToutAvis:SocialNetwork
+  xyzwh 336 84 2010 11 132
+  overlappingdurationcanvas 128740
+    xyzwh 342 112 2020 11 56
+  end
+end
+durationcanvas 129124 classinstance_ref 128996 // e:BadEntryException
+  xyzwh 655 140 2010 11 28
+end
+msg 128612 synchronous
+  from durationcanvas_ref 128356
+  to durationcanvas_ref 128484
+  yz 86 2015 explicitmsg "reviewItemFilm()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 179 70
+reflexivemsg 128868 synchronous
+  to durationcanvas_ref 128740
+  yz 112 2025 explicitmsg "Check Paramaters"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 352 94
+msg 129252 synchronous
+  from durationcanvas_ref 128740
+  to durationcanvas_ref 129124
+  yz 140 2025 explicitmsg "new BadEntryException()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 425 124
+msg 129380 return
+  from durationcanvas_ref 129124
+  to durationcanvas_ref 128740
+  yz 157 2030 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 129508 return
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 128356
+  yz 196 2015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+end

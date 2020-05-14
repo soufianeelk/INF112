@@ -218,7 +218,6 @@ public class ReviewItemFilmTest {
 		try {
 			sn.addMember("user1","password", "profile");
 			sn.addItemFilm("user1","password", "title","kind", "director", "scriptwriter", 120);
-			sn.reviewItemFilm("user1", "password", "title", 4, "thecomment");
 		}
 		
 		catch (Exception e) {
