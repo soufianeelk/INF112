@@ -18,7 +18,8 @@ import exceptions.NotMemberException;
 public class SocialNetwork implements ISocialNetwork {
 	
 	private LinkedList<Member> membersList = new LinkedList<Member>();
-	public LinkedList<Film> filmsList = new LinkedList<Film>();
+	private LinkedList<Film> filmsList = new LinkedList<Film>();
+	private LinkedList<Book> booksList = new LinkedList<Book>();
 
 	@Override
 	public int nbMembers() {
@@ -48,7 +49,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 		// Check if the login is available
 		for (int i=0; i < membersList.size(); i++) {
-			if (membersList.get(i).checkExistingLogin(login)) {
+			if (membersList.get(i).compareLogin(login)) {
 				
 				throw new MemberAlreadyExistsException("Login already used"); // Throw the exception if the login isn't available
 			}
@@ -131,6 +132,7 @@ public class SocialNetwork implements ISocialNetwork {
 			throws BadEntryException {
 		return new LinkedList<String>();
 	}
+	
 	/**
 	 * Search a film among the film list of the social network using the given title. 
 	 * 
@@ -144,7 +146,17 @@ public class SocialNetwork implements ISocialNetwork {
 		}
 		int i=0;
 		for (i=0;i<filmsList.size();i++) {
-			if (filmsList.get(i).getTitle().equalsIgnoreCase(title.trim())) return filmsList.get(i);
+			if (filmsList.get(i).compareTitle(title)) return filmsList.get(i);
+		}
+		return null;
+	}
+	
+	public Book searchBookByTitle(String title) {
+		if (title == null ) {
+			return null;
+		}
+		for (int i=0; i<booksList.size();i++) {
+			if (booksList.get(i).compareTitle(title)) return booksList.get(i);
 		}
 		return null;
 	}
