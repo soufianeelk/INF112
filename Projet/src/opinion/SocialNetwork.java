@@ -1,4 +1,4 @@
-//V4
+//V5
 
 package opinion;
 
@@ -41,7 +41,7 @@ public class SocialNetwork implements ISocialNetwork {
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
 		
-		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...)
+		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
 		if (login == null) throw new BadEntryException("The login must be instanciated");
 		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
 		if (password == null) throw new BadEntryException("The password must be instanciated");
@@ -51,12 +51,11 @@ public class SocialNetwork implements ISocialNetwork {
 		// Check if the login is available
 		for (int i=0; i < MembersList.size(); i++) {
 			if (MembersList.get(i).compareLogin(login)) {
-				
-				throw new MemberAlreadyExistsException("Login already used"); // Throw the exception if the login isn't available
+				throw new MemberAlreadyExistsException("Login already used"); //Throws the MemberAlreadyExistsException if the login isn't available
 			}
 		}
 		
-		// Add a new member in the membersList
+		// Add a new member in the MembersList after checking all is ok
 		MembersList.add(new Member(login, password, profile));
 	}
 
@@ -67,22 +66,22 @@ public class SocialNetwork implements ISocialNetwork {
 			ItemFilmAlreadyExistsException {
 		
 
-		// Check parameters content (if they aren't empty, if password contains higher than 4 characters, if duration is positive...)
+		// Check parameters content (if they aren't empty, if password contains higher than 4 characters, if duration is positive...) throws the BadEntryException if wrong
 		if (login == null) throw new BadEntryException("The login must be instanciated");
 		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
 		if (password == null) throw new BadEntryException("The password must be instanciated");
 		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 character");
 		if (title == null) throw new BadEntryException("The title must be instanciated");
-		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
 		if (kind == null) throw new BadEntryException("The kind must be instanciated");
 		if (director == null) throw new BadEntryException("The director must be instanciated");
 		if (scenarist == null) throw new BadEntryException("The scenarist must be instanciated");
 		if (duration < 0) throw new BadEntryException("The duration must be positive");
 		
 		// Check Authentication and check that the film doesn't already exist
-		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
-		if (this.searchFilmByTitle(title) == null) FilmsList.add(new Film(title, kind, director, scenarist, duration));
-		else throw new ItemFilmAlreadyExistsException("This film already exists !");
+		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");	//Throws NotMemberException if login provided is unknown
+		if (this.searchFilmByTitle(title) == null) FilmsList.add(new Film(title, kind, director, scenarist, duration));	//Add a new film in the FilmsList after checking all is ok
+		else throw new ItemFilmAlreadyExistsException("This film already exists !"); //Throw ItemFilmAlreadyExistsException if the film already exists
 	
 	}
 
@@ -91,7 +90,7 @@ public class SocialNetwork implements ISocialNetwork {
 			String kind, String author, int nbPages) throws BadEntryException,
 			NotMemberException, ItemBookAlreadyExistsException {
 		
-		// Check parameters content (if they aren't empty, if password contains higher than 4 characters, if duration is positive...)
+		//Check parameters content (if they aren't empty, if password contains higher than 4 characters, if duration is positive...)
 		if (login == null) throw new BadEntryException("The login must be instanciated");
 		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
 		if (password == null) throw new BadEntryException("The password must be instanciated");
@@ -102,10 +101,10 @@ public class SocialNetwork implements ISocialNetwork {
 		if (author == null) throw new BadEntryException("The author must be instanciated");
 		if (nbPages < 0) throw new BadEntryException("The number of pages must be positive");
 		
-		// Check if the book already exists in the list 
+		//Check if the book already exists in the list 
 		if (this.searchBookByTitle(title)!=null) throw new ItemBookAlreadyExistsException("The book already exists !");
 		
-		// Check Authentication 
+		//Check Authentication 
 		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
 		if (this.searchBookByTitle(title) == null) BooksList.add(new Book(title, kind, author,nbPages));
 		else throw new ItemBookAlreadyExistsException("This book already exists !");
@@ -128,11 +127,10 @@ public class SocialNetwork implements ISocialNetwork {
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); //Throw a new BadEntryException if the title is empty
 		if (comment==null) throw new BadEntryException("The comment is null."); // Throw a new BadEntryException if the comment is null
 		
-		// Check Authentication and check that the film exists
-
+		//Check Authentication and check that the film exists
 		Member thePotentialMember = this.authenticateMember(login, password);
-		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throw a NotMemberException if the member is not registered
-		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throw a NotItemException if the title doesn't exist
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throws a NotMemberException if the member is not registered
+		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
 		
 		Film theFilm = searchFilmByTitle(title); 
 		theFilm.addReview(thePotentialMember,comment, mark); //Adding a new review or editing an existing review. 
@@ -169,16 +167,15 @@ public class SocialNetwork implements ISocialNetwork {
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
 		
+		Film thePotentialFilm=searchFilmByTitle(title); //Researching a film
+		Book thePotentialBook=searchBookByTitle(title); //Researching a book
 		
-		Film thePotentialFilm=searchFilmByTitle(title); //Researching a film 
-		Book thePotentialBook=searchBookByTitle(title); //Researching a movie 
 		
-		
-		if (thePotentialFilm!=null || thePotentialBook!=null) { //Checking if one item (book or film) is found
-			LinkedList<String> itemList = new LinkedList<String>();
-			if (thePotentialFilm!=null) itemList.add(thePotentialFilm.getTitle()) ; //Adding the film found in the list
-			if (thePotentialBook!=null) itemList.add(thePotentialBook.getTitle()); //Adding the book found in the list
-			return itemList;
+		if (thePotentialFilm!=null || thePotentialBook!=null) { 	//Checking if one item (book or film) is found
+			LinkedList<String> ItemList = new LinkedList<String>();
+			if (thePotentialFilm!=null) ItemList.add(thePotentialFilm.getTitle()) ; //Adding the film found in the list
+			if (thePotentialBook!=null) ItemList.add(thePotentialBook.getTitle()); //Adding the book found in the list
+			return ItemList;
 		}
 		else return null; //No item with a matching title was found
 		

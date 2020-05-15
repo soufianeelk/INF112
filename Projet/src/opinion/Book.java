@@ -9,7 +9,7 @@ import java.util.LinkedList;
  */
 
 /**
- * The Film class create films
+ * The Book class create books
  */
 
 public class Book {
@@ -28,6 +28,7 @@ public class Book {
 		this.author = author;
 		this.nbPages = nbPages;
 	}
+	
 	
 	public String getTitle() {
 		return this.title;
