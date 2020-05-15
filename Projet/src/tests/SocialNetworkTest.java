@@ -37,6 +37,10 @@ public class SocialNetworkTest {
 			tr = AddItemBookTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
+			//
+			tr = ConsultItemsTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
 			
 			
 			// End of the test suite : give some feedback to the tester
