@@ -24,17 +24,17 @@ public class SocialNetwork implements ISocialNetwork {
 
 	@Override
 	public int nbMembers() {
-		return membersList.size();
+		return MembersList.size();
 	}
 
 	@Override
 	public int nbFilms() {
-		return filmsList.size();
+		return FilmsList.size();
 	}
 
 	@Override
 	public int nbBooks() {
-		return booksList.size();
+		return BooksList.size();
 	}
 
 	@Override
