@@ -90,20 +90,20 @@ public class AddItemFilmTest {
 	 */
 	private static int addItemFilmAlreadyExistsTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId, String errorMessage) {
-		int nbFilms = sn.nbFilms();
+		int nbFilms = sn.nbFilms();		//Get the nbFilms before addItemFilm to compare after
 		
 		try {
-			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);
-			System.out.println("Err " + testId + " : " + errorMessage);
+			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);	//Trying to add the film
+			System.out.println("Err " + testId + " : " + errorMessage);		//If the film is added print error message
 			return 1;
 
-		} catch (ItemFilmAlreadyExistsException e) {
-			if (sn.nbFilms() != nbFilms) {
+		} catch (ItemFilmAlreadyExistsException e) {	//Check if the ItemFilmAlreadyExistsException is correctly caught
+			if (sn.nbFilms() != nbFilms) {		//Check if no films were added by comparing nbFilms before and now
 				System.out.println("Err "+ testId+ " : ItemFilmAlreadyExistsException was thrown but the number of films was changed");
 				return 1;
 			} else
 				return 0;
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			System.out.println("Err " + testId + " : unexpected exception. "+ e);
 			e.printStackTrace();
 			return 1;
@@ -137,20 +137,20 @@ public class AddItemFilmTest {
 	private static int addItemFilmNotMemberExceptionTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId, String errorMessage) {
 		
-		int nbFilms = sn.nbFilms(); // Number of members when starting to run this method
+		int nbFilms = sn.nbFilms(); 	//Get the nbFilms before addItemFilm to compare after
 		
 		try {
-			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);
-			System.out.println("Err " + testId + " : " + errorMessage);
+			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);	//Trying to add the film
+			System.out.println("Err " + testId + " : " + errorMessage);		//If the film is added print error message
 			return 1;
 
-		} catch (NotMemberException e) {
-			if (sn.nbFilms() != nbFilms) {
+		} catch (NotMemberException e) {		//Check if the NotMemberException is correctly caught
+			if (sn.nbFilms() != nbFilms) {		//Check if no films were added by comparing nbFilms before and now
 				System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of films was changed");
 				return 1;
 			} else
 				return 0;
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			System.out.println("Err " + testId + " : unexpected exception. "+ e);
 			e.printStackTrace();
 			return 1;
@@ -183,17 +183,17 @@ public class AddItemFilmTest {
 	private static int addItemFilmOKTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String director, String scenarist, int duration, String testId) {
 		
-		int nbFilms = sn.nbFilms();
+		int nbFilms = sn.nbFilms();		//Get the nbFilms before addItemFilm to compare after
 		
 		try {
-			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);
+			sn.addItemFilm(login, password, title, kind, director, scenarist, duration);	//Trying to add the film
 			
-			if (sn.nbFilms() != nbFilms + 1) {
-				System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was not incremented");
+			if (sn.nbFilms() != nbFilms + 1) {	//Check if the film was correctly added by comparing nbFilms before +1 and now
+				System.out.println("Err " + testId + " : the number of films (" + nbFilms + ") was not incremented");	//If no print error message
 				return 1;
 			} else
 				return 0; 
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			System.out.println("Err " + testId + " : unexpected exception " + e);
 			e.printStackTrace();
 			return 1;
