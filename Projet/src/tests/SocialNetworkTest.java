@@ -26,8 +26,17 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			// TODO : calls to other tests have to be added from here
+			tr = AddMemberTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
+			// 
+			tr = AddItemFilmTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
 			//
+			tr = AddItemBookTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
 			
 			
 			// End of the test suite : give some feedback to the tester

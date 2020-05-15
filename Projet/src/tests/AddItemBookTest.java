@@ -223,6 +223,7 @@ public class AddItemBookTest {
 			e1.printStackTrace();
 		}
 		
+		
 		// <=> test n°1
 
 		// check if incorrect parameters cause addItemBook() to throw BadEntry
