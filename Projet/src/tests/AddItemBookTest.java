@@ -43,15 +43,15 @@ public class AddItemBookTest {
 	private static int addItemBookBadEntryTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String author, int nbPages, String testId, String errorMessage) {
 		
-		int nbBooks = sn.nbBooks();		//Get the nbBooks before addItemFilm to compare after
+		int nbBooks = sn.nbBooks();		//Get the nbBooks before addItemBook to compare after
 		
 		try {
-			sn.addItemBook(login, password, title, kind, author, nbPages);; //Trying to add the book
-			System.out.println("Err " + testId + " : " + errorMessage);	//If the film is added print error message
+			sn.addItemBook(login, password, title, kind, author, nbPages);  //Trying to add the book
+			System.out.println("Err " + testId + " : " + errorMessage);		//If the book is added print error message
 			return 1;
 
 		} catch (BadEntryException e) {		//Check if the BadEntryException is correctly caught
-			if (sn.nbBooks() != nbBooks) {	//Check if no films were added by comparing nbBooks before and now
+			if (sn.nbBooks() != nbBooks) {	//Check if no books were added by comparing nbBooks before and now
 				System.out.println("Err "+ testId+ " : BadEntry was thrown but the number of books was changed");	//If yes print error message
 				return 1;
 			} else
@@ -90,20 +90,21 @@ public class AddItemBookTest {
 	 */
 	private static int addItemBookAlreadyExistsTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String author, int nbPages, String testId, String errorMessage) {
-		int nbBooks = sn.nbBooks();
+		
+		int nbBooks = sn.nbBooks();		//Get the nbBooks before addItemBook to compare after
 		
 		try {
-			sn.addItemBook(login, password, title, kind, author, nbPages);
-			System.out.println("Err " + testId + " : " + errorMessage);
+			sn.addItemBook(login, password, title, kind, author, nbPages);	//Trying to add the book
+			System.out.println("Err " + testId + " : " + errorMessage);		//If the book is added print error message
 			return 1;
 
-		} catch (ItemBookAlreadyExistsException e) {
-			if (sn.nbBooks() != nbBooks) {
-				System.out.println("Err "+ testId+ " : ItemFilmAlreadyExistsException was thrown but the number of books was changed");
+		} catch (ItemBookAlreadyExistsException e) {	//Check if the ItemBookAlreadyExistsException is correctly caught
+			if (sn.nbBooks() != nbBooks) {		//Check if no books were added by comparing nbBooks before and now
+				System.out.println("Err "+ testId+ " : ItemFilmAlreadyExistsException was thrown but the number of books was changed");	//If yes print error message
 				return 1;
 			} else
 				return 0;
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			System.out.println("Err " + testId + " : unexpected exception. "+ e);
 			e.printStackTrace();
 			return 1;
@@ -134,23 +135,23 @@ public class AddItemBookTest {
 	 *            thrown when adding this film
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addItemFilmNotMemberExceptionTest(ISocialNetwork sn, String login, String password, String title,
+	private static int addItemBookNotMemberExceptionTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String author, int nbPages, String testId, String errorMessage) {
 		
 		int nbBooks = sn.nbBooks(); // Number of books when starting to run this method
 		
 		try {
-			sn.addItemBook(login, password, title, kind, author, nbPages);
-			System.out.println("Err " + testId + " : " + errorMessage);
+			sn.addItemBook(login, password, title, kind, author, nbPages);	//Trying to add the book
+			System.out.println("Err " + testId + " : " + errorMessage);		//If the book is added print error message
 			return 1;
 
-		} catch (NotMemberException e) {
-			if (sn.nbBooks() != nbBooks) {
-				System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of books was changed");
+		} catch (NotMemberException e) {		//Check if the ItemBookAlreadyExistsException is correctly caught
+			if (sn.nbBooks() != nbBooks) {		//Check if no books were added by comparing nbBooks before and now
+				System.out.println("Err "+ testId+ " : NotMemberException was thrown but the number of books was changed");		//If yes print error message
 				return 1;
 			} else
 				return 0;
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			System.out.println("Err " + testId + " : unexpected exception. "+ e);
 			e.printStackTrace();
 			return 1;
@@ -183,17 +184,17 @@ public class AddItemBookTest {
 	private static int addItemBookOKTest(ISocialNetwork sn, String login, String password, String title,
 			String kind, String author, int nbPages, String testId) {
 		
-		int nbBooks = sn.nbBooks();
+		int nbBooks = sn.nbBooks();		//Get the nbBooks before addItemBook to compare after
 		
 		try {
-			sn.addItemBook(login, password, title, kind, author, nbPages);
+			sn.addItemBook(login, password, title, kind, author, nbPages);		//Trying to add the book
 			
-			if (sn.nbBooks() != nbBooks + 1) {
-				System.out.println("Err " + testId + " : the number of books (" + nbBooks + ") was not incremented");
+			if (sn.nbBooks() != nbBooks + 1) {		//Check if the book was correctly added by comparing nbBooks before +1 and now
+				System.out.println("Err " + testId + " : the number of books (" + nbBooks + ") was not incremented");		//If no print error message
 				return 1;
 			} else
 				return 0; 
-		} catch (Exception e) {
+		} catch (Exception e) {		//Check if an unexpected exception has been caught
 			System.out.println("Err " + testId + " : unexpected exception " + e);
 			e.printStackTrace();
 			return 1;
@@ -213,17 +214,14 @@ public class AddItemBookTest {
 		int nbTests = 0;
 		int nbErrors = 0;
 		
-	
-		try {
-			sn.addMember("user","password", "profile");
-		}
-		
-		catch (Exception e) {
-			
-		}
-		
-		
 		System.out.println("Testing addItemBook()");
+		
+		//Creating a member to add books
+		try {
+			sn.addMember("login", "password", "profile");
+		} catch (BadEntryException | MemberAlreadyExistsException e1) {
+			e1.printStackTrace();
+		}
 		
 		// <=> test n°1
 
@@ -265,42 +263,35 @@ public class AddItemBookTest {
 		
 		// <=> test n°2
 		
-		//Creating a member to add films
-		try {
-			sn.addMember("login", "password", "profile");
-		} catch (BadEntryException | MemberAlreadyExistsException e1) {
-			e1.printStackTrace();
-		}
-		
 		//2.1: Adding a Book
 		nbTests++;
-		nbErrors += addItemBookOKTest(sn, "user", "password", "title","kind","author", 100, "2.1a");
+		nbErrors += addItemBookOKTest(sn, "login", "password", "title","kind","author", 100, "2.1a");
 		nbBooks++;
 		
 		
 		//2.2: Test with an existing title
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, "user", "password", "title", "kind","author", 100, "2.2", "The title of the first book was accepted as title for a new book");
+		nbErrors += addItemBookAlreadyExistsTest(sn, "login", "password", "title", "kind","author", 100, "2.2", "The title of the first book was accepted as title for a new book");
 		
 		//2.3: Test with an existing title
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, "user", "password", "title", "kind","author",100, "2.3", "The title of the last book was accepted as title for a new book");
+		nbErrors += addItemBookAlreadyExistsTest(sn, "login", "password", "title", "kind","author",100, "2.3", "The title of the last book was accepted as title for a new book");
 		
 		//2.4: Test with an existing title with different case
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, "user", "password", "TiTlE","kind", "author", 100, "2.4", "An already registered title, but with different case, was accepted as title for a new book");
+		nbErrors += addItemBookAlreadyExistsTest(sn, "login", "password", "TiTlE","kind", "author", 100, "2.4", "An already registered title, but with different case, was accepted as title for a new book");
 		
 		//2.5: Test with leading/trailing blanks
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn,"user", "password", " title ","kind", "author", 100, "2.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new book");
+		nbErrors += addItemBookAlreadyExistsTest(sn,"login", "password", " title ","kind", "author", 100, "2.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new book");
 		
 		//2.6: Test with not existing login
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, "user", "password", "title", "kind","author", 100, "2.6", "The login not existing was accepted as login to add a new book");
+		nbErrors += addItemBookNotMemberExceptionTest(sn, "login1", "password", "title1", "kind","author", 100, "2.6", "The login not existing was accepted as login to add a new book");
 		
 		//2.7: Test with wrong password
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, "user", "false_password", "title","kind", "author", 100, "2.7", "A password not corresponding to login was accepted to add a new book");
+		nbErrors += addItemBookNotMemberExceptionTest(sn, "login", "false_password", "title1","kind", "author", 100, "2.7", "A password not corresponding to login was accepted to add a new book");
 
 		//3.1: 
 		
