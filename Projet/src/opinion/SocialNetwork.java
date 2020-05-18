@@ -1,4 +1,4 @@
-//V5
+//V6
 
 package opinion;
 
@@ -138,7 +138,6 @@ public class SocialNetwork implements ISocialNetwork {
 
 	}
 	
-
 	@Override
 	public float reviewItemBook(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
@@ -233,10 +232,34 @@ public class SocialNetwork implements ISocialNetwork {
         return null;
 	}
 	
-	/**
-	 * @param args
-	 * @throws BadEntryException 
-	 */
+	/*public void editMember(String login, String password, String newPassword, String newProfile) 
+			throws BadEntryException, NotMemberException {
+		
+		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
+		
+		//Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
+		if (newPassword == null) throw new BadEntryException("The password must be instanciated");
+		if (newProfile == null) throw new BadEntryException("The profile must be instanciated");
+		if (newPassword.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 characters");
+		
+	}*/
+	
+	public void editItemFilm() {
+		
+	}
+	
+	public void editReviewItemFilm() {
+		
+	}
+	
+	public void editItemBook() {
+		
+	}
+	
+	public void editReviewItemBook() {
+		
+	}
+	
 	public static void main(String[] args) {
 	}
 	

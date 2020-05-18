@@ -1,5 +1,7 @@
 package opinion;
 
+import exceptions.BadEntryException;
+
 /**
  * the Member class create members
  * 
@@ -69,13 +71,14 @@ public class Member {
 	}
 	
 	/**
-	 * Modify the member's login attribute
+	 * Modify the member's password attribute
 	 * 
 	 * @param profile
-	 *            - the new login attribute
+	 *            - the new password attribute
 	 */	
-	public void setLogin(String login) {
-		this.login = login.trim();
+	public void setPassword(String password) throws BadEntryException {
+		if (password.trim().length() < 4) this.password = password.trim();
+		else throw new BadEntryException("Password must contain at least 4 characters");
 	}
 	
 	/*public void addMemberReview(Review theReview) {
