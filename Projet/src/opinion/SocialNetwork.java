@@ -96,7 +96,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if (password == null) throw new BadEntryException("The password must be instanciated");
 		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 character");
 		if (title == null) throw new BadEntryException("The title must be instanciated");
-		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
 		if (kind == null) throw new BadEntryException("The kind must be instanciated");
 		if (author == null) throw new BadEntryException("The author must be instanciated");
 		if (nbPages < 0) throw new BadEntryException("The number of pages must be positive");
@@ -117,15 +117,15 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemFilm(String login, String password, String title,float mark, String comment) throws BadEntryException,NotMemberException, NotItemException {
 	
 		// Check Parameters content (if they aren't empty, if password contains higher than 4 characters, if mark is between 0 and 5...)
-		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
-		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); //Throw a new BadEntryException if the login is empty
-		if (password==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the password is null
-		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); //Throw a new BadEntryException if the password is empty
-		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); //Throw a new BadEntryException if the password contains less than 4 characters
-		if (title==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the title is null
-		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
-		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); //Throw a new BadEntryException if the title is empty
-		if (comment==null) throw new BadEntryException("The comment is null."); // Throw a new BadEntryException if the comment is null
+		if (login==null) throw new BadEntryException("The login is null.");
+		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); 
+		if (password==null) throw new BadEntryException("The password is null.");
+		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty");
+		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters");
+		if (title==null) throw new BadEntryException("The password is null.");
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
+		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5");
+		if (comment==null) throw new BadEntryException("The comment is null.");
 		
 		//Check Authentication and check that the film exists
 		Member thePotentialMember = this.authenticateMember(login, password);
@@ -145,14 +145,14 @@ public class SocialNetwork implements ISocialNetwork {
 			NotMemberException, NotItemException {
 		
 		// Check Parameters content (if they aren't empty, if password contains higher than 4 characters, if mark is between 0 and 5...)
-		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
-		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); //Throw a new BadEntryException if the login is empty
-		if (password==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the password is null
-		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); //Throw a new BadEntryException if the password is empty
-		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); //Throw a new BadEntryException if the password contains less than 4 characters
-		if (title==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the title is null
-		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
-		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); //Throw a new BadEntryException if the title is empty
+		if (login==null) throw new BadEntryException("The login is null.");
+		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space");
+		if (password==null) throw new BadEntryException("The password is null.");
+		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); 
+		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); 
+		if (title==null) throw new BadEntryException("The password is null."); 
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); 
+		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); 
 		
 		Book theBook = searchBookByTitle(title);
 		theBook.addReview(authenticateMember(login,password),comment, mark); //Adding or editing a review 
@@ -215,20 +215,20 @@ public class SocialNetwork implements ISocialNetwork {
 		}
 		return null;
 	}
-	
+		
 	/**
-	 * Authenticate a member in the social network with its login. 
+	 * Authenticate a member among the members list of the social network by using the given credentials (login, password). 
 	 * 
 	 * @param login
-	 *  
-	 * @param password 
+	 * 
+	 * @param password
 	 *           
-	 * @return Return the member if a member in membersList , corresponds to those credentials, else null
+	 * @return Member object if the the member is found, else null. 
 	 */
 	public Member authenticateMember(String login, String password) throws NotMemberException{
         for (int i=0;i<MembersList.size();i++) {
-        	if (MembersList.get(i).checkCredentials(login, password) == 1) throw new NotMemberException("Wrong Password !");
-        	else if (MembersList.get(i).checkCredentials(login, password) == 2) return MembersList.get(i);
+        	if (MembersList.get(i).checkCredentials(login, password) == 1) throw new NotMemberException("Wrong Password !"); //Throws a NotMemberException if the password doesn't match
+        	else if (MembersList.get(i).checkCredentials(login, password) == 2) return MembersList.get(i); //Else return the Member
         }
         return null;
 	}

@@ -1,6 +1,8 @@
 package opinion;
 import java.util.LinkedList;
 
+import exceptions.BadEntryException;
+
 /** 
  * @author - S. EL KALDAOUI
  * @author - H. MEZAZIGH
@@ -29,36 +31,118 @@ public class Book {
 		this.nbPages = nbPages;
 	}
 	
-	
+	/**
+	 * Return the book's title attribute
+	 * 
+	 * @return this.title
+	 */	
 	public String getTitle() {
 		return this.title;
 	}
 	
+	/**
+	 * Return the book's kind attribute
+	 * 
+	 * @return this.kind
+	 */	
 	public String getKind() {
 		return this.kind;
 	}
 	
+	/**
+	 * Return the book's author attribute
+	 * 
+	 * @return this.author
+	 */	
 	public String getAuthor() {
 		return this.author;
 	}
 	
+	/**
+	 * Return the book's nbPages attribute
+	 * 
+	 * @return this.nbPages
+	 */	
 	public int getNbPages() {
 		return this.nbPages;
 	}
 	
+	/**
+	 * Modify the book's kind attribute
+	 * 
+	 * @param kind
+	 *            - the new kind attribute
+	 */		
+	public void setKind(String kind) {
+		this.kind = kind.trim();
+	}
+	
+	/**
+	 * Modify the book's author attribute
+	 * 
+	 * @param author
+	 *            - the new author attribute
+	 * 
+	 */	
+	public void setAuthor(String author) {
+		this.author = author.trim();
+	}
+	
+	/**
+	 * Modify the book's nbPages attribute
+	 * 
+	 * @param nbPages
+	 *            - the new nbPages attribute
+	 * 
+	 */	
+	public void setNbPages(int nbPages)  throws BadEntryException{
+		if (nbPages > 0) this.nbPages = nbPages;	//The nbPages attribute must be positive
+		else throw new BadEntryException("The number of pages must be positive");  //Throws a BadEntryException if negative
+	}
+	
+	/**
+	 * Return the book's meanReview attribute
+	 * 
+	 * @return this.meanReviews
+	 */	
 	public float getMeanReviews() {
 		return this.meanReviews;
 	}
 	
+	/**
+	 * Return the book's nbReviews attribute
+	 * 
+	 * @return this.nbReviews
+	 */	
 	public int getNbReviews() {
 		return this.nbReviews;
 	}
 	
-	
+	/**
+	 * Compare a title in entry with the book's title
+	 * 
+	 * @param title
+	 *            - the title to compare
+	 * 
+	 * @return 1 if the title correspond, 0 if not
+	 */	
 	public boolean compareTitle(String title) {
 		return (this.title.equalsIgnoreCase(title.trim()));
 	  }
 	
+	/**
+	 * Add a Review on the book from a Member
+	 * 
+	 * @param theMember
+	 *            - the Member adding the review
+	 *            
+	 * @param comment
+	 *            - the review's comment
+	 *            
+	 * @param mark
+	 *            - the review's mark
+	 *            
+	 */	
 	public void addReview(Member theMember, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
@@ -80,12 +164,20 @@ public class Book {
 		}
 	}
 	
+	/**
+	 * Check if a member has already added a review on the book
+	 * 
+	 * @param theMember
+	 *            - the Member about which we check the potential review on the film
+	 *          
+	 * @return the review if it exists, null if not
+	 */	
 	public Review checkMemberExistingReview(Member theMember) {
 
-		if (this.reviewsList.size()==0) return null;
+		if (this.nbReviews == 0) return null;	//Return null if the book has no reviews
 
 		for(Review theReview : reviewsList){
-			if(theReview.getMember()==theMember) return theReview;
+			if(theReview.getMember()==theMember) return theReview;	//Return the review if it exists
 		}
 		return null;
 	}
