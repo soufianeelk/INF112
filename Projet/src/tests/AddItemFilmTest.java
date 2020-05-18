@@ -220,7 +220,7 @@ public class AddItemFilmTest {
 		// check if incorrect parameters cause addItemFilm() to throw BadEntry
 		// exception
 		
-		// 1.1 : Test with non instanciated login
+		// 1.1 : Test with non instantiated login
 		nbTests++;
 		nbErrors+=addItemFilmBadEntryTest(sn,null, "password", "title","kind", "director", "scriptwriter", 10, "1.1", "addItemFilms() doesn't reject null login.");
 		
@@ -228,7 +228,7 @@ public class AddItemFilmTest {
 		nbTests++;
 		nbErrors+=addItemFilmBadEntryTest(sn," ", "password", "title","kind", "director", "scriptwriter", 10, "1.2", "addItemFilms() doesn't reject logins that don't contain at least one character other than space.");
 		
-		//1.3: Test with non instanciated password
+		//1.3: Test with non instantiated password
 		nbTests++;
 		nbErrors+=addItemFilmBadEntryTest(sn,"login", null, "title","kind", "director", "scriptwriter", 10, "1.3", "addItemFilms() doesn't reject null password.");
 		

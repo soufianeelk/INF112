@@ -38,6 +38,10 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
+			tr = ReviewItemBookTest.test();
+			testSuiteReport.add(tr);
+			System.out.println("\n\n **********************************************************************************************\n");
+			//
 			tr = ConsultItemsTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");

@@ -17,24 +17,24 @@ import exceptions.NotMemberException;
  */
 public class SocialNetwork implements ISocialNetwork {
 	
-	private LinkedList<Member> MembersList = new LinkedList<Member>();
-	private LinkedList<Film> FilmsList = new LinkedList<Film>();
-	private LinkedList<Book> BooksList = new LinkedList<Book>();
+	private LinkedList<Member> membersList = new LinkedList<Member>();
+	private LinkedList<Film> filmsList = new LinkedList<Film>();
+	private LinkedList<Book> booksList = new LinkedList<Book>();
 
 
 	@Override
 	public int nbMembers() {
-		return MembersList.size();
+		return membersList.size();
 	}
 
 	@Override
 	public int nbFilms() {
-		return FilmsList.size();
+		return filmsList.size();
 	}
 
 	@Override
 	public int nbBooks() {
-		return BooksList.size();
+		return booksList.size();
 	}
 
 	@Override
@@ -49,14 +49,14 @@ public class SocialNetwork implements ISocialNetwork {
 		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 characters");
 		
 		// Check if the login is available
-		for (int i=0; i < MembersList.size(); i++) {
-			if (MembersList.get(i).compareLogin(login)) {
+		for (int i=0; i < membersList.size(); i++) {
+			if (membersList.get(i).compareLogin(login)) {
 				throw new MemberAlreadyExistsException("Login already used"); //Throws the MemberAlreadyExistsException if the login isn't available
 			}
 		}
 		
-		// Add a new member in the MembersList after checking all is ok
-		MembersList.add(new Member(login, password, profile));
+		// Add a new member in the membersList after checking all is ok
+		membersList.add(new Member(login, password, profile));
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 		// Check Authentication and check that the film doesn't already exist
 		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");	//Throws NotMemberException if login provided is unknown
-		if (this.searchFilmByTitle(title) == null) FilmsList.add(new Film(title, kind, director, scenarist, duration));	//Add a new film in the FilmsList after checking all is ok
+		if (this.searchFilmByTitle(title) == null) filmsList.add(new Film(title, kind, director, scenarist, duration));	//Add a new film in the filmsList after checking all is ok
 		else throw new ItemFilmAlreadyExistsException("This film already exists !"); //Throw ItemFilmAlreadyExistsException if the film already exists
 	
 	}
@@ -106,7 +106,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 		//Check Authentication 
 		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
-		if (this.searchBookByTitle(title) == null) BooksList.add(new Book(title, kind, author,nbPages));
+		if (this.searchBookByTitle(title) == null) booksList.add(new Book(title, kind, author,nbPages));
 		else throw new ItemBookAlreadyExistsException("This book already exists !");
 		
 
@@ -154,6 +154,13 @@ public class SocialNetwork implements ISocialNetwork {
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); //Throw a new BadEntryException if the title is empty
 		
+		//Check Authentication and check that the film exists
+		Member thePotentialMember = this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throws a NotMemberException if the member is not registered
+		if (this.searchBookByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
+		
+		
+		
 		Book theBook = searchBookByTitle(title);
 		theBook.addReview(authenticateMember(login,password),comment, mark); //Adding or editing a review 
 		return searchBookByTitle(title).getMeanReviews();
@@ -193,8 +200,8 @@ public class SocialNetwork implements ISocialNetwork {
 			return null;
 		}
 		int i=0;
-		for (i=0;i<FilmsList.size();i++) {
-			if (FilmsList.get(i).compareTitle(title)) return FilmsList.get(i);
+		for (i=0;i<filmsList.size();i++) {
+			if (filmsList.get(i).compareTitle(title)) return filmsList.get(i);
 		}
 		return null;
 	}
@@ -207,11 +214,11 @@ public class SocialNetwork implements ISocialNetwork {
 	 * @return Book object if the book is found, else null. 
 	 */
 	public Book searchBookByTitle(String title) {
-		if (title == null ) {
+		if (title == null) {
 			return null;
 		}
-		for (int i=0; i<BooksList.size();i++) {
-			if (BooksList.get(i).compareTitle(title)) return BooksList.get(i);
+		for (int i=0; i<booksList.size();i++) {
+			if (booksList.get(i).compareTitle(title)) return booksList.get(i);
 		}
 		return null;
 	}
@@ -226,12 +233,83 @@ public class SocialNetwork implements ISocialNetwork {
 	 * @return Return the member if a member in membersList , corresponds to those credentials, else null
 	 */
 	public Member authenticateMember(String login, String password) throws NotMemberException{
-        for (int i=0;i<MembersList.size();i++) {
-        	if (MembersList.get(i).checkCredentials(login, password) == 1) throw new NotMemberException("Wrong Password !");
-        	else if (MembersList.get(i).checkCredentials(login, password) == 2) return MembersList.get(i);
+        for (int i=0;i<membersList.size();i++) {
+        	if (membersList.get(i).checkCredentials(login, password) == 1) throw new NotMemberException("Wrong Password !");
+        	else if (membersList.get(i).checkCredentials(login, password) == 2) return membersList.get(i);
         }
         return null;
 	}
+
+	public void removeReviewItemFilm(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
+		
+		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
+		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instantiated with at least one non-space character");
+		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); //Throw a new BadEntryException if the login is empty
+		if (password==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the password is null
+		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); //Throw a new BadEntryException if the password is empty
+		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); //Throw a new BadEntryException if the password contains less than 4 characters
+		if (title==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the title is null
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
+		
+		//Check Authentication and check that the book exists
+		Member thePotentialMember = this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throws a NotMemberException if the member is not registered
+		
+		Review thePotentialReviewToRemove=searchFilmByTitle(title).checkMemberExistingReview(thePotentialMember);
+		if (thePotentialReviewToRemove == null) throw new NotItemException("None review exists for this member");  //Throws a NotItemException if the title doesn't exist
+		
+	//	if() System.out.println("The review for this member was successfully removed.");
+		
+	}
+
+	
+	/*
+	public void removeItemFilm(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
+		
+		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
+		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instantiated with at least one non-space character");
+		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); //Throw a new BadEntryException if the login is empty
+		if (password==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the password is null
+		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); //Throw a new BadEntryException if the password is empty
+		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); //Throw a new BadEntryException if the password contains less than 4 characters
+		if (title==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the title is null
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
+		
+		//Check Authentication and check that the book exists
+		Member thePotentialMember = this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throws a NotMemberException if the member is not registered
+		
+		Film thePotentialFilmToRemove=searchFilmByTitle(title);
+		if (thePotentialFilmToRemove == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
+		
+		if(filmsList.remove(thePotentialFilmToRemove)) System.out.println("The film was successfully removed.");
+		else System.out.println("The film wasn't removed.");
+	
+	}
+	
+	public void removeItemBook(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
+		
+		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
+		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instantiated with at least one non-space character");
+		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); //Throw a new BadEntryException if the login is empty
+		if (password==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the password is null
+		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); //Throw a new BadEntryException if the password is empty
+		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); //Throw a new BadEntryException if the password contains less than 4 characters
+		if (title==null) throw new BadEntryException("The password is null."); // Throw a new BadEntryException if the title is null
+		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); //Throw a new BadEntryException if the title is empty
+		
+		//Check Authentication and check that the book exists
+		Member thePotentialMember = this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login"); //Throws a NotMemberException if the member is not registered
+		
+		Book thePotentialBookToRemove=searchBookByTitle(title);
+		if (thePotentialBookToRemove == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
+		
+		if(booksList.remove(thePotentialBookToRemove)) System.out.println("The book was successfully removed.");
+		else System.out.println("The book wasn't removed.");
+	
+	}
+	*/
 	
 	/**
 	 * @param args

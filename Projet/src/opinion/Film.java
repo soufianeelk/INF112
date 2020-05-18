@@ -116,4 +116,8 @@ public class Film {
 		}
 		return null;
 	}
+	
+	public boolean removeReview() {
+		return true;
+	}
 }
