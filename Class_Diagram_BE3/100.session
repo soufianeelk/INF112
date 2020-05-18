@@ -29,7 +29,7 @@ diagrams
     114 98 100 A4 0 0
 end
 show_stereotypes
-selected operation_ref 129282 // checkExistingLogin
+selected classdiagram_ref 128258 // ClassDiagram
 open
   class_ref 128386 // Member
   classinstance_ref 128100 // SocialNetwork
