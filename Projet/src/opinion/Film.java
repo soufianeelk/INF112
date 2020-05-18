@@ -1,6 +1,8 @@
 package opinion;
 import java.util.LinkedList;
 
+import exceptions.BadEntryException;
+
 /** 
  * @author - S. EL KALDAOUI
  * @author - H. MEZAZIGH
@@ -32,56 +34,125 @@ public class Film {
 		this.duration = duration;
 	  }
 
+	/**
+	 * Return the title's film attribute
+	 * 
+	 * @return this.title
+	 */	
 	public String getTitle() {
 		return this.title;
 	  }
 
+	/**
+	 * Return the kind's film attribute
+	 * 
+	 * @return this.kind
+	 */	
 	public String getKind() {
 		return this.kind;
 	  }
 
+	/**
+	 * Return the director's film attribute
+	 * 
+	 * @return this.director
+	 */		
 	public String getDirector() {
 		return this.director;
 	  }
 
+	/**
+	 * Return the scenarist's film attribute
+	 * 
+	 * @return this.scenarist
+	 */	
+	
 	public String getScenarist() {
 		return this.scenarist;
 	  }
 
+	/**
+	 * Return the duration's film attribute
+	 * 
+	 * @return this.duration
+	 */	
 	public int getDuration() {
 		return duration;
 	  }
 
+	/**
+	 * Modify the film's kind attribute
+	 * 
+	 * @param kind
+	 *            - the new kind attribute
+	 */	
 	public void setKind(String kind) {
+		this.kind = kind.trim();
 	  }
 
+	/**
+	 * Modify the film's director attribute
+	 * 
+	 * @param kind
+	 *            - the new director attribute
+	 */	
 	public void setDirector(String director) {
+		this.director = director.trim();
 	  }
 
-	public void setScriptwriter(String scriptwriter) {
+	/**
+	 * Modify the film's scenarist attribute
+	 * 
+	 * @param scenarist
+	 *            - the new scenarist attribute
+	 */	
+	public void setScenarist(String scenarist) {
+		this.scenarist = scenarist.trim();
 	  }
 
-	public void setDuration(int duration) {
+	/**
+	 * Modify the film's duration attribute
+	 * 
+	 * @param duration
+	 *            - the new duration attribute
+	 * 
+	 */	
+	public void setDuration(int duration) throws BadEntryException {
+		if (duration > 0) this.duration = duration;		//The duration attribute must be positive
+		else throw new BadEntryException("The duration must be positive");	//Throws a BadEntryException if negative
 	  }
 
-
+	/**
+	 * Return the film's meanReview attribute
+	 * 
+	 * @return this.meanReviews
+	 */	
 	public float getMeanReviews() {
 		return this.meanReviews;
 	  }
-	
+
+	/**
+	 * Return the film's nbReviews attribute
+	 * 
+	 * @return this.nbReviews
+	 */	
 	public int getNbReviews() {
 		return this.nbReviews;
 	}
+	
 	/**
-	 * Authenticate a member among the member list of the social network by using the given credentials (login, password). 
+	 * Add a Review on the film from a Member
 	 * 
-	 * @param login
-	 * 
-	 * @param password
-	 *           
-	 * @return Member object if the the member is found, else null. 
+	 * @param theMember
+	 *            - the Member adding the review
+	 *            
+	 * @param comment
+	 *            - the review's comment
+	 *            
+	 * @param mark
+	 *            - the review's mark
+	 *            
 	 */
-
 	public void addReview(Member theMember, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
@@ -99,20 +170,36 @@ public class Film {
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
 				
-		}
+			}
 		}
 	}
 
+	/**
+	 * Compare a title in entry with the film's title
+	 * 
+	 * @param title
+	 *            - the title to compare
+	 * 
+	 * @return 1 if the title correspond, 0 if not
+	 */	
 	public boolean compareTitle(String title) {
 		return (this.title.equalsIgnoreCase(title.trim()));
 	  }
 
+	/**
+	 * Check if a member has already added a review on the film
+	 * 
+	 * @param theMember
+	 *            - the Member about which we check the potential review on the film
+	 *          
+	 * @return the review if it exists, null if not
+	 */	
 	public Review checkMemberExistingReview(Member theMember) {
 
-		if (this.reviewsList.size()==0) return null;
+		if (this.nbReviews == 0) return null;	//Return null if the book has no reviews
 
 		for(Review theReview : reviewsList){
-			if(theReview.getMember()==theMember) return theReview;
+			if(theReview.getMember()==theMember) return theReview;	//Return the review if it exists
 		}
 		return null;
 	}
