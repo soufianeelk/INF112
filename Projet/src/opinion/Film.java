@@ -16,6 +16,7 @@ import exceptions.BadEntryException;
 
 public class Film {
 	
+	private Member publisher;
 	private String title;
 	private String kind;
 	private String director;
@@ -25,14 +26,24 @@ public class Film {
 	private int nbReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 
-	public Film(String title, String kind, String director, String scenarist, int duration) {
+	public Film(Member publisher, String title, String kind, String director, String scenarist, int duration) {
 
+		this.publisher = publisher;
 		this.title = title.trim();
 		this.kind = kind.trim();
 		this.director = director.trim();
 		this.scenarist = scenarist.trim();
 		this.duration = duration;
 	  }
+	
+	/**
+	 * Return the publisher attribute of the film
+	 * 
+	 * @return this.publisher
+	 */	
+	public Member getPublisher() {
+		return this.publisher;
+	}
 
 	/**
 	 * Return the title's film attribute

@@ -16,6 +16,7 @@ import exceptions.BadEntryException;
 
 public class Book {
 	
+	private Member publisher;
 	private String title;
 	private String kind;
 	private String author;
@@ -24,11 +25,21 @@ public class Book {
 	private float meanReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 	
-	public Book (String title, String kind, String author, int nbPages) {
+	public Book (Member publisher, String title, String kind, String author, int nbPages) {
+		this.publisher = publisher;
 		this.title = title;
 		this.kind = kind;
 		this.author = author;
 		this.nbPages = nbPages;
+	}
+	
+	/**
+	 * Return the publisher attribute of the book
+	 * 
+	 * @return this.publisher
+	 */	
+	public Member getPublisher() {
+		return this.publisher;
 	}
 	
 	/**
