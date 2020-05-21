@@ -1,6 +1,6 @@
 format 222
 "Class_Diagram_BE3"
-  revision 10
+  revision 11
   modified_by 100 "soufi"
   java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
 
@@ -795,7 +795,7 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 134756 // member (<association>)
-	  b role_name "reviewsList" multiplicity "*" package
+	  b role_name "" package
 	    classrelation_ref 147940 // <association>
       end
 
