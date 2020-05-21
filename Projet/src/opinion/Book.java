@@ -160,7 +160,7 @@ public class Book {
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the reviews list
+			reviewsList.add(new Review(theMember,this,mark,comment));//adding the new review in the reviews list
 			this.nbReviews++; //incrementing the book reviews counter
 			this.meanReviews=(this.meanReviews+mark)/nbReviews; }//computing the new mean of the review for the film.
 		

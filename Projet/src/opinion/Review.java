@@ -11,8 +11,18 @@ public class Review {
 	private Member member;
 	private LinkedList<Review> reviewsList = new LinkedList<Review>();
 
-	public Review(Member theMember, Object theItem, float mark, String comment) {
+	public Review(Member theMember, Film theFilm, float mark, String comment) {
+		
 		this.member=theMember;
+		this.film=theFilm;
+		this.mark = mark;
+		this.comment = comment.trim();
+	 }
+	
+	public Review(Member theMember, Book theBook, float mark, String comment) {
+		
+		this.member=theMember;
+		this.book=theBook;
 		this.mark = mark;
 		this.comment = comment.trim();
 	 }

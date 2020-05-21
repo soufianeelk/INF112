@@ -1,4 +1,4 @@
-//V7
+//V8
 
 package opinion;
 
@@ -79,8 +79,9 @@ public class SocialNetwork implements ISocialNetwork {
 		if (duration < 0) throw new BadEntryException("The duration must be positive");
 		
 		// Check Authentication and check that the film doesn't already exist
-		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");	//Throws NotMemberException if login provided is unknown
-		if (this.searchFilmByTitle(title) == null) filmsList.add(new Film(title, kind, director, scenarist, duration));	//Add a new film in the filmsList after checking all is ok
+		Member thePotentialMember=this.authenticateMember(login, password);
+		if (thePotentialMember == null) throw new NotMemberException("Unknown login");	//Throws NotMemberException if login provided is unknown
+		if (this.searchFilmByTitle(title) == null) filmsList.add(new Film(thePotentialMember,title, kind, director, scenarist, duration));	//Add a new film in the filmsList after checking all is ok
 		else throw new ItemFilmAlreadyExistsException("This film already exists !"); //Throw ItemFilmAlreadyExistsException if the film already exists
 	
 	}
@@ -105,8 +106,9 @@ public class SocialNetwork implements ISocialNetwork {
 		if (this.searchBookByTitle(title)!=null) throw new ItemBookAlreadyExistsException("The book already exists !");
 		
 		//Check Authentication 
-		if (this.authenticateMember(login, password) == null) throw new NotMemberException("Unknown login");
-		if (this.searchBookByTitle(title) == null) booksList.add(new Book(title, kind, author,nbPages));
+		Member thePotentialMember=this.authenticateMember(login, password);
+		if (thePotentialMember== null) throw new NotMemberException("Unknown login");
+		if (this.searchBookByTitle(title) == null) booksList.add(new Book(thePotentialMember,title, kind, author,nbPages));
 		else throw new ItemBookAlreadyExistsException("This book already exists !");
 		
 
@@ -190,7 +192,7 @@ public class SocialNetwork implements ISocialNetwork {
 	 * Search a film among the film list of the social network using the given title. 
 	 * 
 	 * @param title
-	 *       - film's title
+	 *            film's title
 	 *           
 	 * @return Film object if the film is found, else null. 
 	 */
@@ -209,7 +211,7 @@ public class SocialNetwork implements ISocialNetwork {
 	 * Search a book among the book list of the social network using the given title. 
 	 * 
 	 * @param title
-	 * 		 - book's title. 
+	 *            book's title. 
 	 *           
 	 * @return Book object if the book is found, else null. 
 	 */
@@ -227,11 +229,16 @@ public class SocialNetwork implements ISocialNetwork {
 	 * Authenticate a member among the members list of the social network by using the given credentials (login, password). 
 	 * 
 	 * @param login
-	 * 		- member's login.
+	 *            member's login.
 	 * 
 	 * @param password
-	 *      - member's password.       
-	 *           
+	 *            member's password.  
+	 *                
+	 * @throws NotMemberException
+	 *             if login does not match with the login of a registered member
+	 *             in <i>SocialNetwork</i> or if password does not correspond to
+	 *             his registered password.           
+	 *             
 	 * @return Member object if the the member is found, else null. 
 	 */
 	public Member authenticateMember(String login, String password) throws NotMemberException{
@@ -247,10 +254,23 @@ public class SocialNetwork implements ISocialNetwork {
 	 * Removing a member among the members list of the social network by using the given credentials (login, password). 
 	 * 
 	 * @param login
-	 * 
+	 *            member's login.
 	 * @param password
-	 *           
+	 *            member's password.           
 	 * @return void;
+	 * 
+	 * @throws BadEntryException
+	 *             <ul>
+	 *             <li>if login is not instantiated or contains less than one
+	 *             non-space character</li>
+	 *             <li>if password is not instantiated or contains less than one
+	 *             non-space character or contains less than 4 characters</li>
+	 *             </ul>
+	 * <br>
+	 * @throws NotMemberException
+	 *             if login does not match with the login of a registered member
+	 *             in <i>SocialNetwork</i> or if password does not correspond to
+	 *             his registered password.
 	 */
 	
 	public void removeMember(String login, String password) throws BadEntryException,NotMemberException {
@@ -274,19 +294,35 @@ public class SocialNetwork implements ISocialNetwork {
 	}
 	
 	/**
-	 * Removing a review given by a member in a specific film. 
+	 * Removing a review given by a member on a specific film. 
 	 * 
 	 * @param title 
-	 * 		- film's title
+	 *            film's title
 	 * 
 	 * @param login
-	 * 		- member's login
+	 *            member's login
 	 * 
 	 * @param password
-	 *      - member's password 
-	 *        
-	 * @return void;
+	 *            member's password
+	 *             
+	 * @throws BadEntryException
+	 *             <ul>
+	 *             <li>if login is not instantiated or contains less than one
+	 *             non-space character</li>
+	 *             <li>if password is not instantiated or contains less than one
+	 *             non-space character or contains less than 4 characters</li>
+	 *             </ul>
+	 * <br>
+	 * @throws NotMemberException
+	 *             if login does not match with the login of a registered member
+	 *             in <i>SocialNetwork</i> or if password does not correspond to
+	 *             his registered password.
+	 *             
+	 * @throws NotMemberException
+	 *             if the review item doesn't exists for a specific member. 
 	 */
+	
+	
 	public void removeReviewItemFilm(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
 		
 		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
@@ -315,7 +351,36 @@ public class SocialNetwork implements ISocialNetwork {
 			System.out.println("The review of this member for this film was successfully removed.");
 		
 	}
-
+	
+	/**
+	 * Removing a review given by a member on a specific book. 
+	 * 
+	 * @param title 
+	 *            film's title
+	 * 
+	 * @param login
+	 *            member's login
+	 * 
+	 * @param password
+	 *            member's password 
+	 *            
+	 * @throws BadEntryException
+	 *             <ul>
+	 *             <li>if login is not instantiated or contains less than one
+	 *             non-space character</li>
+	 *             <li>if password is not instantiated or contains less than one
+	 *             non-space character or contains less than 4 characters</li>
+	 *             </ul>
+	 * <br>
+	 * @throws NotMemberException
+	 *             if login does not match with the login of a registered member
+	 *             in <i>SocialNetwork</i> or if password does not correspond to
+	 *             his registered password.
+	 *             
+	 * @throws NotMemberException
+	 *             if the review item doesn't exists for a specific member.        
+	 */
+	
 	public void removeReviewItemBook(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
 		
 		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
@@ -345,8 +410,8 @@ public class SocialNetwork implements ISocialNetwork {
 		
 	}
 	
-	/*
-	public void removeItemFilm(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
+	
+	public void removeItemFilm(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException,Exception {
 		
 		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
 		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instantiated with at least one non-space character");
@@ -364,12 +429,15 @@ public class SocialNetwork implements ISocialNetwork {
 		Film thePotentialFilmToRemove=searchFilmByTitle(title);
 		if (thePotentialFilmToRemove == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
 		
-		if(filmsList.remove(thePotentialFilmToRemove)) System.out.println("The film was successfully removed.");
-		else System.out.println("The film wasn't removed.");
+		if (thePotentialFilmToRemove.getPublisher().compareLogin(login)) {
+			if(filmsList.remove(thePotentialFilmToRemove)) System.out.println("The book was successfully removed.");
+			else throw new Exception("Fail to remove the film.");
+		}
+		else throw new Exception("Fail to remove the film. The given login mismatch with the book publishers' login.");
 	
 	}
 	
-	public void removeItemBook(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException {
+	public void removeItemBook(String title,String login, String password) throws BadEntryException,NotMemberException,NotItemException,Exception {
 		
 		if (login==null) throw new BadEntryException("The login is null."); // Throw a new BadEntryException if the login is null
 		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instantiated with at least one non-space character");
@@ -387,11 +455,14 @@ public class SocialNetwork implements ISocialNetwork {
 		Book thePotentialBookToRemove=searchBookByTitle(title);
 		if (thePotentialBookToRemove == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
 		
-		if(booksList.remove(thePotentialBookToRemove)) System.out.println("The book was successfully removed.");
-		else System.out.println("The book wasn't removed.");
+		if (thePotentialBookToRemove.getPublisher().compareLogin(login)) {
+			if(booksList.remove(thePotentialBookToRemove)) System.out.println("The book was successfully removed.");
+			else throw new Exception("Fail to remove the book.");
+		}
+		else throw new Exception("Fail to remove the book. The given login mismatch with the book publishers' login.");
 	
 	}
-	*/
+	
 	
 	/*public void editMember(String login, String password, String newPassword, String newProfile) 
 			throws BadEntryException, NotMemberException {

@@ -200,13 +200,18 @@ public class RemoveItemFilmTest {
 		int nbTests = 0; // total number of performed tests
 		int nbErrors = 0; // total number of failed tests
 		
+		int nbFilms=sn.nbFilms();
+		int nbBooks=sn.nbBooks();
 		
-		// Creating a user and a book in order to realize tests
+		// Creating a user and a film in order to realize tests
 		try {
 			sn.addMember("user1","password", "profile");
+			sn.addMember("user4","password", "profile");
 			sn.addItemFilm("user1","password", "title1","kind", "director", "scripwriter", 120);
+			nbFilms++;
 			sn.addItemFilm("user1","password", "title_to_remove","kind", "director", "scripwriter", 120);
-
+			nbFilms++;
+			
 		}
 		
 		catch (Exception e) {
@@ -245,16 +250,40 @@ public class RemoveItemFilmTest {
 		nbErrors += removeItemFilmNotMemberExceptionTest(sn,"title_to_remove", "user2","password", "2.1", "removeItemFilm() doesn't reject non registered user.");
 		
 		nbTests++;
-		nbErrors += removeItemFilmNotMemberExceptionTest(sn,"title_to_remove", "user2","false_password", "2.2", "removeItemFilm() doesn't reject users with unmatching password.");
+		nbErrors += removeItemFilmNotMemberExceptionTest(sn,"title_to_remove", "user1","false_password", "2.2", "removeItemFilm() doesn't reject users with unmatching password.");
 		
 		//test n°3 : NotItemException tests 		
 		nbTests++;
-		nbErrors+=removeItemFilmNotItemExceptionTest(sn,"title_to_remove", "user1","password", "3.1", "removeItemFilm() doesn't reject removing film action for an unmatching film.");
+		nbErrors+=removeItemFilmNotItemExceptionTest(sn,"fake_title", "user1","password", "3.1", "removeItemFilm() doesn't reject removing film action for an unmatching film.");
+		
+		//Test n°4 : Trying to remove the film of a user with another user. 
+		try {
+			sn.removeItemFilm("title_to_remove", "user2","password");
+			nbTests++;
+			if (nbFilms!=sn.nbFilms()) nbErrors+=1;
+		}
+		
+		catch (Exception e) {	
+		}
 		
 		//OK Test
 		nbTests++;
 		nbErrors += removeItemFilmOKTest(sn,"title_to_remove", "user1","password", "4.1");
+		nbFilms--;
 		
+		// check that 'sn' was correctly modified
+		if (nbFilms != sn.nbFilms()) {
+			System.out
+					.println("Error : the number of films was uncorrectly changed by removeItemFilm()");
+			nbErrors++;
+		}
+		nbTests++;
+		if (nbBooks != sn.nbBooks()) {
+			System.out
+					.println("Error : the number of films was unexepectedly changed by removeItemFilm()");
+			nbErrors++;
+		}
+
 		// Display final state of 'sn'
 		System.out.println("Final state of the social network : " + sn);
 
