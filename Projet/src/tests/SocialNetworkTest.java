@@ -46,26 +46,6 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			tr = RemoveReviewItemFilmTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = RemoveReviewItemBookTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = RemoveMemberTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = RemoveItemFilmTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = RemoveItemBookTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
 			tr = ConsultItemsTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
