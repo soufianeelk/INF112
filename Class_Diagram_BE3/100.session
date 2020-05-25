@@ -2,7 +2,7 @@ window_sizes 1920 1001 336 1578 947 0
 
 diagrams
   active  classdiagram_ref 128258 // ClassDiagram
-    1578 947 80 Custom 152 25
+    1578 947 80 Custom 138 25
   sequencediagram_ref 128228 // SequenceDiagram
     508 98 100 Custom 0 0
   sequencediagram_ref 128356 // SequenceDiagram_BEE
@@ -29,6 +29,8 @@ diagrams
     114 98 100 A4 0 0
 end
 show_stereotypes
+selected 
+  package_ref 129 // Class_Diagram_BE3
 open
   classrelation_ref 128100 // filmsList ()
   operation_ref 128770 // toString
