@@ -2,7 +2,7 @@ window_sizes 1920 1001 336 1578 947 0
 
 diagrams
   active  classdiagram_ref 128258 // ClassDiagram
-    1578 947 90 Custom 125 0
+    1578 947 80 Custom 152 25
   sequencediagram_ref 128228 // SequenceDiagram
     508 98 100 Custom 0 0
   sequencediagram_ref 128356 // SequenceDiagram_BEE
@@ -29,7 +29,6 @@ diagrams
     114 98 100 A4 0 0
 end
 show_stereotypes
-selected operation_ref 172516 // searchBookByTitle
 open
   classrelation_ref 128100 // filmsList ()
   operation_ref 128770 // toString
@@ -37,6 +36,7 @@ open
   operation_ref 151140 // nbFilms
   operation_ref 128100 // addItemFilm
   operation_ref 172004 // nbBooks
+  class_ref 135524 // Review
   classinstance_ref 128100 // SocialNetwork
   usecaseview_ref 134628 // Films
 end
