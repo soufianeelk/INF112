@@ -2,6 +2,7 @@ package opinion;
 import java.util.LinkedList;
 
 import exceptions.BadEntryException;
+import exceptions.NotItemException;
 
 /** 
  * @author - S. EL KALDAOUI
@@ -159,7 +160,7 @@ public class Book {
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the reviews list
+			reviewsList.add(new Review(theMember,this,mark,comment));//adding the new review in the reviews list
 			this.nbReviews++; //incrementing the book reviews counter
 			this.meanReviews=(this.meanReviews+mark)/nbReviews; }//computing the new mean of the review for the film.
 		
@@ -191,6 +192,18 @@ public class Book {
 			if(theReview.getMember()==theMember) return theReview;	//Return the review if it exists
 		}
 		return null;
+	}
+	
+	public void removeReview(Member theMember) throws NotItemException {
+		
+		if (this.nbReviews == 0) throw new NotItemException("The list of review is empty for this book.");	//Return null if the book has no reviews
+		
+		for(int i=0;i<reviewsList.size();i++){
+			if(reviewsList.get(i).getMember()==theMember) {
+				reviewsList.remove(i);	//Remove the review
+				this.nbReviews--; //Decrementing the number of review
+		}
+	}
 	}
 
 }

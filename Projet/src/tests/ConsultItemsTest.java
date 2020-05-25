@@ -28,18 +28,23 @@ public class ConsultItemsTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	private static int consultItemBadEntryTest(SocialNetwork sn, String title,String testId, String errorMessage) {
+		
+		LinkedList <String> PotentialListOfItem=new LinkedList();
+		
 		try {
-			sn.consultItems(title);
-			// Reaching this point means that no exception was thrown by
-			// addMember()
-			System.out.println("Err " + testId + " : " + errorMessage); // display
-																		// the
-																		// error														// message
+			
+			PotentialListOfItem= sn.consultItems(title);
+			
+			// Reaching this point means that no exception was thrown by consultItem()
+			System.out.println("Err " + testId + " : " + errorMessage); // display the error												// message
 			return 1; // and return the "error" value
 		}
-		catch (BadEntryException e) { // BadEntry exception was thrown by
-									// consultItem() : this is a good start!
-									// Let's now check if 'sn' was not
+		catch (BadEntryException e) { // BadEntry exception was thrown by consultItem() : this is a good start!
+			
+			if(PotentialListOfItem.size()!=0) {
+				System.out.println("Err "+ testId+ " : BadEntry was thrown but a non nul list of item was returned");	//If yes print error message
+				return 1;
+			}
 			return 0; // return "error" value
 			}
 																								
@@ -66,10 +71,13 @@ public class ConsultItemsTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	private static int consultItemOKTest(SocialNetwork sn, String title,String testId) {
+		
+		LinkedList <String> PotentialListOfItem=new LinkedList();
+		
 		try {
-			LinkedList<String> testConsultItems = sn.consultItems(title); 
+			PotentialListOfItem = sn.consultItems(title); 
 			
-			if (testConsultItems!=null && testConsultItems.size()!=0) return 0; //The item list was	returned correctly with at least one item.												
+			if (PotentialListOfItem!=null && PotentialListOfItem.size()!=0) return 0; //The item list was returned correctly with at least one item.												
 			return 1; // return the "error" value
 		}
 		catch (Exception e) {
@@ -86,13 +94,27 @@ public class ConsultItemsTest {
 		
 		SocialNetwork sn = new SocialNetwork();
 		
-		int nbTests = 0; // total number of performed tests
-		int nbErrors = 0; // total number of failed tests
+		int nbBooks = sn.nbBooks(); // total number of performed tests
+		int nbFilms = sn.nbFilms();  // total number of failed tests
+		
+		int nbTests = 0;
+		int nbErrors = 0;
+		
+		System.out.println("Testing consultItems()");
 		
 		try {
+		//Adding a member
 		sn.addMember("user", "password", "profile");
+		
+		//Adding a book to the social network and reviewing it. 
 		sn.addItemBook("user", "password", "title", "kind", "author", 100);
+		nbBooks++;
+		sn.reviewItemBook("user", "password", "title", (float) 5.0, "comment for the book");
+		
+		//Adding a film to the social network and reviewing it. 
 		sn.addItemFilm("user", "password", "title", "kind", "director", "scenarist",120);
+		nbFilms++;
+		sn.reviewItemFilm("user", "password", "title", (float) 4.0, "comment for the film");
 		}
 		catch (Exception e) {
 			
@@ -111,6 +133,19 @@ public class ConsultItemsTest {
 		nbTests++;
 		nbErrors+=consultItemOKTest(sn,"title","1.3");
 		
+		// check that 'sn' was not modified
+		nbTests++;
+		if (nbFilms != sn.nbFilms()) {
+			System.out
+					.println("Error : the number of films was unexepectedly changed by addItemFilm()");
+			nbErrors++;
+		}
+		nbTests++;
+		if (nbBooks != sn.nbBooks()) {
+			System.out
+					.println("Error : the number of books was unexepectedly changed by addMember()");
+			nbErrors++;
+		}
 		// Display final state of 'sn'
 		System.out.println("Final state of the social network : " + sn);
 

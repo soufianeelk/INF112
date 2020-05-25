@@ -1,4 +1,5 @@
 package opinion;
+import exceptions.NotItemException;
 import java.util.LinkedList;
 
 import exceptions.BadEntryException;
@@ -169,7 +170,8 @@ public class Film {
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(theMember, this, mark,comment));//adding the new review in the review list
+			reviewsList.add(new Review(theMember, this, mark, comment));//adding the new review in the review list
+
 			this.nbReviews++; //incrementing the film number counter
 			this.meanReviews=(this.meanReviews+mark)/nbReviews; }//computing the new mean of the review for the film.
 		
@@ -215,7 +217,15 @@ public class Film {
 		return null;
 	}
 	
-	public boolean removeReview() {
-		return true;
+	public void removeReview(Member theMember) throws NotItemException {
+		
+		if (this.nbReviews == 0) throw new NotItemException("The list of review is empty for this film.");	//Return null if the book has no reviews
+		
+		for(int i=0;i<reviewsList.size();i++){
+			if(reviewsList.get(i).getMember()==theMember) {
+				reviewsList.remove(i);	//Remove the review
+				this.nbReviews--; //Decrementing the number of review
+		}
+	}
 	}
 }
