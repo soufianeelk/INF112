@@ -81,12 +81,4 @@ public class Member {
 		else throw new BadEntryException("Password must contain at least 4 characters");
 	}
 	
-	/*public void addMemberReview(Review theReview) {
-		this.reviewsList.add(theReview);
-	}*/
-
-	/*public Review getReviews() {
-		return null;
-	  }*/
-
 	}

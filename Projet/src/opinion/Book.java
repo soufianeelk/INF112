@@ -193,17 +193,5 @@ public class Book {
 		}
 		return null;
 	}
-	
-	public void removeReview(Member theMember) throws NotItemException {
-		
-		if (this.nbReviews == 0) throw new NotItemException("The list of review is empty for this book.");	//Return null if the book has no reviews
-		
-		for(int i=0;i<reviewsList.size();i++){
-			if(reviewsList.get(i).getMember()==theMember) {
-				reviewsList.remove(i);	//Remove the review
-				this.nbReviews--; //Decrementing the number of review
-		}
-	}
-	}
 
 }
