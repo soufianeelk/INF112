@@ -160,7 +160,7 @@ public class Book {
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(theMember,this,mark,comment));//adding the new review in the reviews list
+			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the reviews list
 			this.nbReviews++; //incrementing the book reviews counter
 			this.meanReviews=(this.meanReviews+mark)/nbReviews; }//computing the new mean of the review for the film.
 		
@@ -189,7 +189,7 @@ public class Book {
 		if (this.nbReviews == 0) return null;	//Return null if the book has no reviews
 
 		for(Review theReview : reviewsList){
-			if(theReview.getMember()==theMember) return theReview;	//Return the review if it exists
+			if(theReview.getPublisher()==theMember) return theReview;	//Return the review if it exists
 		}
 		return null;
 	}
