@@ -1,6 +1,6 @@
 format 222
 "Class_Diagram_BE3"
-  revision 11
+  revision 13
   modified_by 100 "soufi"
   java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
 
@@ -470,10 +470,6 @@ ${members}}
 	
 	
       end
-
-      classrelation 147940 // <association>
-	relation_ref 134756 // <association>
-      end
     end
 
     class 128100 "ToutAvis"
@@ -674,6 +670,15 @@ ${members}}
 	
 	
       end
+
+      classrelation 161636 // publisher (<unidirectional association>)
+	relation 154980 --->
+	  a role_name "publisher" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161636 // publisher (<unidirectional association>)
+	  b parent class_ref 128386 // Member
+      end
     end
 
     class 135524 "Review"
@@ -789,14 +794,13 @@ ${members}}
 	
       end
 
-      classrelation 134756 // member (<association>)
-	relation 134756 ----
-	  a role_name "member" multiplicity "1" private
+      classrelation 134756 // publisher (<unidirectional association>)
+	relation 134756 --->
+	  a role_name "publisher" multiplicity "1" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 134756 // member (<association>)
-	  b role_name "" package
-	    classrelation_ref 147940 // <association>
+	    classrelation_ref 134756 // publisher (<unidirectional association>)
+	  b parent class_ref 128386 // Member
       end
 
       operation 137444 "getMember"
@@ -818,6 +822,15 @@ ${members}}
 "
 	    classrelation_ref 141412 // <unidirectional association>
 	  b parent class_ref 135396 // Film
+      end
+
+      classrelation 161764 // reviewsList (<unidirectional association>)
+	relation 155108 --->
+	  a role_name "reviewsList" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 161764 // reviewsList (<unidirectional association>)
+	  b parent class_ref 135524 // Review
       end
     end
 
@@ -1062,6 +1075,42 @@ ${members}}
 	
 	
 	
+      end
+
+      classrelation 161124 // <unidirectional association>
+	relation 154468 --->
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161124 // <unidirectional association>
+	  b parent class_ref 128386 // Member
+      end
+
+      classrelation 161252 // <unidirectional association>
+	relation 154596 --->
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161252 // <unidirectional association>
+	  b parent class_ref 128386 // Member
+      end
+
+      classrelation 161380 // <unidirectional association>
+	relation 154724 --->
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161380 // <unidirectional association>
+	  b parent class_ref 128386 // Member
+      end
+
+      classrelation 161508 // publisher (<unidirectional association>)
+	relation 154852 --->
+	  a role_name "publisher" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161508 // publisher (<unidirectional association>)
+	  b parent class_ref 128386 // Member
       end
     end
   end
