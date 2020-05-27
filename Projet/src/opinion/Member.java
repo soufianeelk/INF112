@@ -12,11 +12,13 @@ public class Member {
 	private String login;
 	private String password;
 	private String profile;
+	private float karma;
 
 	public Member(String login, String password, String profile) {
 		this.login = login.trim();			//Initialize parameters with no leading/trailing blanks except for password
 		this.password = password;
 		this.profile = profile.trim();
+		this.karma=0;
 	  }
 
 	/**
@@ -60,6 +62,14 @@ public class Member {
 		return this.profile;
 	 }
 	
+	/**
+	 * Return the member's karma attribute
+	 * 
+	 * @return this.karma
+	 */	
+	public float getKarma() {
+		return this.karma;
+	 }
 	/**
 	 * Modify the member's profile attribute
 	 * 
