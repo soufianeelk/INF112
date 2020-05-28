@@ -105,4 +105,13 @@ public class Member {
 		return this.nbReviewsReceived;
 	}
 	
+	public String toString() {
+		
+		String result; 
+		
+		return "Username: "+this.login+" / "+"Profile :"+this.getKarma()+" / "+"Karma: "+this.getKarma();
+		
+
+}
+	
 	}

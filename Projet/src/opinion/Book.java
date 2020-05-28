@@ -193,5 +193,13 @@ public class Book {
 		}
 		return null;
 	}
+	
+	public String toString() {
+		
+		String result; 
+		
+		return "Title: "+this.getTitle()+" / "+"Author: "+this.getKind()+" / "+"Kind: "+this.getKind()+" / "+"Number of pages: "+this.getNbPages()+" / "+"Mean of the reviews: "+this.meanReviews+"/5"+ " / "+"Published by: "+ this.getPublisher();
+		
 
+}
 }

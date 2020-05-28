@@ -218,9 +218,19 @@ public class Film {
 		}
 		return null;
 	}
-	
-	public float updateMeanReview(float karma)  {
+
+	public String toString() {
+		
+		String result; 
+		
+		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
+		
+
+}
+}
+/*	public float updateMeanReview(float karma)  {
 	
 }
-	
+
 }
+*/

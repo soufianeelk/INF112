@@ -261,19 +261,32 @@ public class SocialNetwork implements ISocialNetwork {
         }
         return null;
 	}
+	
 	@Override
 	public String toString() {
 		
 		String result = null;
 		
-		result+="Members ("+nbMembers()+"):\n";
+		result="Members ("+nbMembers()+"):\n";
 		
 		for (Member theMember : membersList) {
-			
+			result+="			"+theMember.toString()+"\n";
 		}
 		
+		result+="Films ("+nbFilms()+"):\n";
+
+		for (Film theFilm : filmsList) {
+			result+="			"+theFilm.toString()+"\n";
+		}
+		
+		result+="Books ("+nbBooks()+"):\n";
+
+		for (Book theBook : booksList) {
+			result+="			"+theBook.toString()+"\n";
+		}
+		return result;
+
 	}
 		
-	
 
 }
