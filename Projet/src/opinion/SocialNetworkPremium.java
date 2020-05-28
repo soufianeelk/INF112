@@ -57,9 +57,8 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Review thePotentialReview = thePotentialFilm.checkMemberExistingReview(thePotentialPublisher);
 			if (thePotentialReview==null) throw new NotItemException("The review was not found.");
 			
-			thePotentialReview.addToReviewsList(thePotentialMember,new SimpleReview(thePotentialMember,mark,comment)); //Adding or Editing a Review of a Review. 
-			float thePotentialPublisherKarma=thePotentialPublisher.getKarma();
-			updateItemsMeanKarmaMember(thePotentialPublisher, thePotentialPublisherKarma); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment)); //Adding or Editing a Review of a Review. 
+			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
 		
 		if (type.trim().equalsIgnoreCase("book"))  {
@@ -77,25 +76,35 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			if (thePotentialReview==null) throw new NotItemException("The review was not found.");
 
 			thePotentialReview.addToReviewsList(thePotentialMember,new SimpleReview(thePotentialMember,mark,comment)); //Adding or Editing a Review of a Review. 
-			
-			float thePotentialPublisherKarma=thePotentialPublisher.getKarma();
-			updateItemsMeanKarmaMember(thePotentialPublisher, thePotentialPublisherKarma); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+
+			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
 		}
 	
-	private void updateItemsMeanKarmaMember(Member thePotentialPublisher, float MemberKarma) {
+	private void updateItemsMeanReviews(Member thePublisher, float thePublisherKarma) {
 		
 		Review theMemberReview;
 		
-		for (Film theFilm : filmsList) {
+		for (Film theFilm: filmsList) {
 			
-			theMemberReview=theFilm.checkMemberExistingReview(thePotentialPublisher);
+			theMemberReview = theFilm.checkMemberExistingReview(thePublisher);
+			
 			if (theMemberReview!=null) {
-				theFilm
+				theFilm.meanReview();
 			}
 			
 		}
 		
+		for (Book theBook: booksList) {
+			
+			theMemberReview = theBook.checkMemberExistingReview(thePublisher);
+			
+			if (theMemberReview!=null) {
+				theBook.meanReview();
+			}
+			
+		}
+	
 	}
 	
 

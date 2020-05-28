@@ -14,9 +14,8 @@ public class Review extends SimpleReview {
 		SimpleReview thePotentialSimpleReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialSimpleReview==null) {
 			
-			int nbReviewsReceived = theMember.getNbReviewsReceived(); // retrieving the number of reviews received by the member before adding a new one. 
 			this.reviewsList.add(theSimpleReview); //adding the new review in the review list		
-			theMember.computeKarma(theSimpleReview.getMark(), nbReviewsReceived);
+			theMember.computeKarma(theSimpleReview.getMark(), theMember.getNbReviewsReceived());
 		}
 		
 		else {

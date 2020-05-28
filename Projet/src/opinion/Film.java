@@ -1,5 +1,4 @@
 package opinion;
-import exceptions.NotItemException;
 import java.util.LinkedList;
 
 import exceptions.BadEntryException;
@@ -26,7 +25,7 @@ public class Film {
 	private float meanReviews;
 	private int nbReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
-
+	
 	public Film(Member publisher, String title, String kind, String director, String scenarist, int duration) {
 
 		this.publisher = publisher;
@@ -35,6 +34,7 @@ public class Film {
 		this.director = director.trim();
 		this.scenarist = scenarist.trim();
 		this.duration = duration;
+		this.meanReviews = 0;
 	  }
 	
 	/**
@@ -170,15 +170,18 @@ public class Film {
 		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(theMember, mark, comment));//adding the new review in the review list
+			
+			
+			reviewsList.add(new Review(theMember, theMember.getKarma()*mark, comment));//adding the new review in the review list
 
 			this.nbReviews++; //incrementing the film number counter
-			this.meanReviews=((this.meanReviews*(nbReviews-1))+mark)/nbReviews; }//computing the new mean of the review for the film.
+			
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+theMember.getKarma()*mark)/this.getKarmaReviewsMemberSum(); }//computing the new mean of the review for the film.
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {
 				if (theReviewtoReplace==thePotentialReview) {
-					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/nbReviews; //Compute the new mean value
+					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/this.getKarmaReviewsMemberSum(); //Compute the new mean value
 					theReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
@@ -208,7 +211,6 @@ public class Film {
 	 *          
 	 * @return the review if it exists, null if not
 	 */	
-	
 	public Review checkMemberExistingReview(Member theMember) {
 
 		if (this.nbReviews == 0) return null;	//Return null if the book has no reviews
@@ -219,8 +221,25 @@ public class Film {
 		return null;
 	}
 	
-	public float updateMeanReview(float karma)  {
-	
+	public float setMeanReview()  {
+		return this.meanReviews = meanReview();
 }
 	
+	public float meanReview() {
+		float sum = 0;
+		float denominator =0;
+		for(Review aReview: reviewsList) {
+			sum += aReview.getMark()*aReview.getPublisher().getKarma();
+			denominator += aReview.getPublisher().getKarma();
+		}
+		return sum/denominator;
+	}
+	
+	public float getKarmaReviewsMemberSum() {
+		float sum = 0;
+		for(Review aReview: reviewsList) {
+			sum += aReview.getPublisher().getKarma();
+		}
+		return sum;
+	}
 }

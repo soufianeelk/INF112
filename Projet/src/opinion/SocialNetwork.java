@@ -1,4 +1,4 @@
-//V8
+//V9
 
 package opinion;
 
@@ -36,7 +36,7 @@ public class SocialNetwork implements ISocialNetwork {
 	public int nbBooks() {
 		return booksList.size();
 	}
-
+	
 	@Override
 	public void addMember(String login, String password, String profile)
 			throws BadEntryException, MemberAlreadyExistsException {
@@ -261,19 +261,5 @@ public class SocialNetwork implements ISocialNetwork {
         }
         return null;
 	}
-	@Override
-	public String toString() {
-		
-		String result = null;
-		
-		result+="Members ("+nbMembers()+"):\n";
-		
-		for (Member theMember : membersList) {
-			
-		}
-		
-	}
-		
 	
-
 }

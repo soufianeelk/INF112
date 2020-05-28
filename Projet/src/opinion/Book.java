@@ -2,7 +2,6 @@ package opinion;
 import java.util.LinkedList;
 
 import exceptions.BadEntryException;
-import exceptions.NotItemException;
 
 /** 
  * @author - S. EL KALDAOUI
@@ -32,6 +31,7 @@ public class Book {
 		this.kind = kind;
 		this.author = author;
 		this.nbPages = nbPages;
+		this.meanReviews = 0;
 	}
 	
 	/**
@@ -162,12 +162,12 @@ public class Book {
 			
 			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the reviews list
 			this.nbReviews++; //incrementing the book reviews counter
-			this.meanReviews=(this.meanReviews*(nbReviews-1)+mark)/nbReviews; }//computing the new mean of the review for the film.
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+theMember.getKarma()*mark)/this.getKarmaReviewsMemberSum(); }//computing the new mean of the review for the book.
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {
 				if (theReviewtoReplace==thePotentialReview) {
-					this.meanReviews=((this.meanReviews*(nbReviews))-(theReviewtoReplace.getMark())+mark)/nbReviews; //Compute the new mean value
+					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/this.getKarmaReviewsMemberSum(); //Compute the new mean value
 					theReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
@@ -192,6 +192,28 @@ public class Book {
 			if(theReview.getPublisher()==theMember) return theReview;	//Return the review if it exists
 		}
 		return null;
+	}
+	
+	public float setMeanReview()  {
+		return this.meanReviews = meanReview();
+}
+	
+	public float meanReview() {
+		float sum = 0;
+		float denominator =0;
+		for(Review aReview: reviewsList) {
+			sum += aReview.getMark()*aReview.getPublisher().getKarma();
+			denominator += aReview.getPublisher().getKarma();
+		}
+		return sum/denominator;
+	}
+	
+	public float getKarmaReviewsMemberSum() {
+		float sum = 0;
+		for(Review aReview: reviewsList) {
+			sum += aReview.getPublisher().getKarma();
+		}
+		return sum;
 	}
 
 }
