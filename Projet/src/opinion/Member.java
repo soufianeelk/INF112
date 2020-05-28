@@ -13,12 +13,13 @@ public class Member {
 	private String password;
 	private String profile;
 	private float karma;
+	private int nbReviewsReceived;
 
 	public Member(String login, String password, String profile) {
 		this.login = login.trim();			//Initialize parameters with no leading/trailing blanks except for password
 		this.password = password;
 		this.profile = profile.trim();
-		this.karma=0;
+		this.karma=1;
 	  }
 
 	/**
@@ -71,6 +72,15 @@ public class Member {
 		return this.karma;
 	 }
 	/**
+	 * Modify the member's karma attribute
+	 * 
+	 * @return this.karma
+	 */	
+	public void computeKarma(float mark, int nbReviewsReceived) {
+		
+		this.karma=(this.karma*nbReviewsReceived+mark)/(nbReviewsReceived+1);
+	 }
+	/**
 	 * Modify the member's profile attribute
 	 * 
 	 * @param profile
@@ -89,6 +99,10 @@ public class Member {
 	public void setPassword(String password) throws BadEntryException {
 		if (password.trim().length() < 4) this.password = password.trim();
 		else throw new BadEntryException("Password must contain at least 4 characters");
+	}
+	
+	public int getNbReviewsReceived() {
+		return this.nbReviewsReceived;
 	}
 	
 	}

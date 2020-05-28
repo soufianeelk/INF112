@@ -3,3 +3,10 @@
 - checkExistingTitle to compareTitle
 - checkExistingLogin to compareLogin
 - Ajouter les reviews laissées par le membre à l'avenir?
+
+###################################  28/05/2020 ##########################
+
+- modification de la visibilité de certaines classes dans SocialNetwork
+- A modifier : Ajouter dans le diagramme de classe, la classe SimpleReview
+- A modifier : toString() 
+- Nouveau : locateMember()

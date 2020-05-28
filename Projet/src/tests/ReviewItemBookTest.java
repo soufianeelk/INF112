@@ -244,7 +244,6 @@ public class ReviewItemBookTest {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
-		int nbReview=sn.searchBookByTitle(title).getNbReviews();
 		
 		try {
 			int nbReviews;
@@ -268,7 +267,6 @@ public class ReviewItemBookTest {
 	}
 	
 	public static TestReport test(){
-
 		SocialNetwork sn = new SocialNetwork();
 
 		int nbTests = 0; // total number of performed tests
@@ -278,7 +276,6 @@ public class ReviewItemBookTest {
 		// Creating a user and a book in order to realize tests
 		try {
 			sn.addMember("user1","password", "profile");
-			sn.addMember("user5","password","profile");
 			sn.addItemBook("user1","password", "title","kind", "author", 120);
 		}
 		
@@ -290,7 +287,7 @@ public class ReviewItemBookTest {
 		//OK Tests 
 		
 		nbTests++;
-		nbErrors=addReviewItemBookOKTest(sn,"user1","password","title", (float) 4 ,"1.a","Commentaire 1");
+		nbErrors=addReviewItemBookOKTest(sn,"user1","password","title", (float) 1 ,"1.a","Comment of the user 1");
 		
 		// 1.1 : Test with non instantiated login
 		nbTests++;
@@ -320,7 +317,7 @@ public class ReviewItemBookTest {
 		nbTests++;
 		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password","title",-4, "thecomment","1.7", "addReviewItemFilm() doesn't reject marks lesser or equal to 0");
 		
-		//1.8: Test with a mark lesser or equal to 0
+		//1.8: Test with a mark greater or equal to 0
 		nbTests++;
 		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password","title",10, "thecomment","1.8", "addReviewItemFilm() doesn't reject marks greater or equal to 5");
 

@@ -1,50 +1,47 @@
 package opinion;
-
 import java.util.LinkedList;
 
-public class Review {
+public class Review extends SimpleReview {
 	
-	private String comment;
-	private float mark;
-	private Film film;
-	private Book book;
-	private Member member;
-	private LinkedList<Review> reviewsList = new LinkedList<Review>();
-
-	public Review(Member theMember, Film theFilm, float mark, String comment) {
-		
-		this.member=theMember;
-		this.film=theFilm;
-		this.mark = mark;
-		this.comment = comment.trim();
-	 }
+	private LinkedList<SimpleReview> reviewsList = new LinkedList<SimpleReview>();
 	
-	public Review(Member theMember, Book theBook, float mark, String comment) {
-		
-		this.member=theMember;
-		this.book=theBook;
-		this.mark = mark;
-		this.comment = comment.trim();
-	 }
-	
-	public String getComment( ) {
-		return this.comment;
-	 }
-
-	public float getMark() {
-		return this.mark;
-	 }
-
-	public void setComment(String comment) {
-		this.comment=comment;
-	 }
-
-	public void setMark(float mark) {
-		this.mark=mark;
-	 }
-
-	public Member getMember() {
-		return this.member;
-	  }
-
+	public Review(Member theMember, float mark, String comment) {
+		super(theMember, mark, comment);
 	}
+	
+	public void addToReviewsList(Member theMember, SimpleReview theSimpleReview) {
+		
+		SimpleReview thePotentialSimpleReview = this.checkMemberExistingReview(theMember);
+		if(thePotentialSimpleReview==null) {
+			
+			int nbReviewsReceived = theMember.getNbReviewsReceived(); // retrieving the number of reviews received by the member before adding a new one. 
+			this.reviewsList.add(theSimpleReview); //adding the new review in the review list		
+			theMember.computeKarma(theSimpleReview.getMark(), nbReviewsReceived);
+		}
+		
+		else {
+			for(SimpleReview theSimpleReviewtoReplace : reviewsList) {
+				if (theSimpleReviewtoReplace==thePotentialSimpleReview) {
+					theSimpleReviewtoReplace.setComment(theSimpleReview.getComment()); //Substitute the previous comment with the new one 
+					theSimpleReviewtoReplace.setMark(theSimpleReview.getMark()); //Substitute the previous mark with the new one 
+				}
+				
+			}
+		}
+	}
+	
+	public int getNbReviewsList() {
+		return this.reviewsList.size();
+	}
+	
+	public SimpleReview checkMemberExistingReview(Member theMember) {
+
+		if (this.reviewsList.size() == 0) return null;	//Return null if the book has no reviews
+
+		for(SimpleReview theSimpleReview : reviewsList){
+			if(theSimpleReview.getPublisher()==theMember) return theSimpleReview;	//Return the review if it exists
+		}
+		return null;
+	}
+	
+}

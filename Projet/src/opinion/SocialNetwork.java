@@ -17,9 +17,9 @@ import exceptions.NotMemberException;
  */
 public class SocialNetwork implements ISocialNetwork {
 	
-	private LinkedList<Member> membersList = new LinkedList<Member>();
-	private LinkedList<Film> filmsList = new LinkedList<Film>();
-	private LinkedList<Book> booksList = new LinkedList<Book>();
+	protected LinkedList<Member> membersList = new LinkedList<Member>();
+	protected LinkedList<Film> filmsList = new LinkedList<Film>();
+	protected LinkedList<Book> booksList = new LinkedList<Book>();
 
 
 	@Override
@@ -163,7 +163,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 		
 		Book theBook = searchBookByTitle(title);
-		theBook.addReview(authenticateMember(login,password),comment, mark); //Adding or editing a review 
+		theBook.addReview(thePotentialMember,comment, mark); //Adding or editing a review 
 		return searchBookByTitle(title).getMeanReviews();
 		
 	}
@@ -241,8 +241,10 @@ public class SocialNetwork implements ISocialNetwork {
 	 *             
 	 * @return Member object if the the member is found, else null. 
 	 */
-	public Member authenticateMember(String login, String password) throws NotMemberException{
+	protected Member authenticateMember(String login, String password) throws NotMemberException{
 
+        if (login==null || password==null) return null;
+		
         for (int i=0;i<membersList.size();i++) {
         	if (membersList.get(i).checkCredentials(login, password) == 1) throw new NotMemberException("Wrong Password !"); //Throws a NotMemberException if the password doesn't match
         	else if (membersList.get(i).checkCredentials(login, password) == 2) return membersList.get(i); //Else return the Member
@@ -250,7 +252,28 @@ public class SocialNetwork implements ISocialNetwork {
         return null;
 	}
 	
+	public Member locateMember(String login) throws NotMemberException{
+       
+		if (login==null) return null;
 
+        for (int i=0;i<membersList.size();i++) {
+        	if (membersList.get(i).compareLogin(login)) return membersList.get(i);
+        }
+        return null;
+	}
+	@Override
+	public String toString() {
+		
+		String result = null;
+		
+		result+="Members ("+nbMembers()+"):\n";
+		
+		for (Member theMember : membersList) {
+			
+		}
+		
+	}
+		
 	
 
 }

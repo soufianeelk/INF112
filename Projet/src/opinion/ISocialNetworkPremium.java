@@ -26,9 +26,8 @@ public interface ISocialNetworkPremium extends ISocialNetwork {
 	 *            the comment given by the member for this book
 	 * 
 	 * 
-	 * @return the karma of the user reviewed. 
 	 */
 	
-	public float reviewOpinion(String login, String password, String title, String type, String mark, String comment) throws NotMemberException,NotItemException;
+	public void reviewOpinion(String login, String password, String title, String theItemReviewpublisher, String type, float mark, String comment) throws BadEntryException,NotMemberException,NotItemException;
 	
 }

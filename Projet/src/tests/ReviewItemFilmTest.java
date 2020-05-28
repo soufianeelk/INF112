@@ -278,7 +278,6 @@ public class ReviewItemFilmTest {
 		// Creating a user and a film in order to realize tests
 		try {
 			sn.addMember("user1","password", "profile");
-			sn.addMember("user5","password","profile");
 			sn.addItemFilm("user1","password", "title","kind", "director", "scriptwriter", 120);
 		}
 		
@@ -290,7 +289,7 @@ public class ReviewItemFilmTest {
 		//OK Tests 
 		
 		nbTests++;
-		nbErrors=addReviewItemFilmOKTest(sn,"user1","password","title", (float) 4 ,"1.a","Commentaire 1");
+		nbErrors=addReviewItemFilmOKTest(sn,"user1","password","title", (float) 1 ,"1.a","User 1 comment");
 		
 		// 1.1 : Test with non instantiated login
 		nbTests++;
