@@ -57,9 +57,8 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Review thePotentialReview = thePotentialFilm.checkMemberExistingReview(thePotentialPublisher);
 			if (thePotentialReview==null) throw new NotItemException("The review was not found.");
 			
-			thePotentialReview.addToReviewsList(thePotentialMember,new SimpleReview(thePotentialMember,mark,comment)); //Adding or Editing a Review of a Review. 
-			float thePotentialPublisherKarma=thePotentialPublisher.getKarma();
-			updateItemsMeanKarmaMember(thePotentialPublisher, thePotentialPublisherKarma); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
+			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
 		
 		if (type.trim().equalsIgnoreCase("book"))  {
@@ -76,26 +75,62 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Review thePotentialReview = thePotentialBook.checkMemberExistingReview(thePotentialPublisher);
 			if (thePotentialReview==null) throw new NotItemException("The review was not found.");
 
-			thePotentialReview.addToReviewsList(thePotentialMember,new SimpleReview(thePotentialMember,mark,comment)); //Adding or Editing a Review of a Review. 
-			
-			float thePotentialPublisherKarma=thePotentialPublisher.getKarma();
-			updateItemsMeanKarmaMember(thePotentialPublisher, thePotentialPublisherKarma); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
+
+			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
 		}
 	
-	private void updateItemsMeanKarmaMember(Member thePotentialPublisher, float MemberKarma) {
+	private void updateItemsMeanReviews(Member thePublisher, float thePublisherKarma) {
 		
 		Review theMemberReview;
 		
-		for (Film theFilm : filmsList) {
+		for (Film theFilm: filmsList) {
 			
-			theMemberReview=theFilm.checkMemberExistingReview(thePotentialPublisher);
+			theMemberReview = theFilm.checkMemberExistingReview(thePublisher);
+			
 			if (theMemberReview!=null) {
-				theFilm
+				theFilm.updateMeanReview(theFilm.meanReview());
 			}
 			
 		}
 		
+		for (Book theBook: booksList) {
+			
+			theMemberReview = theBook.checkMemberExistingReview(thePublisher);
+			
+/*			if (theMemberReview!=null) {
+				theBook.updateMeanReview(theBook.meanReview());
+			}
+*/			
+		}
+	
+	}
+	
+	public static void main(String args[]) {
+		
+		try {
+			
+			SocialNetworkPremium sn = new SocialNetworkPremium();
+			sn.addMember("login", "password", "profile");
+			sn.addMember("login2", "password", "profile");
+			sn.addMember("login3", "password", "profile");
+
+			
+			sn.addItemFilm("login", "password", "title", "kind", "director", "scenarist", 120);
+			sn.reviewItemFilm("login", "password", "title", (float) 4.3, "Commentaire de la review principale par login");
+			sn.reviewItemFilm("login2", "password", "title", (float) 2.3, "Commentaire de la review principale par login2");
+			sn.reviewItemFilm("login3", "password", "title", (float) 1.5, "Commentaire de la review principale par login3");
+
+			sn.reviewOpinion("login2", "password", "title", "login", "film", (float) 0.1, "Tu racontes n'importe quoi!");		
+			sn.reviewOpinion("login3", "password", "title", "login", "film", (float) 0.5, "J'avoue");
+						
+			System.out.println("Fini");
+
+		}
+		catch (Exception e) {
+			
+		}
 	}
 	
 

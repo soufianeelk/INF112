@@ -9,14 +9,14 @@ public class Review extends SimpleReview {
 		super(theMember, mark, comment);
 	}
 	
-	public void addToReviewsList(Member theMember, SimpleReview theSimpleReview) {
+	public void addToReviewsList(Member theMember, SimpleReview theSimpleReview, Member thePublisher) {
 		
 		SimpleReview thePotentialSimpleReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialSimpleReview==null) {
 			
-			int nbReviewsReceived = theMember.getNbReviewsReceived(); // retrieving the number of reviews received by the member before adding a new one. 
 			this.reviewsList.add(theSimpleReview); //adding the new review in the review list		
-			theMember.computeKarma(theSimpleReview.getMark(), nbReviewsReceived);
+			thePublisher.computeKarma(theSimpleReview.getMark(), thePublisher.getNbReviewsReceived());
+			thePublisher.setNbReviewsReceived(thePublisher.getNbReviewsReceived()+1);
 		}
 		
 		else {

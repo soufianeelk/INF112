@@ -29,16 +29,8 @@ diagrams
     114 98 100 A4 0 0
 end
 show_stereotypes
-selected 
-  package_ref 129 // Class_Diagram_BE3
+selected class_ref 135524 // Review
 open
-  classrelation_ref 128100 // filmsList ()
-  operation_ref 128770 // toString
-  operation_ref 164196 // authenticateMember
-  operation_ref 151140 // nbFilms
-  operation_ref 128100 // addItemFilm
-  operation_ref 172004 // nbBooks
-  class_ref 135524 // Review
   classinstance_ref 128100 // SocialNetwork
   usecaseview_ref 134628 // Films
 end

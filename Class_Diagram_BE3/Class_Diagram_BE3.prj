@@ -1,6 +1,6 @@
 format 222
 "Class_Diagram_BE3"
-  revision 13
+  revision 14
   modified_by 100 "soufi"
   java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
 
@@ -803,7 +803,7 @@ ${members}}
 	  b parent class_ref 128386 // Member
       end
 
-      operation 137444 "getMember"
+      operation 137444 "getPublisher"
 	public return_type class_ref 128386 // Member
 	nparams 0
 	
@@ -832,6 +832,7 @@ ${members}}
 	    classrelation_ref 161764 // reviewsList (<unidirectional association>)
 	  b parent class_ref 135524 // Review
       end
+
     end
 
     classinstance 128100 "SocialNetwork"

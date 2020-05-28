@@ -19,6 +19,7 @@ public class Member {
 		this.login = login.trim();			//Initialize parameters with no leading/trailing blanks except for password
 		this.password = password;
 		this.profile = profile.trim();
+		this.nbReviewsReceived=0;
 		this.karma=1;
 	  }
 
@@ -78,8 +79,13 @@ public class Member {
 	 */	
 	public void computeKarma(float mark, int nbReviewsReceived) {
 		
-		this.karma=(this.karma*nbReviewsReceived+mark)/(nbReviewsReceived+1);
-	 }
+		if (nbReviewsReceived==0) {
+			this.karma=(this.karma+mark)/(nbReviewsReceived+2);
+		}
+		else {
+			this.karma=(this.karma*(nbReviewsReceived+1)+mark)/(nbReviewsReceived+2);
+		}
+	}
 	/**
 	 * Modify the member's profile attribute
 	 * 
@@ -103,6 +109,10 @@ public class Member {
 	
 	public int getNbReviewsReceived() {
 		return this.nbReviewsReceived;
+	}
+	
+	public void setNbReviewsReceived(int nbReviewsReceived) {
+		this.nbReviewsReceived=nbReviewsReceived;
 	}
 	
 	public String toString() {
