@@ -1,0 +1,13 @@
+window_sizes 1366 745 320 1041 699 0
+
+diagrams
+  active  classdiagram_ref 128258 // ClassDiagram
+    1041 699 59 Custom 0 0
+end
+show_stereotypes
+selected 
+package_ref 129 // Class_Diagram_BE3
+open
+  deploymentview_ref 128100 // CodeGeneration
+end
+end
