@@ -26,10 +26,6 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
-			tr = AddMemberTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			// 
 			tr = AddItemFilmTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");

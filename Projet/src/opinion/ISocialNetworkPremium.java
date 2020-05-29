@@ -1,13 +1,12 @@
 package opinion;
 
-import exceptions.BadEntryException;
-import exceptions.NotItemException;
-import exceptions.NotMemberException;
+
+import exceptions.*;
 
 public interface ISocialNetworkPremium extends ISocialNetwork {
 	
 	/**
-	 * Add in the <i>SocialNetwork</i> a new opinion about a review on behalf of a
+	 * Add in the <i>SocialNetworkPremium</i> a new opinion about a review on behalf of a
 	 * specific member.</br>
 	 * 
 	 * @param login
@@ -28,6 +27,6 @@ public interface ISocialNetworkPremium extends ISocialNetwork {
 	 * 
 	 */
 	
-	public void reviewOpinion(String login, String password, String title, String theItemReviewpublisher, String type, float mark, String comment) throws BadEntryException,NotMemberException,NotItemException;
+	public void reviewOpinion(String login, String password, String title, String theItemReviewpublisher, String type, float mark, String comment) throws BadEntryException,NotMemberException,NotItemException,NotReviewException;
 	
 }

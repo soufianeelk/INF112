@@ -300,7 +300,7 @@ public class AddItemBookTest {
 		nbTests++;
 		if (nbFilms != sn.nbFilms()) {
 			System.out
-					.println("Error : the number of films was unexepectedly changed by addItemFilm()");
+					.println("Error : the number of films was unexepectedly changed by addItemBook()");
 			nbErrors++;
 		}
 		nbTests++;
@@ -316,7 +316,7 @@ public class AddItemBookTest {
 		// Print a summary of the tests and return test results
 		try{
 			TestReport tr = new TestReport(nbTests, nbErrors);	
-			System.out.println("AddMemberTest : " + tr);
+			System.out.println("AddItemBook : " + tr);
 			return tr;	
 		}
 		catch (NotTestReportException e){ //This shouldn't happen

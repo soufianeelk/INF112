@@ -58,7 +58,7 @@ public class Member {
 	/**
 	 * Return the member's profile attribute
 	 * 
-	 * @return this.profile
+	 * @return the profile of the member
 	 */	
 	public String getProfile() {
 		return this.profile;
@@ -67,7 +67,7 @@ public class Member {
 	/**
 	 * Return the member's karma attribute
 	 * 
-	 * @return this.karma
+	 * @return the karma of the member
 	 */	
 	public float getKarma() {
 		return this.karma;
@@ -75,7 +75,7 @@ public class Member {
 	/**
 	 * Modify the member's karma attribute
 	 * 
-	 * @return this.karma
+	 * @return the new karma of the member
 	 */	
 	public void computeKarma(float mark, int nbReviewsReceived) {
 		
@@ -107,19 +107,28 @@ public class Member {
 		else throw new BadEntryException("Password must contain at least 4 characters");
 	}
 	
+	/**
+	 * Returning the number of Opinion's reviews received for a member;
+	 * 
+	 * @return the number of Opinion's reviews
+	 */	
+	
 	public int getNbReviewsReceived() {
 		return this.nbReviewsReceived;
 	}
+	
+	/**
+	 * Setting the number of Opinion's reviews received for a member;
+	 * 
+	 */	
 	
 	public void setNbReviewsReceived(int nbReviewsReceived) {
 		this.nbReviewsReceived=nbReviewsReceived;
 	}
 	
 	public String toString() {
-		
-		String result; 
-		
-		return "Username: "+this.login+" / "+"Profile :"+this.getKarma()+" / "+"Karma: "+this.getKarma();
+				
+	return "Username: "+this.login+" / "+"Profile: "+this.getProfile()+" / "+"Karma: "+this.getKarma()+"/5";
 		
 
 }

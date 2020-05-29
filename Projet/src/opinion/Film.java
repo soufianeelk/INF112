@@ -225,14 +225,26 @@ public class Film {
 		
 		String result; 
 		
-		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
+		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+" / "+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
 		
 
 }
+	/**
+	 * Updating the mean review attribute by the one given in parameters. 
+	 * 
+	 * @param theNewMean
+	 *            - the new mean to replace. 
+	 *            
+	 */
 	
 	public void updateMeanReview(float theNewMean)  {
 		 this.meanReviews = theNewMean;
 }
+	
+	/**
+	 * Computing the mean review attribute of a film by considering the karma. 
+	 *            
+	 */
 	
 	public float meanReview() {
 		float sum = 0;
@@ -243,6 +255,11 @@ public class Film {
 		}
 		return sum/denominator;
 	}
+	
+	/**
+	 * Computing the total karma of all the members whom a review exists for this film. 
+	 *            
+	 */	
 	
 	public float getKarmaReviewsMemberSum() {
 		float sum = 0;

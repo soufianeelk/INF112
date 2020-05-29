@@ -48,8 +48,6 @@ public class ReviewItemBookTest {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
-		if (sn.searchBookByTitle(title)==null) return 0;
-		int nbReview=sn.searchBookByTitle(title).getNbReviews(); //Retrieving the number of review of the book before adding a new one.
 		
 		try {
 			sn.reviewItemBook(login, pwd, title, mark, comment); // Try to add a new review
@@ -59,11 +57,6 @@ public class ReviewItemBookTest {
 		}
 		catch (BadEntryException e) { 
 
-			
-			if (sn.searchBookByTitle(title).getNbReviews() != nbReview) {
-				System.out.println("Err " + testId + " : the number of reviews (" + nbReview + ") was incremented");
-				return 1;
-			}
 			if (sn.nbFilms() != nbFilms) {
 				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
 				return 1;
@@ -114,7 +107,6 @@ public class ReviewItemBookTest {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
-		int nbReview=sn.searchBookByTitle(title).getNbReviews();
 		
 		try {
 			sn.reviewItemBook(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -124,10 +116,7 @@ public class ReviewItemBookTest {
 		}
 		catch (NotMemberException e) {
 			
-			if (sn.searchBookByTitle(title).getNbReviews() != nbReview) {
-				System.out.println("Err " + testId + " : the number of reviews (" + nbReview + ") was incremented");
-				return 1;
-			}
+
 			if (sn.nbFilms() != nbFilms) {
 				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
 				return 1;
@@ -179,8 +168,7 @@ public class ReviewItemBookTest {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
-		if (sn.searchBookByTitle(title)==null) return 0;
-		int nbReview=sn.searchBookByTitle(title).getNbReviews();
+
 		
 		try {
 			sn.reviewItemBook(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -190,10 +178,6 @@ public class ReviewItemBookTest {
 		}
 		catch (NotItemException e) {
 			
-			if (sn.searchFilmByTitle(title).getNbReviews() != nbReview) {
-				System.out.println("Err " + testId + " : the number of reviews (" + nbReview + ") was incremented");
-				return 1;
-			}
 			if (sn.nbFilms() != nbFilms) {
 				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
 				return 1;
@@ -242,9 +226,6 @@ public class ReviewItemBookTest {
 	private static int addReviewItemBookOKTest(SocialNetwork sn, String login,
 			String pwd, String title, float mark,String testId,String comment) {
 		
-		int nbFilms=sn.nbFilms();
-		int nbBooks=sn.nbBooks();
-		
 		try {
 			int nbReviews;
 			nbReviews = sn.searchBookByTitle(title).getNbReviews(); // get the number of review for the book
@@ -283,7 +264,7 @@ public class ReviewItemBookTest {
 			
 		}
 		
-		System.out.println("Testing reviewItemFilmTest()");
+		System.out.println("Testing reviewItemBookTest()");
 		//OK Tests 
 		
 		nbTests++;
@@ -345,7 +326,7 @@ public class ReviewItemBookTest {
 		// Print a summary of the tests and return test results
 		try{
 			TestReport tr = new TestReport(nbTests, nbErrors);	
-			System.out.println("AddMemberTest : " + tr);
+			System.out.println("ReviewItemBook : " + tr);
 			return tr;	
 		}
 		catch (NotTestReportException e){ //This shouldn't happen

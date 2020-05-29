@@ -194,10 +194,20 @@ public class Book {
 		return null;
 	}
 	
-	
-	public float updateMeanReview()  {
-		return this.meanReviews = meanReview();
+	/**
+	 * Updating the mean review attribute by the one given in parameters. 
+	 * 
+	 * @param theNewMean
+	 *            - the new mean to replace. 
+	 *            
+	 */
+	public void updateMeanReview(float theNewMean)  {
+		 this.meanReviews = theNewMean;
 }
+	/**
+	 * Computing the mean review attribute of a book by considering the karma. 
+	 *            
+	 */
 	
 	public float meanReview() {
 		float sum = 0;
@@ -208,6 +218,11 @@ public class Book {
 		}
 		return sum/denominator;
 	}
+	
+	/**
+	 * Computing the total karma of all the members whom a review exists for this book. 
+	 *            
+	 */	
 	
 	public float getKarmaReviewsMemberSum() {
 		float sum = 0;

@@ -9,6 +9,20 @@ public class Review extends SimpleReview {
 		super(theMember, mark, comment);
 	}
 	
+	/**
+	 * Adding the simple review to the list of review of this review.
+	 * 
+	 * @param theMember
+	 * 		- login of the publisher of the review of review (SimpleReview). 
+	 *
+	 * @param theSimpleReview
+	 * 		- theSimple review object to add in the review list.
+	 * 
+	 * @param theMember
+	 * 		- login of the publisher of the review of review.
+	 * 
+	 */
+	
 	public void addToReviewsList(Member theMember, SimpleReview theSimpleReview, Member thePublisher) {
 		
 		SimpleReview thePotentialSimpleReview = this.checkMemberExistingReview(theMember);
@@ -30,9 +44,14 @@ public class Review extends SimpleReview {
 		}
 	}
 	
-	public int getNbReviewsList() {
-		return this.reviewsList.size();
-	}
+	/**
+	 * Check if a member has already added a review for a review.
+	 * 
+	 * @param theMember
+	 *            - the Member about which we check the potential review on the film
+	 *          
+	 * @return the simple review if it exists, null if not
+	 */	
 	
 	public SimpleReview checkMemberExistingReview(Member theMember) {
 
@@ -42,6 +61,16 @@ public class Review extends SimpleReview {
 			if(theSimpleReview.getPublisher()==theMember) return theSimpleReview;	//Return the review if it exists
 		}
 		return null;
+	}
+	
+	/**
+	 * Returning the number of reviews for the item review of a member. 
+	 * 
+	 * @return the number of reviews for this review.
+	 *            
+	 */
+	public int getNbReviewsList() {
+		return this.reviewsList.size();
 	}
 	
 }

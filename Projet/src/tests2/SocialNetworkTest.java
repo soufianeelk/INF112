@@ -1,6 +1,14 @@
-package tests;
+package tests2;
 
-
+import tests.AddItemBookTest;
+import tests.AddItemFilmTest;
+import tests.AddMemberTest;
+import tests.ConsultItemsTest;
+import tests.InitTest;
+import tests.ReviewItemBookTest;
+import tests.ReviewItemFilmTest;
+import tests.ReviewOpinionTest;
+import tests.TestReport;
 
 /** 
  * This class launches a test suite for the SocialNetwork
@@ -8,7 +16,7 @@ package tests;
  * @version V2.0 - April 2018
  * 
  */
-public class SocialNetworkPremiumTest {
+public class SocialNetworkTest {
 
 	/**
 	 * @param args not used
@@ -22,10 +30,6 @@ public class SocialNetworkPremiumTest {
 			tr = InitTest.test();
 			testSuiteReport.add(tr);
 			
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = AddMemberTest.test();
-			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");
 			//
 			tr = AddMemberTest.test();

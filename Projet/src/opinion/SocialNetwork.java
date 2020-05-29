@@ -252,15 +252,6 @@ public class SocialNetwork implements ISocialNetwork {
         return null;
 	}
 	
-	public Member locateMember(String login) throws NotMemberException{
-       
-		if (login==null) return null;
-
-        for (int i=0;i<membersList.size();i++) {
-        	if (membersList.get(i).compareLogin(login)) return membersList.get(i);
-        }
-        return null;
-	}
 	
 	public String toString() {
 		

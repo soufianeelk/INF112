@@ -52,11 +52,6 @@ public class ReviewOpinionTest {
 		
 		if (type.equalsIgnoreCase("book")) {
 			
-			if (sn.searchBookByTitle(title)==null) return 0;
-			int nbReviewForTheItem=sn.searchBookByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
-			int nbReviewForTheReview=theItemReview.getNbReviewsList();
-			float karmaForTheMember=thePublisherOfTheReview.getKarma();
-			
 			try {
 				sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
 				// Reaching this point means that no exception was thrown by reviewOpinion()
@@ -66,20 +61,6 @@ public class ReviewOpinionTest {
 			
 			catch (BadEntryException e) {
 				
-				if (nbReviewForTheItem!=sn.searchBookByTitle(title).getNbReviews()) {
-					System.out.println("Err " + testId + " : the number of reviews for the item (" + nbReviewForTheItem + ") was incremented");
-					return 1;
-				}
-				
-				if (nbReviewForTheReview!=theItemReview.getNbReviewsList()) {
-					System.out.println("Err " + testId + " : the number of reviews for the given review (" + nbReviewForTheReview + ") was incremented");
-					return 1;
-				}
-				
-				if (karmaForTheMember!=thePublisherOfTheReview.getKarma()) {
-					System.out.println("Err " + testId + " : the karma of the publisherOfTheReview (" + karmaForTheMember + ") changed");
-					return 1;
-				}
 				return 0;
 				
 			}
@@ -94,12 +75,7 @@ public class ReviewOpinionTest {
 		}
 		
 		if (type.equalsIgnoreCase("film")) {
-			
-			if (sn.searchFilmByTitle(title)==null) return 0;
-			int nbReviewForTheItem=sn.searchFilmByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
-			int nbReviewForTheReview=theItemReview.getNbReviewsList();
-			float karmaForTheMember=thePublisherOfTheReview.getKarma();
-			
+						
 			try {
 				sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
 				// Reaching this point means that no exception was thrown by reviewOpinion()
@@ -109,20 +85,6 @@ public class ReviewOpinionTest {
 			
 			catch (BadEntryException e) {
 				
-				if (nbReviewForTheItem!=sn.searchFilmByTitle(title).getNbReviews()) {
-					System.out.println("Err " + testId + " : the number of reviews for the item (" + nbReviewForTheItem + ") was incremented");
-					return 1;
-				}
-				
-				if (nbReviewForTheReview!=theItemReview.getNbReviewsList()) {
-					System.out.println("Err " + testId + " : the number of reviews for the given review (" + nbReviewForTheReview + ") was incremented");
-					return 1;
-				}
-				
-				if (karmaForTheMember!=thePublisherOfTheReview.getKarma()) {
-					System.out.println("Err " + testId + " : the karma of the publisherOfTheReview (" + karmaForTheMember + ") changed");
-					return 1;
-				}
 				return 0;
 				
 			}
@@ -175,12 +137,7 @@ public class ReviewOpinionTest {
 	private static int reviewOpinionNotMemberExceptionTest(SocialNetworkPremium sn,String login, String password, String title, String publisherOfTheReview, String type, float mark, String comment,Review theItemReview, Member thePublisherOfTheReview,String testId,String errorMessage) {
 		
 		if (type.equalsIgnoreCase("book")) {
-					
-			if (sn.searchBookByTitle(title)==null) return 1;
-			int nbReviewForTheItem=sn.searchBookByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
-			int nbReviewForTheReview=theItemReview.getNbReviewsList();
-			float karmaForTheMember=thePublisherOfTheReview.getKarma();
-			
+								
 			try {
 				sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
 				// Reaching this point means that no exception was thrown by reviewOpinion()
@@ -189,20 +146,6 @@ public class ReviewOpinionTest {
 			}
 			catch (NotMemberException e) {
 				
-				if (nbReviewForTheItem!=sn.searchFilmByTitle(title).getNbReviews()) {
-					System.out.println("Err " + testId + " : the number of reviews for the item (" + nbReviewForTheItem + ") was incremented");
-					return 1;
-				}
-				
-				if (nbReviewForTheReview!=theItemReview.getNbReviewsList()) {
-					System.out.println("Err " + testId + " : the number of reviews for the given review (" + nbReviewForTheReview + ") was incremented");
-					return 1;
-				}
-				
-				if (karmaForTheMember!=thePublisherOfTheReview.getKarma()) {
-					System.out.println("Err " + testId + " : the karma of the publisherOfTheReview (" + karmaForTheMember + ") changed");
-					return 1;
-				}
 				return 0;
 			}
 			
@@ -216,12 +159,7 @@ public class ReviewOpinionTest {
 		
 		
 		if (type.equalsIgnoreCase("film")) {
-			
-			if (sn.searchFilmByTitle(title)==null) return 0;
-			int nbReviewForTheItem=sn.searchFilmByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
-			int nbReviewForTheReview=theItemReview.getNbReviewsList();
-			float karmaForTheMember=thePublisherOfTheReview.getKarma();
-			
+						
 			try {
 				sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
 				// Reaching this point means that no exception was thrown by reviewOpinion()
@@ -230,20 +168,6 @@ public class ReviewOpinionTest {
 			}
 			catch (NotMemberException e) {
 				
-				if (nbReviewForTheItem!=sn.searchFilmByTitle(title).getNbReviews()) {
-					System.out.println("Err " + testId + " : the number of reviews for the item (" + nbReviewForTheItem + ") was incremented");
-					return 1;
-				}
-				
-				if (nbReviewForTheReview!=theItemReview.getNbReviewsList()) {
-					System.out.println("Err " + testId + " : the number of reviews for the given review (" + nbReviewForTheReview + ") was incremented");
-					return 1;
-				}
-				
-				if (karmaForTheMember!=thePublisherOfTheReview.getKarma()) {
-					System.out.println("Err " + testId + " : the karma of the publisherOfTheReview (" + karmaForTheMember + ") changed");
-					return 1;
-				}
 				return 0;
 			}
 			
@@ -295,11 +219,6 @@ public class ReviewOpinionTest {
 		
 		if (type.equalsIgnoreCase("book")) {
 					
-			if (sn.searchBookByTitle(title)==null) return 0;
-			int nbReviewForTheItem=sn.searchBookByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
-			int nbReviewForTheReview=theItemReview.getNbReviewsList();
-			float karmaForTheMember=thePublisherOfTheReview.getKarma();
-			
 			try {
 				sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
 				// Reaching this point means that no exception was thrown by reviewOpinion()
@@ -308,20 +227,6 @@ public class ReviewOpinionTest {
 			}
 			catch (NotItemException e) {
 				
-				if (nbReviewForTheItem!=sn.searchFilmByTitle(title).getNbReviews()) {
-					System.out.println("Err " + testId + " : the number of reviews for the item (" + nbReviewForTheItem + ") was incremented");
-					return 1;
-				}
-				
-				if (nbReviewForTheReview!=theItemReview.getNbReviewsList()) {
-					System.out.println("Err " + testId + " : the number of reviews for the given review (" + nbReviewForTheReview + ") was incremented");
-					return 1;
-				}
-				
-				if (karmaForTheMember!=thePublisherOfTheReview.getKarma()) {
-					System.out.println("Err " + testId + " : the karma of the publisherOfTheReview (" + karmaForTheMember + ") changed");
-					return 1;
-				}
 				return 0;
 			}
 			
@@ -335,12 +240,7 @@ public class ReviewOpinionTest {
 		
 		
 		if (type.equalsIgnoreCase("film")) {
-			
-			if (sn.searchFilmByTitle(title)==null) return 0;
-			int nbReviewForTheItem=sn.searchFilmByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
-			int nbReviewForTheReview=theItemReview.getNbReviewsList();
-			float karmaForTheMember=thePublisherOfTheReview.getKarma();
-			
+						
 			try {
 				sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
 				// Reaching this point means that no exception was thrown by reviewOpinion()
@@ -349,20 +249,6 @@ public class ReviewOpinionTest {
 			}
 			catch (NotItemException e) {
 				
-				if (nbReviewForTheItem!=sn.searchFilmByTitle(title).getNbReviews()) {
-					System.out.println("Err " + testId + " : the number of reviews for the item (" + nbReviewForTheItem + ") was incremented");
-					return 1;
-				}
-				
-				if (nbReviewForTheReview!=theItemReview.getNbReviewsList()) {
-					System.out.println("Err " + testId + " : the number of reviews for the given review (" + nbReviewForTheReview + ") was incremented");
-					return 1;
-				}
-				
-				if (karmaForTheMember!=thePublisherOfTheReview.getKarma()) {
-					System.out.println("Err " + testId + " : the karma of the publisherOfTheReview (" + karmaForTheMember + ") changed");
-					return 1;
-				}
 				return 0;
 			}
 			
@@ -376,6 +262,54 @@ public class ReviewOpinionTest {
 		
 			return 1;
 	}
+	
+	private static int reviewOpinionNotReviewExceptionTest(SocialNetworkPremium sn,String login, String password, String title, String publisherOfTheReview, String type, float mark, String comment,Review theItemReview, Member thePublisherOfTheReview,String testId,String errorMessage) {
+			
+			if (type.equalsIgnoreCase("book")) {
+										
+				try {
+					sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
+					// Reaching this point means that no exception was thrown by reviewOpinion()
+					System.out.println("Err " + testId + " : " + errorMessage); // display the error message
+					return 1;
+				}
+				catch (NotReviewException e) {
+					
+					return 0;
+				}
+				
+				catch(Exception e) {
+					// it was not the expected exception BadEntry
+					System.out.println("Err " + testId + " : unexpected exception. "+ e); // Display a specific error message
+					e.printStackTrace(); // Display contextual info about what happened
+					return 1; // return error value
+				}
+				}
+			
+			
+			if (type.equalsIgnoreCase("film")) {
+								
+				try {
+					sn.reviewOpinion(login, password, title, publisherOfTheReview, type, mark, comment);
+					// Reaching this point means that no exception was thrown by reviewOpinion()
+					System.out.println("Err " + testId + " : " + errorMessage); // display the error message
+					return 1;
+				}
+				catch (NotReviewException e) {
+					
+					return 0;
+				}
+				
+				catch(Exception e) {
+					// it was not the expected exception BadEntry
+					System.out.println("Err " + testId + " : unexpected exception. "+ e); // Display a specific error message
+					e.printStackTrace(); // Display contextual info about what happened
+					return 1; // return error value
+				}
+				}
+			
+				return 1;
+		}
 	
 	/**
 	 * Check that this new review can be added to the member's item review. If OK, the method just returns 0
@@ -409,7 +343,6 @@ public class ReviewOpinionTest {
 		
 		if (type.equalsIgnoreCase("book")) {
 			
-			int nbReviewForTheItem=sn.searchBookByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
 			int nbReviewForTheReview=theItemReview.getNbReviewsList();
 			float karmaForTheMember=thePublisherOfTheReview.getKarma();
 			
@@ -434,7 +367,6 @@ public class ReviewOpinionTest {
 		
 		if (type.equalsIgnoreCase("film")) {
 			
-			int nbReviewForTheItem=sn.searchFilmByTitle(title).getNbReviews(); //Retrieving the number of review of the item. 
 			int nbReviewForTheReview=theItemReview.getNbReviewsList();
 			float karmaForTheMember=thePublisherOfTheReview.getKarma();
 			
@@ -612,11 +544,11 @@ public class ReviewOpinionTest {
 		
 		//3.2a : Test for a non existing item review [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotItemExceptionTest(sn,"login1", "password", "title", "login2", "film", (float) 4, "Comment of login 2", theFilmReview,login1,"3.2a","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
+		nbErrors+=reviewOpinionNotReviewExceptionTest(sn,"login1", "password", "title", "login2", "film", (float) 4, "Comment of login 2", theFilmReview,login1,"3.2a","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
 
 		//3.2b : Test for a non existing item review [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionNotItemExceptionTest(sn,"login1", "password", "title", "login2", "book", (float) 4, "Comment of login 2", theBookReview,login1,"3.2b","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
+		nbErrors+=reviewOpinionNotReviewExceptionTest(sn,"login1", "password", "title", "login2", "book", (float) 4, "Comment of login 2", theBookReview,login1,"3.2b","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
 
 		//OK Test for a Film
 		nbTests++;
@@ -632,7 +564,7 @@ public class ReviewOpinionTest {
 		// Print a summary of the tests and return test results
 		try{
 			TestReport tr = new TestReport(nbTests, nbErrors);	
-			System.out.println("AddMemberTest : " + tr);
+			System.out.println("ReviewOpinionTest : " + tr);
 			return tr;	
 		}
 		catch (NotTestReportException e){ //This shouldn't happen
