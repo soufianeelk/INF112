@@ -88,7 +88,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
-			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); 
+			updateItemsMeanReviews(thePotentialPublisher); 
 		}
 		
 		//Checking if the item is a book
@@ -110,7 +110,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
-			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
 		}
 	
@@ -125,7 +125,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 *            Item reviewer's karma.
 	 * 
 	 */
-	private void updateItemsMeanReviews(Member thePublisher, float thePublisherKarma) {
+	private void updateItemsMeanReviews(Member thePublisher) {
 		
 		Review theMemberReview;
 		
@@ -144,7 +144,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			theMemberReview = theBook.checkMemberExistingReview(thePublisher);
 			
 			if (theMemberReview!=null) {
-				theBook.updateMeanReview(theBook.meanReview());
+				theBook.updateMeanReview();
 			}
 			
 		}

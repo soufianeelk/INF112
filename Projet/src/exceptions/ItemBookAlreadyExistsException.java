@@ -9,8 +9,8 @@ package exceptions;
  */
 public class ItemBookAlreadyExistsException extends Exception {
 
-	public ItemBookAlreadyExistsException(String message) {
-		super(message);
+	public ItemBookAlreadyExistsException() {
+		super();
 	}
 	
 }

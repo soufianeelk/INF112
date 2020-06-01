@@ -27,11 +27,12 @@ public class Book {
 	
 	public Book (Member publisher, String title, String kind, String author, int nbPages) {
 		this.publisher = publisher;
-		this.title = title;
-		this.kind = kind;
-		this.author = author;
+		this.title = title.trim();
+		this.kind = kind.trim();
+		this.author = author.trim();
 		this.nbPages = nbPages;
 		this.meanReviews = 0;
+		this.nbReviews=0;
 	}
 	
 	/**
@@ -77,39 +78,6 @@ public class Book {
 	 */	
 	public int getNbPages() {
 		return this.nbPages;
-	}
-	
-	/**
-	 * Modify the book's kind attribute
-	 * 
-	 * @param kind
-	 *            - the new kind attribute
-	 */		
-	public void setKind(String kind) {
-		this.kind = kind.trim();
-	}
-	
-	/**
-	 * Modify the book's author attribute
-	 * 
-	 * @param author
-	 *            - the new author attribute
-	 * 
-	 */	
-	public void setAuthor(String author) {
-		this.author = author.trim();
-	}
-	
-	/**
-	 * Modify the book's nbPages attribute
-	 * 
-	 * @param nbPages
-	 *            - the new nbPages attribute
-	 * 
-	 */	
-	public void setNbPages(int nbPages)  throws BadEntryException{
-		if (nbPages > 0) this.nbPages = nbPages;	//The nbPages attribute must be positive
-		else throw new BadEntryException("The number of pages must be positive");  //Throws a BadEntryException if negative
 	}
 	
 	/**
@@ -201,12 +169,16 @@ public class Book {
 	 *            - the new mean to replace. 
 	 *            
 	 */
-	public void updateMeanReview(float theNewMean)  {
-		 this.meanReviews = theNewMean;
+	public float updateMeanReview()  {
+		this.meanReviews=this.meanReview();
+		return this.meanReviews;
 }
+	
+	
+	
 	/**
 	 * Computing the mean review attribute of a book by considering the karma. 
-	 *            
+	 *        
 	 */
 	
 	public float meanReview() {
