@@ -16,13 +16,11 @@ public class Member {
 	private int nbReviewsReceived;
 
 	public Member(String login, String password, String profile) {
-		
 		this.login = login.trim();			//Initialize parameters with no leading/trailing blanks except for password
 		this.password = password;
 		this.profile = profile.trim();
 		this.nbReviewsReceived=0;
 		this.karma=1;
-		
 	  }
 
 	/**
@@ -34,7 +32,6 @@ public class Member {
 	 * @return 1 if the login correspond, 0 if not
 	 */		
 	public boolean compareLogin(String login) {
-		
 		return (this.login.equalsIgnoreCase(login.trim())); // Replace spaces by nothing and put string to lower
 	  }
 	
@@ -50,14 +47,12 @@ public class Member {
 	 * @return the flag == 0 if the login doesn't match, flag == 1 if the login match but not the password, flag == 2 if login and password match
 	 */	
 	public int checkCredentials(String login, String password) {
-		
 		int flag = 0; // default value : the login doesn't match yet
 		if (this.login.equalsIgnoreCase(login.trim())) {
 			flag = 1; // value 1 : the login is found 
 			if (this.password.equals(password) ) flag = 2; //value 2 : the login is found & the password match
 		}
 		return flag;
-		
 	 }
 
 	/**
@@ -66,9 +61,7 @@ public class Member {
 	 * @return the profile of the member
 	 */	
 	public String getProfile() {
-		
 		return this.profile;
-		
 	 }
 	
 	/**
@@ -77,9 +70,7 @@ public class Member {
 	 * @return the karma of the member
 	 */	
 	public float getKarma() {
-		
 		return this.karma;
-		
 	 }
 	/**
 	 * Modify the member's karma attribute
@@ -94,7 +85,6 @@ public class Member {
 		else {
 			this.karma=(this.karma*(nbReviewsReceived+1)+mark)/(nbReviewsReceived+2);
 		}
-		
 	}
 	/**
 	 * Modify the member's profile attribute
@@ -103,9 +93,7 @@ public class Member {
 	 *            - the new profile attribute
 	 */	
 	public void setProfile(String profile) {
-		
 		this.profile = profile.trim();
-		
 	}
 	
 	/**
@@ -115,10 +103,8 @@ public class Member {
 	 *            - the new password attribute
 	 */	
 	public void setPassword(String password) throws BadEntryException {
-		
 		if (password.trim().length() < 4) this.password = password.trim();
 		else throw new BadEntryException("Password must contain at least 4 characters");
-		
 	}
 	
 	/**
@@ -128,9 +114,7 @@ public class Member {
 	 */	
 	
 	public int getNbReviewsReceived() {
-		
 		return this.nbReviewsReceived;
-		
 	}
 	
 	/**
@@ -139,15 +123,14 @@ public class Member {
 	 */	
 	
 	public void setNbReviewsReceived(int nbReviewsReceived) {
-		
 		this.nbReviewsReceived=nbReviewsReceived;
-		
 	}
 	
 	public String toString() {
+				
+	return "Username: "+this.login+" / "+"Profile: "+this.getProfile()+" / "+"Karma: "+this.getKarma()+"/5";
 		
-		return "Username: "+this.login+" / "+"Profile: "+this.getProfile()+" / "+"Karma: "+this.getKarma()+"/5";
+
+}
 	
 	}
-	
-}

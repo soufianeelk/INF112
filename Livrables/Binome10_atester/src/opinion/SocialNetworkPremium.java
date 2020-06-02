@@ -54,7 +54,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 * 
 	 * @return mean of the marks for this book
 	 */	
-	public void reviewOpinion(String login, String password, String title, String theItemReviewer, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
+	public void reviewOpinion(String login, String password, String title, String theItemReviewPublisher, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
 		
 		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
  		if (login == null) throw new BadEntryException("The login must be instanciated");
@@ -63,8 +63,8 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 characters");
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
-		if (theItemReviewer == null) throw new BadEntryException("The login of the item reviewer must be instanciated");
-		if (theItemReviewer.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login of the item reviewer must be instantiated with at least one non-space character");
+		if (theItemReviewPublisher == null) throw new BadEntryException("The login of the item reviewer must be instanciated");
+		if (theItemReviewPublisher.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login of the item reviewer must be instantiated with at least one non-space character");
 		if (type.equalsIgnoreCase("film")==false && type.equalsIgnoreCase("book")==false)  throw new BadEntryException("Type must be a 'film' or a 'book'.");
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5");
 		if (comment==null) throw new BadEntryException("The comment can't be none.");
@@ -78,7 +78,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Member thePotentialMember=this.authenticateMember(login,password);
 			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
-			Member thePotentialPublisher=this.locateMember(theItemReviewer);
+			Member thePotentialPublisher=this.locateMember(theItemReviewPublisher);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
 
 			Review thePotentialReview = thePotentialFilm.checkMemberExistingReview(thePotentialPublisher);
@@ -88,9 +88,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
-			updateItemsMeanReviews(thePotentialPublisher); 
-			
-			//return thePotentialMember.getKarma();
+			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); 
 		}
 		
 		//Checking if the item is a book
@@ -102,7 +100,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Member thePotentialMember=this.authenticateMember(login,password);
 			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
-			Member thePotentialPublisher=this.locateMember(theItemReviewer);
+			Member thePotentialPublisher=this.locateMember(theItemReviewPublisher);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
 			
 			Review thePotentialReview = thePotentialBook.checkMemberExistingReview(thePotentialPublisher);
@@ -112,7 +110,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
-			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			updateItemsMeanReviews(thePotentialPublisher, thePotentialPublisher.getKarma()); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
 		}
 	
@@ -127,26 +125,26 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 *            Item reviewer's karma.
 	 * 
 	 */
-	private void updateItemsMeanReviews(Member theItemReviewer) {
+	private void updateItemsMeanReviews(Member thePublisher, float thePublisherKarma) {
 		
 		Review theMemberReview;
 		
 		for (Film theFilm: filmsList) {
 			
-			theMemberReview = theFilm.checkMemberExistingReview(theItemReviewer);
+			theMemberReview = theFilm.checkMemberExistingReview(thePublisher);
 			
 			if (theMemberReview!=null) {
-				theFilm.updateMeanReview();
+				theFilm.updateMeanReview(theFilm.meanReview());
 			}
 			
 		}
 		
 		for (Book theBook: booksList) {
 			
-			theMemberReview = theBook.checkMemberExistingReview(theItemReviewer);
+			theMemberReview = theBook.checkMemberExistingReview(thePublisher);
 			
 			if (theMemberReview!=null) {
-				theBook.updateMeanReview();
+				theBook.updateMeanReview(theBook.meanReview());
 			}
 			
 		}
@@ -160,6 +158,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 *          - login of the member to search.
 	 * 
 	 */
+	
 	public Member locateMember(String login) throws NotMemberException{
 	       
 		if (login==null) return null;
@@ -169,33 +168,5 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
         }
         return null;
 	}
-	
-	 /*public static void main(String args[]) {
-		 
-		 try {
-		SocialNetworkPremium sn = new SocialNetworkPremium();
-		sn.addMember("login", "password", "profile");
-		sn.addMember("login1", "password", "profile");
-		sn.addMember("login2", "password", "profile");
-		sn.addItemBook("login", "password", "title", "kind", "author", 120);
-		sn.reviewItemBook("login2", "password", "title", (float) 4, "comment");
-		//Mean = 4
-		sn.reviewItemBook("login1", "password", "title", (float) 2, "comment");
-		//Mean = 3
-		sn.reviewOpinion("login1", "password", "title", "login2", "book", (float) 0.1, "comment");
-		//Karma login2 = 0.55
-		//Mean = (0.55*4 + 2*1)/(0.55+1) = 2.71
-		sn.reviewOpinion("login2", "password", "title", "login1", "book", (float) 2, "comment");
-		//karma login1 = 1.5
-		//Mean = (0.55*4 + 2*1.5)/(0.55+1.5) = 2.53
-		sn.reviewOpinion("login", "password", "title", "login2", "book", (float)4, "comment");
-		//karma login2 = 1.7
-		//Mean = (1.7*4 + 2*1.5)/(1.7+1.5) = 3.0625
-		System.out.println(sn.searchBookByTitle("title").getMeanReviews());
-		}
-		 
-		catch (Exception e) {
-		}
-	}*/
-	
+		
 }

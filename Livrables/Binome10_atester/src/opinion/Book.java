@@ -27,9 +27,9 @@ public class Book {
 	
 	public Book (Member publisher, String title, String kind, String author, int nbPages) {
 		this.publisher = publisher;
-		this.title = title.trim();
-		this.kind = kind.trim();
-		this.author = author.trim();
+		this.title = title;
+		this.kind = kind;
+		this.author = author;
 		this.nbPages = nbPages;
 		this.meanReviews = 0;
 	}
@@ -80,6 +80,39 @@ public class Book {
 	}
 	
 	/**
+	 * Modify the book's kind attribute
+	 * 
+	 * @param kind
+	 *            - the new kind attribute
+	 */		
+	public void setKind(String kind) {
+		this.kind = kind.trim();
+	}
+	
+	/**
+	 * Modify the book's author attribute
+	 * 
+	 * @param author
+	 *            - the new author attribute
+	 * 
+	 */	
+	public void setAuthor(String author) {
+		this.author = author.trim();
+	}
+	
+	/**
+	 * Modify the book's nbPages attribute
+	 * 
+	 * @param nbPages
+	 *            - the new nbPages attribute
+	 * 
+	 */	
+	public void setNbPages(int nbPages)  throws BadEntryException{
+		if (nbPages > 0) this.nbPages = nbPages;	//The nbPages attribute must be positive
+		else throw new BadEntryException("The number of pages must be positive");  //Throws a BadEntryException if negative
+	}
+	
+	/**
 	 * Return the book's meanReview attribute
 	 * 
 	 * @return this.meanReviews
@@ -112,7 +145,7 @@ public class Book {
 	/**
 	 * Add a Review on the book from a Member
 	 * 
-	 * @param thePublisher
+	 * @param theMember
 	 *            - the Member adding the review
 	 *            
 	 * @param comment
@@ -122,19 +155,19 @@ public class Book {
 	 *            - the review's mark
 	 *            
 	 */	
-	public void addReview(Member thePublisher, String comment, float mark) {
+	public void addReview(Member theMember, String comment, float mark) {
 		
-		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
+		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(thePublisher,mark,comment));//adding the new review in the reviews list
+			reviewsList.add(new Review(theMember,mark,comment));//adding the new review in the reviews list
 			this.nbReviews++; //incrementing the book reviews counter
-			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); }//computing the new mean of the review for the book.
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+theMember.getKarma()*mark)/this.getKarmaReviewsMemberSum(); }//computing the new mean of the review for the book.
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {
 				if (theReviewtoReplace==thePotentialReview) {
-					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/this.karmaReviewsMemberSum(); //Compute the new mean value
+					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/this.getKarmaReviewsMemberSum(); //Compute the new mean value
 					theReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
@@ -161,11 +194,20 @@ public class Book {
 		return null;
 	}
 	
-	
-	public float updateMeanReview()  {
-		 this.meanReviews = this.meanReview();
-		 return this.meanReviews;
+	/**
+	 * Updating the mean review attribute by the one given in parameters. 
+	 * 
+	 * @param theNewMean
+	 *            - the new mean to replace. 
+	 *            
+	 */
+	public void updateMeanReview(float theNewMean)  {
+		 this.meanReviews = theNewMean;
 }
+	/**
+	 * Computing the mean review attribute of a book by considering the karma. 
+	 *            
+	 */
 	
 	public float meanReview() {
 		float sum = 0;
@@ -177,7 +219,12 @@ public class Book {
 		return sum/denominator;
 	}
 	
-	public float karmaReviewsMemberSum() {
+	/**
+	 * Computing the total karma of all the members whom a review exists for this book. 
+	 *            
+	 */	
+	
+	public float getKarmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
 			sum += aReview.getPublisher().getKarma();

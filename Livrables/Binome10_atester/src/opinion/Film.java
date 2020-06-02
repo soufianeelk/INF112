@@ -93,6 +93,48 @@ public class Film {
 	  }
 
 	/**
+	 * Modify the film's kind attribute
+	 * 
+	 * @param kind
+	 *            - the new kind attribute
+	 */	
+	public void setKind(String kind) {
+		this.kind = kind.trim();
+	  }
+
+	/**
+	 * Modify the film's director attribute
+	 * 
+	 * @param kind
+	 *            - the new director attribute
+	 */	
+	public void setDirector(String director) {
+		this.director = director.trim();
+	  }
+
+	/**
+	 * Modify the film's scenarist attribute
+	 * 
+	 * @param scenarist
+	 *            - the new scenarist attribute
+	 */	
+	public void setScenarist(String scenarist) {
+		this.scenarist = scenarist.trim();
+	  }
+
+	/**
+	 * Modify the film's duration attribute
+	 * 
+	 * @param duration
+	 *            - the new duration attribute
+	 * 
+	 */	
+	public void setDuration(int duration) throws BadEntryException {
+		if (duration > 0) this.duration = duration;		//The duration attribute must be positive
+		else throw new BadEntryException("The duration must be positive");	//Throws a BadEntryException if negative
+	  }
+
+	/**
 	 * Return the film's meanReview attribute
 	 * 
 	 * @return this.meanReviews
@@ -113,7 +155,7 @@ public class Film {
 	/**
 	 * Add a Review on the film from a Member
 	 * 
-	 * @param thePublisher
+	 * @param theMember
 	 *            - the Member adding the review
 	 *            
 	 * @param comment
@@ -123,21 +165,23 @@ public class Film {
 	 *            - the review's mark
 	 *            
 	 */
-	public void addReview(Member thePublisher, String comment, float mark) {
+	public void addReview(Member theMember, String comment, float mark) {
 		
-		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
+		Review thePotentialReview = this.checkMemberExistingReview(theMember);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(thePublisher, thePublisher.getKarma()*mark, comment));//adding the new review in the review list
+			
+			
+			reviewsList.add(new Review(theMember, theMember.getKarma()*mark, comment));//adding the new review in the review list
 
 			this.nbReviews++; //incrementing the film number counter
 			
-			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); }//computing the new mean of the review for the film.
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+theMember.getKarma()*mark)/this.getKarmaReviewsMemberSum(); }//computing the new mean of the review for the film.
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {
 				if (theReviewtoReplace==thePotentialReview) {
-					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/this.karmaReviewsMemberSum(); //Compute the new mean value
+					this.meanReviews=(this.meanReviews*(nbReviews)-(theReviewtoReplace.getMark())+mark)/this.getKarmaReviewsMemberSum(); //Compute the new mean value
 					theReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
@@ -177,6 +221,14 @@ public class Film {
 		return null;
 	}
 
+	public String toString() {
+		
+		String result; 
+		
+		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+" / "+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
+		
+
+}
 	/**
 	 * Updating the mean review attribute by the one given in parameters. 
 	 * 
@@ -185,11 +237,10 @@ public class Film {
 	 *            
 	 */
 	
-	public float updateMeanReview()  {
-		 this.meanReviews = this.meanReview();
-		 return this.meanReviews;
+	public void updateMeanReview(float theNewMean)  {
+		 this.meanReviews = theNewMean;
 }
-
+	
 	/**
 	 * Computing the mean review attribute of a film by considering the karma. 
 	 *            
@@ -210,18 +261,12 @@ public class Film {
 	 *            
 	 */	
 	
-	public float karmaReviewsMemberSum() {
+	public float getKarmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
 			sum += aReview.getPublisher().getKarma();
 		}
 		return sum;
-	}
-
-	public String toString() {
-		
-		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+" / "+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
-		
 	}
 }
 
