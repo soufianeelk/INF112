@@ -32,6 +32,7 @@ public class Book {
 		this.author = author.trim();
 		this.nbPages = nbPages;
 		this.meanReviews = 0;
+		this.nbReviews=0;
 	}
 	
 	/**
@@ -160,12 +161,24 @@ public class Book {
 		}
 		return null;
 	}
-	
-	
+
+	/**
+	 * Updating the mean review attribute by the one given in parameters. 
+	 * 
+	 * @param theNewMean
+	 *            - the new mean to replace. 
+	 *            
+	 */
 	public float updateMeanReview()  {
-		 this.meanReviews = this.meanReview();
-		 return this.meanReviews;
+		this.meanReviews = this.meanReview();
+		return this.meanReviews;
 }
+
+
+	/**
+	 * Computing the mean review attribute of a book by considering the karma. 
+	 *        
+	 */
 	
 	public float meanReview() {
 		float sum = 0;

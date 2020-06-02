@@ -1,4 +1,4 @@
-//V10
+//V11
 
 package opinion;
 
@@ -51,7 +51,7 @@ public class SocialNetwork implements ISocialNetwork {
 		// Check if the login is available
 		for (int i=0; i < membersList.size(); i++) {
 			if (membersList.get(i).compareLogin(login)) {
-				throw new MemberAlreadyExistsException("Login already used"); //Throws the MemberAlreadyExistsException if the login isn't available
+				throw new MemberAlreadyExistsException(); //Throws the MemberAlreadyExistsException if the login isn't available
 			}
 		}
 		
@@ -82,7 +82,7 @@ public class SocialNetwork implements ISocialNetwork {
 		Member thePotentialMember=this.authenticateMember(login, password);
 		if (thePotentialMember == null) throw new NotMemberException("Unknown login");	//Throws NotMemberException if login provided is unknown
 		if (this.searchFilmByTitle(title) == null) filmsList.add(new Film(thePotentialMember,title, kind, director, scenarist, duration));	//Add a new film in the filmsList after checking all is ok
-		else throw new ItemFilmAlreadyExistsException("This film already exists !"); //Throw ItemFilmAlreadyExistsException if the film already exists
+		else throw new ItemFilmAlreadyExistsException(); //Throw ItemFilmAlreadyExistsException if the film already exists
 	
 	}
 
@@ -103,13 +103,13 @@ public class SocialNetwork implements ISocialNetwork {
 		if (nbPages < 0) throw new BadEntryException("The number of pages must be positive");
 		
 		//Check if the book already exists in the list 
-		if (this.searchBookByTitle(title)!=null) throw new ItemBookAlreadyExistsException("The book already exists !");
+		if (this.searchBookByTitle(title)!=null) throw new ItemBookAlreadyExistsException();
 		
 		//Check Authentication 
 		Member thePotentialMember=this.authenticateMember(login, password);
 		if (thePotentialMember== null) throw new NotMemberException("Unknown login");
 		if (this.searchBookByTitle(title) == null) booksList.add(new Book(thePotentialMember,title, kind, author,nbPages));
-		else throw new ItemBookAlreadyExistsException("This book already exists !");
+		else throw new ItemBookAlreadyExistsException();
 		
 
 
