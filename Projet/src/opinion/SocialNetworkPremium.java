@@ -52,9 +52,9 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 *             if title is not registered as a book's title in the
 	 *             <i>SocialNetwork</i>
 	 * 
-	 * @return mean of the marks for this book
+	 * @return karma of the item publisher. 
 	 */	
-	public void reviewOpinion(String login, String password, String title, String theItemReviewer, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
+	public float reviewOpinion(String login, String password, String title, String theItemReviewer, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
 		
 		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
  		if (login == null) throw new BadEntryException("The login must be instanciated");
@@ -89,7 +89,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); 
-			
+			return thePotentialMember.getKarma();
 			//return thePotentialMember.getKarma();
 		}
 		
@@ -113,7 +113,9 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			return thePotentialMember.getKarma();
 		}
+		return 0;
 		}
 	
 	/**

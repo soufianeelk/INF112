@@ -42,7 +42,7 @@ public class ConsultItemsTest {
 		catch (BadEntryException e) { // BadEntry exception was thrown by consultItem() : this is a good start!
 			
 			if(PotentialListOfItem.size()!=0) {
-				System.out.println("Err "+ testId+ " : BadEntry was thrown but a non nul list of item was returned");	//If yes print error message
+				System.out.println("Err "+ testId+ " : BadEntry was thrown but a non null list of item was returned");	//If yes print error message
 				return 1;
 			}
 			return 0; // return "error" value
@@ -133,19 +133,6 @@ public class ConsultItemsTest {
 		nbTests++;
 		nbErrors+=consultItemOKTest(sn,"title","1.3");
 		
-		// check that 'sn' was not modified
-		nbTests++;
-		if (nbFilms != sn.nbFilms()) {
-			System.out
-					.println("Error : the number of films was unexepectedly changed by addItemFilm()");
-			nbErrors++;
-		}
-		nbTests++;
-		if (nbBooks != sn.nbBooks()) {
-			System.out
-					.println("Error : the number of books was unexepectedly changed by addMember()");
-			nbErrors++;
-		}
 		// Display final state of 'sn'
 		System.out.println("Final state of the social network : " + sn);
 

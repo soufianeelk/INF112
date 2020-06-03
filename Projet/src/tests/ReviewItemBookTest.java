@@ -43,11 +43,12 @@ public class ReviewItemBookTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemBookBadEntryTest(SocialNetwork sn, String login,
+	private static int addReviewItemBookBadEntryTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
+		float meanBook=0;
 		
 		try {
 			sn.reviewItemBook(login, pwd, title, mark, comment); // Try to add a new review
@@ -60,9 +61,15 @@ public class ReviewItemBookTest {
 			if (sn.nbFilms() != nbFilms) {
 				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
 				return 1;
-			}	
+			}
+			
 			if (sn.nbBooks() != nbBooks) {
 				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
+				return 1;
+			}
+			
+			if (meanBook!=0) {
+				System.out.println("Err " + testId + " : the mean of review of this Book has changed");
 				return 1;
 			}
 			
@@ -102,11 +109,12 @@ public class ReviewItemBookTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemBookNotMemberExceptionTest(SocialNetwork sn, String login,
+	private static int addReviewItemBookNotMemberExceptionTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
+		float meanBook=0;
 		
 		try {
 			sn.reviewItemBook(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -121,8 +129,14 @@ public class ReviewItemBookTest {
 				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
 				return 1;
 			}	
+			
 			if (sn.nbBooks() != nbBooks) {
 				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
+				return 1;
+			}
+			
+			if (meanBook!=0) {
+				System.out.println("Err " + testId + " : the mean of review of this Book has changed");
 				return 1;
 			}
 			
@@ -163,12 +177,12 @@ public class ReviewItemBookTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemBookNotItemExceptionTest(SocialNetwork sn, String login,
+	private static int addReviewItemBookNotItemExceptionTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
-
+		float meanBook=0;
 		
 		try {
 			sn.reviewItemBook(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -186,7 +200,10 @@ public class ReviewItemBookTest {
 				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
 				return 1;
 			}
-			
+			if (meanBook!=0) {
+				System.out.println("Err " + testId + " : the mean of review of this Book has changed");
+				return 1;
+			}
 			return 0;
 		}
 		
@@ -223,16 +240,15 @@ public class ReviewItemBookTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	
-	private static int addReviewItemBookOKTest(SocialNetwork sn, String login,
+	private static int addReviewItemBookOKTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark,String testId,String comment) {
 		
 		try {
-			int nbReviews;
-			nbReviews = sn.searchBookByTitle(title).getNbReviews(); // get the number of review for the book
-			sn.reviewItemBook(login, pwd, title, mark, comment);
 			
-			if (sn.searchBookByTitle(title).getNbReviews() != nbReviews+1) {
-				System.out.println("Err " + testId + " : the number of reviews (" + nbReviews + ") was not incremented");
+			float meanBook=sn.reviewItemBook(login, pwd, title, mark, comment);
+			
+			if (meanBook==0) {
+				System.out.println("Err " + testId + " : the mean of the book hasn't changed, so the review was not added correctly.");
 				return 1;
 			} else {
 				return 0; 

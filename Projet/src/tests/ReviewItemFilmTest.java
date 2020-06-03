@@ -43,14 +43,15 @@ public class ReviewItemFilmTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemFilmBadEntryTest(SocialNetwork sn, String login,
+	private static int addReviewItemFilmBadEntryTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
+		float meanFilm=0;
 		
 		try {
-			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review
+			meanFilm=sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review
 			// Reaching this point means that no exception was thrown by reviewItemFilm()
 			System.out.println("Err " + testId + " : " + errorMessage); // display the error message
 			return 1;
@@ -64,6 +65,11 @@ public class ReviewItemFilmTest {
 			}	
 			if (sn.nbBooks() != nbBooks) {
 				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
+				return 1;
+			}
+			
+			if (meanFilm!=0) {
+				System.out.println("Err " + testId + " : the mean of review of this Book has changed");
 				return 1;
 			}
 			
@@ -103,11 +109,12 @@ public class ReviewItemFilmTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemFilmNotMemberExceptionTest(SocialNetwork sn, String login,
+	private static int addReviewItemFilmNotMemberExceptionTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
+		float meanFilm=0;
 		
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
@@ -121,11 +128,16 @@ public class ReviewItemFilmTest {
 				System.out.println("Err " + testId + " : the number of Films (" + nbFilms + ") was incremented");
 				return 1;
 			}	
+			
 			if (sn.nbBooks() != nbBooks) {
 				System.out.println("Err " + testId + " : the number of Books (" + nbBooks + ") was incremented");
 				return 1;
 			}
 			
+			if (meanFilm!=0) {
+				System.out.println("Err " + testId + " : the mean of review of this Book has changed");
+				return 1;
+			}
 			return 0;
 		}
 		
@@ -163,12 +175,12 @@ public class ReviewItemFilmTest {
 	 *            thrown when adding this member
 	 * @return 0 if the test is OK, 1 if not
 	 */
-	private static int addReviewItemFilmNotItemExceptionTest(SocialNetwork sn, String login,
+	private static int addReviewItemFilmNotItemExceptionTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark, String comment,String testId,String errorMessage) {
 		
 		int nbFilms=sn.nbFilms();
 		int nbBooks=sn.nbBooks();
-		
+		float meanFilm=0;
 		try {
 			sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
 			// Reaching this point means that no exception was thrown by reviewItemFilm()
@@ -186,6 +198,10 @@ public class ReviewItemFilmTest {
 				return 1;
 			}
 			
+			if (meanFilm!=0) {
+				System.out.println("Err " + testId + " : the mean of review of this Book has changed");
+				return 1;
+			}
 			return 0;
 		}
 		
@@ -222,17 +238,16 @@ public class ReviewItemFilmTest {
 	 * @return 0 if the test is OK, 1 if not
 	 */
 	
-	private static int addReviewItemFilmOKTest(SocialNetwork sn, String login,
+	private static int addReviewItemFilmOKTest(ISocialNetwork sn, String login,
 			String pwd, String title, float mark,String testId,String comment) {
 		
 
-		int nbReviews=sn.searchFilmByTitle(title).getNbReviews();
+		float meanFilm=0;
 		
 		try {
-			sn.reviewItemFilm(login, pwd, title, mark, comment);
-			
-			if (sn.searchFilmByTitle(title).getNbReviews() != nbReviews+1) {
-				System.out.println("Err " + testId + " : the number of reviews (" + nbReviews + ") was not incremented");
+			meanFilm=sn.reviewItemFilm(login, pwd, title, mark, comment); // Try to add a new review and save the mean
+			if (meanFilm==0) {
+				System.out.println("Err " + testId + " : the mean of the film hasn't changed, so the review was not added correctly.");
 				return 1;
 			} else {
 				return 0; 
