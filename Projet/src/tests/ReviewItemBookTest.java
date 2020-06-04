@@ -284,56 +284,56 @@ public class ReviewItemBookTest {
 		//OK Tests 
 		
 		nbTests++;
-		nbErrors=addReviewItemBookOKTest(sn,"user1","password","title", (float) 1 ,"1.a","Comment of the user 1");
+		nbErrors=addReviewItemBookOKTest(sn,new String("user1"),new String("password"),"title", (float) 1 ,"1.a","Comment of the user 1");
 		
 		// 1.1 : Test with non instantiated login
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,null,"password","title",5, "thecomment","1.1", "addReviewItemFilm() doesn't reject null login.");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,null, new String("password"), new String("title"),5, new String("thecomment"),"1.1", "addReviewItemFilm() doesn't reject null login.");
 				
 		//1.2 : Test with login which don't contains at least one character other than space
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"","password","title",5, "thecomment","1.2", "addReviewItemFilm() doesn't reject logins that don't contain at least one character other than space.");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,"", new String("password"), new String("title"),5,  new String("thecomment"),"1.2", "addReviewItemFilm() doesn't reject logins that don't contain at least one character other than space.");
 				
 		//1.3: Test with non instantiated password
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1",null,"title",5, "thecomment","1.3", "addReviewItemFilm() doesn't reject null password.");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"),null,new String("title"),5,  new String("thecomment"),"1.3", "addReviewItemFilm() doesn't reject null password.");
 				
 		//1.4: Test with password which contains less than 4 characters '
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","","title",5, "thecomment","1.4", "addReviewItemFilm() doesn't reject password that contains less than 4 characters.");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"),"",new String("title"),5, new String("thecomment"),"1.4", "addReviewItemFilm() doesn't reject password that contains less than 4 characters.");
 				
 		//1.5: Test with a non instantiated title
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password",null,5, "thecomment","1.5", "addReviewItemFilm() doesn't reject non instanciated titles.");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"),new String("password"),null,5, new String("thecomment"),"1.5", "addReviewItemFilm() doesn't reject non instanciated titles.");
 				
 		//1.6: Test with a title which contains less than one non-space character
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password","",5, "thecomment","1.6", "addReviewItemFilm() doesn't reject non instanciated titles.");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"), new String("password"),"",5, new String("thecomment"),"1.6", "addReviewItemFilm() doesn't reject non instanciated titles.");
 			
 		//1.7: Test with a mark lesser or equal to 0
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password","title",-4, "thecomment","1.7", "addReviewItemFilm() doesn't reject marks lesser or equal to 0");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"), new String("password"), new String("title"),-4, new String("thecomment"),"1.7", "addReviewItemFilm() doesn't reject marks lesser or equal to 0");
 		
 		//1.8: Test with a mark greater or equal to 0
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password","title",10, "thecomment","1.8", "addReviewItemFilm() doesn't reject marks greater or equal to 5");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"),new String("password"),new String("title"),10, new String("thecomment"),"1.8", "addReviewItemFilm() doesn't reject marks greater or equal to 5");
 
 		//1.9: Test with a non instantiated comment 
 		nbTests++;
-		nbErrors+=addReviewItemBookBadEntryTest(sn,"user1","password","title",10, null,"1.9", "addReviewItemFilm() doesn't reject non instantiated comment");
+		nbErrors+=addReviewItemBookBadEntryTest(sn,new String("user1"), new String("password"),new String("title"),10, null,"1.9", "addReviewItemFilm() doesn't reject non instantiated comment");
 		
 		
 		//test n°2 : NotMemberException tests
 		
 		nbTests++;
-		nbErrors+=addReviewItemBookNotMemberExceptionTest(sn,"user2","password","title",4, "thecomment","2.1", "addReviewItemFilm() doesn't reject non registered user.");
+		nbErrors+=addReviewItemBookNotMemberExceptionTest(sn,new String("user2"),new String("password"),new String("title"),4, new String("thecomment"),"2.1", "addReviewItemFilm() doesn't reject non registered user.");
 		
 		nbTests++;
-		nbErrors+=addReviewItemBookNotMemberExceptionTest(sn,"user1","false_password","title",4, "thecomment","2.2", "addReviewItemFilm() doesn't reject users with unmatching password.");
+		nbErrors+=addReviewItemBookNotMemberExceptionTest(sn,new String("user1"), new String("false_password"),new String("title"),4, new String("thecomment"),"2.2", "addReviewItemFilm() doesn't reject users with unmatching password.");
 		
 		//test n°3 : NotItemException tests 		
 		nbTests++;
-		nbErrors+=addReviewItemBookNotItemExceptionTest(sn,"user1","password","non_existing_title",4, "thecomment","3.1", "addReviewItemFilm() doesn't reject adding review for an unmatching film.");
+		nbErrors+=addReviewItemBookNotItemExceptionTest(sn,new String("user1"),new String("password"),new String("non_existing_title"),4, new String("thecomment"),"3.1", "addReviewItemFilm() doesn't reject adding review for an unmatching film.");
 
 				
 		// Display final state of 'sn'

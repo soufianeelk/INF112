@@ -104,17 +104,17 @@ public class ConsultItemsTest {
 		
 		try {
 		//Adding a member
-		sn.addMember("user", "password", "profile");
+		sn.addMember(new String("user"),new String("password"), "profile");
 		
 		//Adding a book to the social network and reviewing it. 
-		sn.addItemBook("user", "password", "title", "kind", "author", 100);
+		sn.addItemBook(new String("user"),new String("password"),new String("title"), "kind", "author", 100);
 		nbBooks++;
-		sn.reviewItemBook("user", "password", "title", (float) 5.0, "comment for the book");
+		sn.reviewItemBook(new String("user"),new String("password"), new String("title"), (float) 5.0, new String("comment for the book"));
 		
 		//Adding a film to the social network and reviewing it. 
-		sn.addItemFilm("user", "password", "title", "kind", "director", "scenarist",120);
+		sn.addItemFilm(new String("user"), new String("password"),new String("title"), "kind", "director", "scenarist",120);
 		nbFilms++;
-		sn.reviewItemFilm("user", "password", "title", (float) 4.0, "comment for the film");
+		sn.reviewItemFilm(new String("user"), new String("password"),new String("title"), (float) 4.0, new String("comment for the film"));
 		}
 		catch (Exception e) {
 			
