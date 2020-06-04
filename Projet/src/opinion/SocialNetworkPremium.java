@@ -57,10 +57,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	public float reviewOpinion(String login, String password, String title, String theItemReviewer, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
 		
 		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
- 		if (login == null) throw new BadEntryException("The login must be instanciated");
-		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
-		if (password == null) throw new BadEntryException("The password must be instanciated");
-		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 characters");
+		checkCredentialEntries(login,password);
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
 		if (theItemReviewer == null) throw new BadEntryException("The login of the item reviewer must be instanciated");

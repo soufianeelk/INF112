@@ -42,11 +42,8 @@ public class SocialNetwork implements ISocialNetwork {
 			throws BadEntryException, MemberAlreadyExistsException {
 		
 		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
-		if (login == null) throw new BadEntryException("The login must be instanciated");
-		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
-		if (password == null) throw new BadEntryException("The password must be instanciated");
+		checkCredentialEntries(login,password);
 		if (profile == null) throw new BadEntryException("The profile must be instanciated");
-		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 characters");
 		
 		// Check if the login is available
 		for (int i=0; i < membersList.size(); i++) {
@@ -67,10 +64,7 @@ public class SocialNetwork implements ISocialNetwork {
 		
 
 		// Check parameters content (if they aren't empty, if password contains higher than 4 characters, if duration is positive...) throws the BadEntryException if wrong
-		if (login == null) throw new BadEntryException("The login must be instanciated");
-		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
-		if (password == null) throw new BadEntryException("The password must be instanciated");
-		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 character");
+		checkCredentialEntries(login,password);
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
 		if (kind == null) throw new BadEntryException("The kind must be instanciated");
@@ -92,10 +86,7 @@ public class SocialNetwork implements ISocialNetwork {
 			NotMemberException, ItemBookAlreadyExistsException {
 		
 		//Check parameters content (if they aren't empty, if password contains higher than 4 characters, if duration is positive...)
-		if (login == null) throw new BadEntryException("The login must be instanciated");
-		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
-		if (password == null) throw new BadEntryException("The password must be instanciated");
-		if (password.trim().length() < 4) throw new BadEntryException("Password must contain at least 4 character");
+		checkCredentialEntries(login,password);
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
 		if (kind == null) throw new BadEntryException("The kind must be instanciated");
@@ -119,11 +110,7 @@ public class SocialNetwork implements ISocialNetwork {
 	public float reviewItemFilm(String login, String password, String title,float mark, String comment) throws BadEntryException,NotMemberException, NotItemException {
 	
 		// Check Parameters content (if they aren't empty, if password contains higher than 4 characters, if mark is between 0 and 5...)
-		if (login==null) throw new BadEntryException("The login is null.");
-		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); 
-		if (password==null) throw new BadEntryException("The password is null.");
-		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty");
-		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters");
+		checkCredentialEntries(login,password);
 		if (title==null) throw new BadEntryException("The password is null.");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5");
@@ -139,18 +126,14 @@ public class SocialNetwork implements ISocialNetwork {
 		return theFilm.getMeanReviews();
 
 	}
-	
+		
 	@Override
 	public float reviewItemBook(String login, String password, String title,
 			float mark, String comment) throws BadEntryException,
 			NotMemberException, NotItemException {
 		
 		// Check Parameters content (if they aren't empty, if password contains higher than 4 characters, if mark is between 0 and 5...)
-		if (login==null) throw new BadEntryException("The login is null.");
-		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space");
-		if (password==null) throw new BadEntryException("The password is null.");
-		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty"); 
-		if (password.length()<4) throw new BadEntryException("The password contains less than 4 characters"); 
+		checkCredentialEntries(login,password);
 		if (title==null) throw new BadEntryException("The password is null."); 
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); 
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); 
@@ -252,6 +235,16 @@ public class SocialNetwork implements ISocialNetwork {
         return null;
 	}
 	
+	protected void checkCredentialEntries(String login,String password) throws BadEntryException {
+		
+		if (login==null) throw new BadEntryException("The login is null.");
+		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); 
+		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
+		if (password==null) throw new BadEntryException("The password is null.");
+		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty");
+		if (password.trim().length()<4) throw new BadEntryException("The password contains less than 4 characters");
+		
+	}
 	
 	public String toString() {
 		
