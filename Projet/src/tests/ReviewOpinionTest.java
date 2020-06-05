@@ -284,12 +284,12 @@ public class ReviewOpinionTest {
 		
 		if (type.equals("film")) {
 			try {
-				float karmaForTheMember=0;
-				float nbReviewOfOpinion = sn.searchFilmByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList();
+				float theItemReviewerKarma=1;
+				int nbReviewOfOpinion = sn.searchFilmByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList();
 				
-				karmaForTheMember=sn.reviewOpinion(login, password, title, theItemReviewer, type, mark, comment);
+				theItemReviewerKarma=sn.reviewOpinion(login, password, title, theItemReviewer, type, mark, comment);
 				
-				if (sn.searchFilmByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList()!=nbReviewOfOpinion+1 || karmaForTheMember==0) {
+				if (sn.searchFilmByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList()!=nbReviewOfOpinion+1 || theItemReviewerKarma==1) {
 					System.out.println("Err " + testId + " : the addition of the review failed.");
 					return 1;
 				}
@@ -307,12 +307,12 @@ public class ReviewOpinionTest {
 		
 		if (type.equals("book")) {
 			try {
-				float karmaForTheMember=0;
-				float nbReviewOfOpinion = sn.searchBookByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList();
+				float theItemReviewerKarma=1;
+				int nbReviewOfOpinion = sn.searchBookByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList();
 				
-				karmaForTheMember=sn.reviewOpinion(login, password, title, theItemReviewer, type, mark, comment);
+				theItemReviewerKarma=sn.reviewOpinion(login, password, title, theItemReviewer, type, mark, comment);
 				
-				if (sn.searchFilmByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList()!=nbReviewOfOpinion+1 || karmaForTheMember==0) {
+				if (sn.searchFilmByTitle("title").checkMemberExistingReview(sn.locateMember(theItemReviewer)).getNbReviewsList()!=nbReviewOfOpinion+1 || theItemReviewerKarma==1) {
 					System.out.println("Err " + testId + " : the addition of the review failed.");
 					return 1;
 				}
