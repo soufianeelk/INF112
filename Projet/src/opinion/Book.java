@@ -25,8 +25,9 @@ public class Book {
 	private float meanReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 	
-	public Book (Member publisher, String title, String kind, String author, int nbPages) {
-		this.publisher = publisher;
+	public Book (Member thePublisher, String title, String kind, String author, int nbPages) {
+		
+		this.publisher = thePublisher;
 		this.title = title.trim();
 		this.kind = kind.trim();
 		this.author = author.trim();

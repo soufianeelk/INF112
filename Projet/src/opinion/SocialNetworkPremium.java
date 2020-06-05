@@ -52,7 +52,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 *             if title is not registered as a book's title in the
 	 *             <i>SocialNetwork</i>
 	 * 
-	 * @return karma of the item publisher. 
+	 * @return karma of the item publisher if not null. 
 	 */	
 	public float reviewOpinion(String login, String password, String title, String theItemReviewer, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
 		
@@ -66,13 +66,16 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5");
 		if (comment==null) throw new BadEntryException("The comment can't be none.");
 		
+
+		Member thePotentialMember = null;
+		
 		//Checking if the item is a film
 		if (type.trim().equalsIgnoreCase("film")) {
 			
 			Film thePotentialFilm = searchFilmByTitle(title);
 			if (thePotentialFilm==null) throw new NotItemException("The film was not found.");
 			
-			Member thePotentialMember=this.authenticateMember(login,password);
+			thePotentialMember=this.authenticateMember(login,password);
 			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
 			Member thePotentialPublisher=this.locateMember(theItemReviewer);
@@ -82,12 +85,10 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			if (thePotentialReview==null) throw new NotReviewException("The review was not found.");
 			
 			//Adding the new review of the review in the attribute reviewsList 
-			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
+			thePotentialReview.addToReviewsList(thePotentialMember, new OpinionReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); 
-			return thePotentialMember.getKarma();
-			//return thePotentialMember.getKarma();
 		}
 		
 		//Checking if the item is a book
@@ -96,7 +97,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Book thePotentialBook = searchBookByTitle(title);
 			if (thePotentialBook==null) throw new NotItemException("The book was not found.");
 			
-			Member thePotentialMember=this.authenticateMember(login,password);
+			thePotentialMember=this.authenticateMember(login,password);
 			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
 			Member thePotentialPublisher=this.locateMember(theItemReviewer);
@@ -106,13 +107,12 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			if (thePotentialReview==null) throw new NotReviewException("The review was not found.");
 		
 			//Adding the new review of the review in the attribute reviewsList 
-			thePotentialReview.addToReviewsList(thePotentialMember, new SimpleReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
+			thePotentialReview.addToReviewsList(thePotentialMember, new OpinionReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
-			return thePotentialMember.getKarma();
 		}
-		return 0;
+		return thePotentialMember.getKarma();
 		}
 	
 	/**
@@ -169,7 +169,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
         return null;
 	}
 	
-	 /*public static void main(String args[]) {
+	/*public static void main(String args[]) {
 		 
 		 try {
 		SocialNetworkPremium sn = new SocialNetworkPremium();

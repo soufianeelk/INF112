@@ -29,7 +29,7 @@ public class ConsultItemsTest {
 	 */
 	private static int consultItemBadEntryTest(SocialNetwork sn, String title,String testId, String errorMessage) {
 		
-		LinkedList <String> PotentialListOfItem=new LinkedList();
+		LinkedList <String> PotentialListOfItem=new LinkedList<String>();
 		
 		try {
 			
@@ -72,7 +72,7 @@ public class ConsultItemsTest {
 	 */
 	private static int consultItemOKTest(SocialNetwork sn, String title,String testId) {
 		
-		LinkedList <String> PotentialListOfItem=new LinkedList();
+		LinkedList <String> PotentialListOfItem=new LinkedList<String>();
 		
 		try {
 			PotentialListOfItem = sn.consultItems(title); 

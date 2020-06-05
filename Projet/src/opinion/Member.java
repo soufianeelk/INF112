@@ -12,8 +12,8 @@ public class Member {
 	private String login;
 	private String password;
 	private String profile;
-	private float karma;
-	private int nbReviewsReceived;
+	private float karma;		//Lot2
+	private int nbReviewsReceived;		//Lot2
 
 	public Member(String login, String password, String profile) {
 		
@@ -101,31 +101,7 @@ public class Member {
 	 * 
 	 * @param profile
 	 *            - the new profile attribute
-	 */	
-	public void setProfile(String profile) {
-		
-		this.profile = profile.trim();
-		
-	}
-	
-	/**
-	 * Modify the member's password attribute
-	 * 
-	 * @param profile
-	 *            - the new password attribute
-	 */	
-	public void setPassword(String password) throws BadEntryException {
-		
-		if (password.trim().length() < 4) this.password = password.trim();
-		else throw new BadEntryException("Password must contain at least 4 characters");
-		
-	}
-	
-	/**
-	 * Returning the number of Opinion's reviews received for a member;
-	 * 
-	 * @return the number of Opinion's reviews
-	 */	
+	 */		
 	
 	public int getNbReviewsReceived() {
 		
@@ -137,7 +113,6 @@ public class Member {
 	 * Setting the number of Opinion's reviews received for a member;
 	 * 
 	 */	
-	
 	public void setNbReviewsReceived(int nbReviewsReceived) {
 		
 		this.nbReviewsReceived=nbReviewsReceived;

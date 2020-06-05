@@ -1,14 +1,14 @@
 package opinion;
 
-public class SimpleReview {
+public class OpinionReview {
 	
 	private String comment;
 	private float mark;
 	private Member publisher;
 	
-	public SimpleReview(Member publisher, float mark, String comment) {
+	public OpinionReview(Member thePublisher, float mark, String comment) {
 		
-		this.publisher= publisher;
+		this.publisher= thePublisher;
 		this.mark = mark;
 		this.comment = comment.trim();
 	 }

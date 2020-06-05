@@ -26,9 +26,9 @@ public class Film {
 	private int nbReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 	
-	public Film(Member publisher, String title, String kind, String director, String scenarist, int duration) {
-
-		this.publisher = publisher;
+	public Film(Member thePublisher, String title, String kind, String director, String scenarist, int duration) {
+	
+		this.publisher = thePublisher;
 		this.title = title.trim();
 		this.kind = kind.trim();
 		this.director = director.trim();
@@ -132,7 +132,7 @@ public class Film {
 
 			this.nbReviews++; //incrementing the film number counter
 			
-			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); }//computing the new mean of the review for the film.
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); } //computing the new mean of the review for the film. 
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {

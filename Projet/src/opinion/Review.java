@@ -1,9 +1,9 @@
 package opinion;
 import java.util.LinkedList;
 
-public class Review extends SimpleReview {
+public class Review extends OpinionReview {
 	
-	private LinkedList<SimpleReview> reviewsList = new LinkedList<SimpleReview>();
+	private LinkedList<OpinionReview> reviewsList = new LinkedList<OpinionReview>();
 	
 	public Review(Member theMember, float mark, String comment) {
 		
@@ -14,31 +14,31 @@ public class Review extends SimpleReview {
 	/**
 	 * Adding the simple review to the list of review of this review.
 	 * 
-	 * @param theMember
-	 * 		- login of the publisher of the review of review (SimpleReview). 
+	 * @param the
+	 * 		- login of the publisher of the review of review (OpinionReview). 
 	 *
-	 * @param theSimpleReview
+	 * @param theOpinionReview
 	 * 		- theSimple review object to add in the review list.
 	 * 
-	 * @param theMember
+	 * @param theItemReviewer
 	 * 		- login of the publisher of the review of review.
 	 * 
 	 */
-	public void addToReviewsList(Member theNewReviewPublisher, SimpleReview theSimpleReview, Member thePublisher) {
+	public void addToReviewsList(Member thePublisher, OpinionReview theOpinionReview, Member theItemReviewer) {
 		
-		SimpleReview thePotentialSimpleReview = this.checkMemberExistingReview(theNewReviewPublisher);
-		if(thePotentialSimpleReview==null) {
+		OpinionReview thePotentialOpinionReview = this.checkMemberExistingReview(thePublisher);
+		if(thePotentialOpinionReview==null) {
 			
-			this.reviewsList.add(theSimpleReview); //adding the new review in the review list		
-			thePublisher.computeKarma(theSimpleReview.getMark(), thePublisher.getNbReviewsReceived());
-			thePublisher.setNbReviewsReceived(thePublisher.getNbReviewsReceived()+1);
+			this.reviewsList.add(theOpinionReview); //adding the new review in the review list		
+			theItemReviewer.computeKarma(theOpinionReview.getMark(), theItemReviewer.getNbReviewsReceived());
+			theItemReviewer.setNbReviewsReceived(theItemReviewer.getNbReviewsReceived()+1);
 		}
 		
 		else {
-			for(SimpleReview theSimpleReviewtoReplace : reviewsList) {
-				if (theSimpleReviewtoReplace==thePotentialSimpleReview) {
-					theSimpleReviewtoReplace.setComment(theSimpleReview.getComment()); //Substitute the previous comment with the new one 
-					theSimpleReviewtoReplace.setMark(theSimpleReview.getMark()); //Substitute the previous mark with the new one 
+			for(OpinionReview theOpinionReviewtoReplace : reviewsList) {
+				if (theOpinionReviewtoReplace==thePotentialOpinionReview) {
+					theOpinionReviewtoReplace.setComment(theOpinionReview.getComment()); //Substitute the previous comment with the new one 
+					theOpinionReviewtoReplace.setMark(theOpinionReview.getMark()); //Substitute the previous mark with the new one 
 				}
 			}
 		}
@@ -52,12 +52,12 @@ public class Review extends SimpleReview {
 	 *          
 	 * @return the simple review if it exists, null if not
 	 */	
-	public SimpleReview checkMemberExistingReview(Member theMember) {
+	public OpinionReview checkMemberExistingReview(Member theMember) {
 
 		if (this.reviewsList.size() == 0) return null;	//Return null if the book has no reviews
 
-		for(SimpleReview theSimpleReview : reviewsList){
-			if(theSimpleReview.getPublisher()==theMember) return theSimpleReview;	//Return the review if it exists
+		for(OpinionReview theOpinionReview : reviewsList){
+			if(theOpinionReview.getPublisher()==theMember) return theOpinionReview;	//Return the review if it exists
 		}
 		return null;
 		

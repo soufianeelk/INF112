@@ -1,8 +1,8 @@
 window_sizes 1920 1001 336 1578 947 0
 
 diagrams
-  classdiagram_ref 128258 // ClassDiagram
-    1578 947 80 Custom 153 19
+  active  classdiagram_ref 128258 // ClassDiagram
+    1578 947 80 Custom 0 49
   sequencediagram_ref 128228 // SequenceDiagram
     508 98 100 Custom 0 0
   sequencediagram_ref 128356 // SequenceDiagram_BEE
@@ -27,11 +27,18 @@ diagrams
     1578 947 100 Custom 0 0
   classdiagram_ref 161764 // Exceptions
     114 98 100 A4 0 0
-  active  sequencediagram_ref 168292 // reviewOpinion
-    1578 947 59 Custom 0 0
+  sequencediagram_ref 168292 // reviewOpinion
+    1578 947 68 Custom 0 0
 end
 show_stereotypes
-selected sequencediagram_ref 168292 // reviewOpinion
+marked
+  operation_ref 172260 // reviewItemBook
+  operation_ref 128100 // addItemFilm
+  operation_ref 172132 // addItemBook
+  operation_ref 172004 // nbBooks
+  operation_ref 151140 // nbFilms
+  operation_ref 128258 // nbMembers
+end
 open
   class_ref 169060 // SocialNetworkPremium
   class_ref 169188 // Review

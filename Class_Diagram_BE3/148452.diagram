@@ -14,12 +14,12 @@ end
 classinstancecanvas 131300 classinstance_ref 148964 // The Film
   xyz 793 4 2005 life_line_z 2000
 end
-classinstance 131940 class_ref 135524 // SimpleReview
-  name ""   xyz 931 4 2005 life_line_z 2000
+classinstance 131940 class_ref 135524 // OpinionReview
+  name ""   xyz 929 4 2005 life_line_z 2000
 note 137700 "Normal Use Case"
   xyzwh 1248.5 80.5 2000 135 45
-classinstance 137828 class_ref 135524 // SimpleReview
-  name "theReview"   xyz 1174 667 2005 life_line_z 2000
+classinstance 137828 class_ref 135524 // OpinionReview
+  name "theReview"   xyz 1172 667 2005 life_line_z 2000
 durationcanvas 128356 classinstance_ref 128228 // :Actor
   xyzwh 108 90 2010 11 774
 end
@@ -50,7 +50,7 @@ durationcanvas 134884 classinstance_ref 131300 // The Film:Film
     xyzwh 839 550 2020 11 80
   end
 end
-durationcanvas 136292 classinstance_ref 131940 // :SimpleReview
+durationcanvas 136292 classinstance_ref 131940 // :OpinionReview
   xyzwh 973 577 2010 11 53
 end
 durationcanvas 136548 classinstance_ref 129380 // :Member
@@ -59,7 +59,7 @@ end
 durationcanvas 137316 classinstance_ref 128740 // :Film
   xyzwh 686 402 2010 11 58
 end
-durationcanvas 137956 classinstance_ref 137828 // theReview:SimpleReview
+durationcanvas 137956 classinstance_ref 137828 // theReview:OpinionReview
   xyzwh 1245 717 2010 11 35
 end
 msg 128612 synchronous
