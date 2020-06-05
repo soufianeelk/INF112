@@ -364,135 +364,135 @@ public class ReviewOpinionTest {
 	
 		// 1.1a : Test with non instantiated login [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,null, "password", "title", "login1", "film", (float) 4, "Comment of login 2","1.1a","reviewOpinion() doesn't reject null login.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,null, new String("password"), new String("title"), new String("login1"), "film", (float) 4,new String("Comment of login 2"),"1.1a","reviewOpinion() doesn't reject null login.");
 		
 		// 1.1b : Test with non instantiated login [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,null, "password", "title", "login1", "book", (float) 4, "Comment of login 2", "1.1b","reviewOpinion() doesn't reject null login.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,null, new String("password"),new String("title"), new String("login1"), "book", (float) 4, new String("Comment of login 2"), "1.1b","reviewOpinion() doesn't reject null login.");
 		
 		//1.2a : Test with login which don't contains at least one character other than space [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"", "password", "title", "login1", "film", (float) 4, "Comment of login 2", "1.2a","reviewOpinion() doesn't reject logins that don't contain at least one character other than space.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String(""), new String("password"),new String("title"), new String("login1"), "film", (float) 4, new String("Comment of login 2"), "1.2a","reviewOpinion() doesn't reject logins that don't contain at least one character other than space.");
 		
 		//1.2b : Test with login which don't contains at least one character other than space [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"", "password", "title", "login1", "book", (float) 4, "Comment of login 2", "1.2b","reviewOpinion() doesn't reject logins that don't contain at least one character other than space.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String(""), new String("password"), new String("title"), new String("login1"), "book", (float) 4, new String("Comment of login 2"), "1.2b","reviewOpinion() doesn't reject logins that don't contain at least one character other than space.");
 		
 		//1.3a: Test with non instantiated password [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", null, "title", "login1", "film", (float) 4, "Comment of login 2", "1.3a","reviewOpinion() doesn't reject null password.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), null, new String("title"), new String("login1"), "film", (float) 4, new String("Comment of login 2"), "1.3a","reviewOpinion() doesn't reject null password.");
 		
 		//1.3b: Test with non instantiated password [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", null, "title", "login1", "book", (float) 4, "Comment of login 2", "1.3b","reviewOpinion() doesn't reject null password.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), null, new String("title"), new String("login1"), "book", (float) 4, new String("Comment of login 2"), "1.3b","reviewOpinion() doesn't reject null password.");
 		
 		//1.4a: Test with password which contains less than 4 characters [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "pas", "title", "login1", "film", (float) 4, "Comment of login 2", "1.4a","reviewOpinion() doesn't reject password that contains less than 4 characters.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("pas"), new String("title"), new String("login1"), "film", (float) 4, new String("Comment of login 2"), "1.4a","reviewOpinion() doesn't reject password that contains less than 4 characters.");
 		
 		//1.4b: Test with password which contains less than 4 characters [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "pas", "title", "login1", "book", (float) 4, "Comment of login 2", "1.4b","reviewOpinion() doesn't reject password that contains less than 4 characters.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("pas"), new String("title"), new String("login1"), "book", (float) 4, new String("Comment of login 2"), "1.4b","reviewOpinion() doesn't reject password that contains less than 4 characters.");
 				
 		//1.5a: Test with a non instantiated title [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", null, "login1", "film", (float) 4, "Comment of login 2", "1.5a","reviewOpinion() doesn't reject non instanciated titles.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"), null, new String("login1"), "film", (float) 4, new String("Comment of login 2"), "1.5a","reviewOpinion() doesn't reject non instanciated titles.");
 		
 		//1.5b: Test with a non instantiated title [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", null, "login1", "book", (float) 4, "Comment of login 2", "1.5b","reviewOpinion() doesn't reject non instanciated titles.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"), null,new String("login1"), "book", (float) 4, new String("Comment of login 2"), "1.5b","reviewOpinion() doesn't reject non instanciated titles.");
 		
 		//1.6a: Test with a title which contains less than one non-space character [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "", "login1", "book", (float) 4, "Comment of login 2", "1.6a","reviewOpinion() doesn't reject non instanciated titles.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("password"), new String(""), new String("login1"), "book", (float) 4, "Comment of login 2", "1.6a","reviewOpinion() doesn't reject non instanciated titles.");
 		
 		//1.6b: Test with a title which contains less than one non-space character [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "", "login1", "book", (float) 4, "Comment of login 2", "1.6b","reviewOpinion() doesn't reject non instanciated titles.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("password"),new String(""), new String("login1"),new String("book"), (float) 4, new String("Comment of login 2"), "1.6b","reviewOpinion() doesn't reject non instanciated titles.");
 	
 		// 1.7a : Test with non instantiated review item publisher login [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", null, "film", (float) 4, "Comment of login 2", "1.7a","reviewOpinion() doesn't reject null login for item reviewer.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("password"), new String("title"), null, "film", (float) 4, new String("Comment of login 2"), "1.7a","reviewOpinion() doesn't reject null login for item reviewer.");
 		
 		// 1.7b : Test with non instantiated review item publisher login [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", null, "book", (float) 4, "Comment of login 2", "1.7b","reviewOpinion() doesn't reject null login for item reviewer.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"), new String("title"), null, "book", (float) 4,new String("Comment of login 2"), "1.7b","reviewOpinion() doesn't reject null login for item reviewer.");
 		
 		//1.8a : Test with login which don't contains at least one character other than space [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", "", "film", (float) 4, "Comment of login 2", "1.8a","reviewOpinion() doesn't reject logins that don't contain at least one character other than space for item reviewer.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"),new String("title"),new String(""), "film", (float) 4, new String("Comment of login 2"), "1.8a","reviewOpinion() doesn't reject logins that don't contain at least one character other than space for item reviewer.");
 		
 		//1.8b : Test with login which don't contains at least one character other than space [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", "", "book", (float) 4, "Comment of login 2", "1.8b","reviewOpinion() doesn't reject logins that don't contain at least one character other than space for item reviewer.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"),new String("title"),new String(""), "book", (float) 4,new String("Comment of login 2"), "1.8b","reviewOpinion() doesn't reject logins that don't contain at least one character other than space for item reviewer.");
 		
 		//1.9a : Test with negative mark [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", "login1", "film", (float) -1, "Comment of login 2", "1.9a","reviewOpinion() doesn't reject negative marks.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("password"),new String("title"), new String("login1"), "film", (float) -1, new String("Comment of login 2"), "1.9a","reviewOpinion() doesn't reject negative marks.");
 		
 		//1.9b : Test with negative mark [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", "login1", "book", (float) -1, "Comment of login 2", "1.9b","reviewOpinion() doesn't reject negative marks.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"), new String("password"), new String("title"), new String("login1"), "book", (float) -1, new String("Comment of login 2"), "1.9b","reviewOpinion() doesn't reject negative marks.");
 		
 		//1.91a: Test with a non instantiated comment [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", "login1", "film", (float) 4, null, "1.91a","reviewOpinion() doesn't non instantiated comments.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"),new String("title"),new String("login1"), "film", (float) 4, null, "1.91a","reviewOpinion() doesn't non instantiated comments.");
 		
 		//1.91b: Test with a non instantiated comment [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionBadEntryTest(sn,"login2", "password", "title", "login1", "book", (float) 4, null, "1.91b","reviewOpinion() doesn't non instantiated comments.");
+		nbErrors+=reviewOpinionBadEntryTest(sn,new String("login2"),new String("password"),new String("title"),new String("login1"), "book", (float) 4, null, "1.91b","reviewOpinion() doesn't non instantiated comments.");
 		
 		//test n°2 : NotMemberException tests
 		
 		//2.1a: Test with a fake user [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,"false_user", "password", "title", "login1", "film", (float) 4, "Comment of login 2", "2.1a","reviewOpinion() doesn't reject non registered user.");
+		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,new String("false_user"),new String("password"), new String("title"), new String("login1"), "film", (float) 4, new String("Comment of login 2"), "2.1a","reviewOpinion() doesn't reject non registered user.");
 		
 		//2.1b: Test with a fake user [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,"false_user", "password", "title", "login1", "book", (float) 4, "Comment of login 2", "2.1b","reviewOpinion() doesn't reject non registered user.");
+		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,new String("false_user"),new String("password"),new String("title"),new String("login1"), "book", (float) 4, new String("Comment of login 2"), "2.1b","reviewOpinion() doesn't reject non registered user.");
 		
 		//2.2a: Test with a false password [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,"login2", "false_password", "title", "login1", "film", (float) 4, "Comment of login 2", "2.2a","reviewOpinion() doesn't reject users with unmatching password.");
+		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,new String("login2"),new String("false_password"),new String("title"),new String("login1"),"film", (float) 4,new String("Comment of login 2"), "2.2a","reviewOpinion() doesn't reject users with unmatching password.");
 		
 		//2.2b: Test with a false password [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,"login2", "false_password", "title", "login1", "book", (float) 4, "Comment of login 2", "2.2b","reviewOpinion() doesn't reject users with unmatching password.");
+		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,new String("login2"),new String("false_password"), new String("title"),new String("login1"), "book", (float) 4, new String("Comment of login 2"), "2.2b","reviewOpinion() doesn't reject users with unmatching password.");
 		
 		//2.3a: Test with a fake item review publisher [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,"login2", "password", "title", "false_user", "film", (float) 4, "Comment of login 2", "2.3a","reviewOpinion() doesn't reject non registered user for the field Item Review Publisher.");
+		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,new String("login2"), new String("password"),new String("title"),new String("false_user"), "film", (float) 4, new String("Comment of login 2"), "2.3a","reviewOpinion() doesn't reject non registered user for the field Item Review Publisher.");
 		
 		//2.3b: Test with a fake user [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,"login2", "password", "title", "false_user", "book", (float) 4, "Comment of login 2", "2.3b","reviewOpinion() doesn't reject non registered user for the field Item Review Publisher.");
+		nbErrors+=reviewOpinionNotMemberExceptionTest(sn,new String("login2"),new String("password"),new String("title"),new String("false_user"), "book", (float) 4, new String("Comment of login 2"), "2.3b","reviewOpinion() doesn't reject non registered user for the field Item Review Publisher.");
 		
 		//test n°3 : NotItemException tests 		
 		
 		//3.1a : Test for a non registered item [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotItemExceptionTest(sn,"login2", "password", "false_title", "login1", "film", (float) 4, "Comment of login 2", "3.1a","reviewOpinion() doesn't reject adding review on a review for an unmatching film.");
+		nbErrors+=reviewOpinionNotItemExceptionTest(sn,new String("login2"),new String("password"), new String("false_title"), new String("login1"), "film", (float) 4, new String("Comment of login 2"), "3.1a","reviewOpinion() doesn't reject adding review on a review for an unmatching film.");
 		
 		//3.1b : Test for a non registered item [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionNotItemExceptionTest(sn,"login2", "password", "false_title", "login1", "book", (float) 4, "Comment of login 2", "3.1b","reviewOpinion() doesn't reject adding review on a review for an unmatching film.");
+		nbErrors+=reviewOpinionNotItemExceptionTest(sn,new String("login2"), new String("password"),new String("false_title"),new String("login1"), "book", (float) 4, new String("Comment of login 2"), "3.1b","reviewOpinion() doesn't reject adding review on a review for an unmatching film.");
 		
 		//3.2a : Test for a non existing item review [Film]
 		nbTests++;
-		nbErrors+=reviewOpinionNotReviewExceptionTest(sn,"login1", "password", "title", "login2", "film", (float) 4, "Comment of login 2", "3.2a","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
+		nbErrors+=reviewOpinionNotReviewExceptionTest(sn,new String("login1"),new String("password"),new String("title"),new String("login2"), "film", (float) 4, new String("Comment of login 2"), "3.2a","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
 
 		//3.2b : Test for a non existing item review [Book]
 		nbTests++;
-		nbErrors+=reviewOpinionNotReviewExceptionTest(sn,"login1", "password", "title", "login2", "book", (float) 4, "Comment of login 2", "3.2b","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
+		nbErrors+=reviewOpinionNotReviewExceptionTest(sn,new String("login1"),new String("password"), new String("title"),new String("login2"), "book", (float) 4,new String("Comment of login 2"), "3.2b","reviewOpinion() doesn't detect that a review for this member doesn't exists.");
 
 		//OK Test for a Film
 		nbTests++;
-		nbErrors+=reviewOpinionOKTest(sn,"login2", "password", "title", "login1", "film", (float) 4, "Comment of login 2","4.1a");
+		nbErrors+=reviewOpinionOKTest(sn,new String("login2"), new String("password"), new String("title"), new String("login1"), "film", (float) 4, new String("Comment of login 2"),"4.1a");
 		
 		//OK Test for a Book
 		nbTests++;
-		nbErrors+=reviewOpinionOKTest(sn,"login2", "password", "title", "login1", "book", (float) 4, "Comment of login 2", "4.1b");
+		nbErrors+=reviewOpinionOKTest(sn,new String("login2"),new String("password"), new String("title"), new String("login1"), "book", (float) 4, new String("Comment of login 2"), "4.1b");
 		
 		// Display final state of 'sn'
 		System.out.println("Final state of the social network : " + sn);
