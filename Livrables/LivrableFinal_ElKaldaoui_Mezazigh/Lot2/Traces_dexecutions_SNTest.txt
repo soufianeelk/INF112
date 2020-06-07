@@ -1,0 +1,109 @@
+Testing brand new Social Networks...  
+Here is the newly created SocialNetwork :
+Members (0):
+Films (0):
+Books (0):
+
+InitTest : [ Nb of performed tests : 3 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing addMember()
+Final state of the social network : Members (3):
+			Username: Paul / Profile: lecteur impulsif / Karma: 1.0/5
+			Username: Antoine / Profile: grand amoureux de la littÃ©rature / Karma: 1.0/5
+			Username: Alice / Profile: passionnÃ©e de bande dessinÃ©e / Karma: 1.0/5
+Films (0):
+Books (0):
+
+AddMemberTest : [ Nb of performed tests : 15 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing addItemFilm()
+Final state of the social network : Members (1):
+			Username: login / Profile: profile / Karma: 1.0/5
+Films (3):
+			Title: title / Director: director / Scenarist: scriptwriter / Kind: kind / Duration: 10 / Mean of the Reviews: 0.0/5 / Published by: Username: login / Profile: profile / Karma: 1.0/5
+			Title: title1 / Director: director / Scenarist: scriptwriter / Kind: kind / Duration: 10 / Mean of the Reviews: 0.0/5 / Published by: Username: login / Profile: profile / Karma: 1.0/5
+			Title: title2 / Director: director / Scenarist: scriptwriter / Kind: kind / Duration: 10 / Mean of the Reviews: 0.0/5 / Published by: Username: login / Profile: profile / Karma: 1.0/5
+Books (0):
+
+AddItemFilm : [ Nb of performed tests : 21 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing addItemBook()
+Final state of the social network : Members (1):
+			Username: login / Profile: profile / Karma: 1.0/5
+Films (0):
+Books (3):
+			Title: title / Author: kind / Kind: kind / Number of pages: 10 / Mean of the reviews: 0.0/5 / Published by: Username: login / Profile: profile / Karma: 1.0/5
+			Title: title10 / Author: kind / Kind: kind / Number of pages: 10 / Mean of the reviews: 0.0/5 / Published by: Username: login / Profile: profile / Karma: 1.0/5
+			Title: title20 / Author: kind / Kind: kind / Number of pages: 10 / Mean of the reviews: 0.0/5 / Published by: Username: login / Profile: profile / Karma: 1.0/5
+
+AddItemBook : [ Nb of performed tests : 20 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing reviewItemFilmTest()
+Final state of the social network : Members (3):
+			Username: user1 / Profile: profile / Karma: 1.0/5
+			Username: user2 / Profile: profile / Karma: 1.0/5
+			Username: user3 / Profile: profile / Karma: 1.0/5
+Films (1):
+			Title: title / Director: director / Scenarist: scriptwriter / Kind: kind / Duration: 120 / Mean of the Reviews: 1.0/5 / Published by: Username: user1 / Profile: profile / Karma: 1.0/5
+Books (0):
+
+ReviewItemFilmTest : [ Nb of performed tests : 15 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing reviewItemBookTest()
+Final state of the social network : Members (3):
+			Username: user1 / Profile: profile / Karma: 1.0/5
+			Username: user2 / Profile: profile / Karma: 1.0/5
+			Username: user3 / Profile: profile / Karma: 1.0/5
+Films (0):
+Books (1):
+			Title: title / Author: kind / Kind: kind / Number of pages: 120 / Mean of the reviews: 1.0/5 / Published by: Username: user1 / Profile: profile / Karma: 1.0/5
+
+ReviewItemBook : [ Nb of performed tests : 15 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing consultItems()
+Final state of the social network : Members (1):
+			Username: user / Profile: profile / Karma: 1.0/5
+Films (1):
+			Title: title / Director: director / Scenarist: scenarist / Kind: kind / Duration: 120 / Mean of the Reviews: 4.0/5 / Published by: Username: user / Profile: profile / Karma: 1.0/5
+Books (1):
+			Title: title / Author: kind / Kind: kind / Number of pages: 100 / Mean of the reviews: 5.0/5 / Published by: Username: user / Profile: profile / Karma: 1.0/5
+
+consultItem() : [ Nb of performed tests : 3 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Testing reviewOpinion()
+Final state of the social network : Members (2):
+			Username: login1 / Profile: profile / Karma: 3.0/5
+			Username: login2 / Profile: profile / Karma: 1.0/5
+Films (1):
+			Title: title / Director: director / Scenarist: scenarist / Kind: kind / Duration: 120 / Mean of the Reviews: 4.0/5 / Published by: Username: login1 / Profile: profile / Karma: 3.0/5
+Books (1):
+			Title: title / Author: kind / Kind: kind / Number of pages: 120 / Mean of the reviews: 4.0/5 / Published by: Username: login1 / Profile: profile / Karma: 3.0/5
+
+ReviewOpinionTest : [ Nb of performed tests : 34 / nb of detected error(s) : 0 ]
+
+
+ **********************************************************************************************
+
+Global tests results :   
+[ Nb of performed tests : 126 / nb of detected error(s) : 0 ]

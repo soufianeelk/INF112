@@ -1,5 +1,6 @@
 package opinion;
 
+import exceptions.BadEntryException;
 
 /**
  * the Member class create members

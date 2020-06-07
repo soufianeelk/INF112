@@ -1,6 +1,7 @@
 package opinion;
 import java.util.LinkedList;
 
+import exceptions.BadEntryException;
 
 /** 
  * @author - S. EL KALDAOUI
@@ -10,98 +11,87 @@ import java.util.LinkedList;
  */
 
 /**
- * The Film class create films
+ * The Book class create books
  */
 
-public class Film {
+public class Book {
 	
 	private Member publisher;
 	private String title;
 	private String kind;
-	private String director;
-	private String scenarist;
-	private int duration;
-	private float meanReviews;
+	private String author;
+	private int nbPages;
 	private int nbReviews;
+	private float meanReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 	
-	public Film(Member thePublisher, String title, String kind, String director, String scenarist, int duration) {
-	
+	public Book (Member thePublisher, String title, String kind, String author, int nbPages) {
+		
 		this.publisher = thePublisher;
 		this.title = title.trim();
 		this.kind = kind.trim();
-		this.director = director.trim();
-		this.scenarist = scenarist.trim();
-		this.duration = duration;
+		this.author = author.trim();
+		this.nbPages = nbPages;
 		this.meanReviews = 0;
-	  }
+		this.nbReviews=0;
+	}
 	
 	/**
-	 * Return the publisher attribute of the film
+	 * Return the publisher attribute of the book
 	 * 
 	 * @return this.publisher
 	 */	
 	public Member getPublisher() {
 		return this.publisher;
 	}
-
+	
 	/**
-	 * Return the title's film attribute
+	 * Return the book's title attribute
 	 * 
 	 * @return this.title
 	 */	
 	public String getTitle() {
 		return this.title;
-	  }
-
+	}
+	
 	/**
-	 * Return the kind's film attribute
+	 * Return the book's kind attribute
 	 * 
 	 * @return this.kind
 	 */	
 	public String getKind() {
 		return this.kind;
-	  }
-
-	/**
-	 * Return the director's film attribute
-	 * 
-	 * @return this.director
-	 */		
-	public String getDirector() {
-		return this.director;
-	  }
-
-	/**
-	 * Return the scenarist's film attribute
-	 * 
-	 * @return this.scenarist
-	 */	
+	}
 	
-	public String getScenarist() {
-		return this.scenarist;
-	  }
-
 	/**
-	 * Return the duration's film attribute
+	 * Return the book's author attribute
 	 * 
-	 * @return this.duration
+	 * @return this.author
 	 */	
-	public int getDuration() {
-		return duration;
-	  }
-
+	public String getAuthor() {
+		return this.author;
+	}
+	
 	/**
-	 * Return the film's meanReview attribute
+	 * Return the book's nbPages attribute
+	 * 
+	 * @return this.nbPages
+	 */	
+	public int getNbPages() {
+		return this.nbPages;
+	}
+	
+	/**
+	 * Return the book's meanReview attribute
 	 * 
 	 * @return this.meanReviews
 	 */	
 	public float getMeanReviews() {
 		return this.meanReviews;
-	  }
-
+	}
+	
 	/**
-	 * Return the film's nbReviews attribute
+	 * Return the book's nbReviews attribute
 	 * 
 	 * @return this.nbReviews
 	 */	
@@ -110,7 +100,19 @@ public class Film {
 	}
 	
 	/**
-	 * Add a Review on the film from a Member
+	 * Compare a title in entry with the book's title
+	 * 
+	 * @param title
+	 *            - the title to compare
+	 * 
+	 * @return 1 if the title correspond, 0 if not
+	 */	
+	public boolean compareTitle(String title) {
+		return (this.title.equalsIgnoreCase(title.trim()));
+	  }
+	
+	/**
+	 * Add a Review on the book from a Member
 	 * 
 	 * @param thePublisher
 	 *            - the Member adding the review
@@ -121,17 +123,15 @@ public class Film {
 	 * @param mark
 	 *            - the review's mark
 	 *            
-	 */
-	public float addReview(Member thePublisher, String comment, float mark) {
+	 */	
+	public void addReview(Member thePublisher, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(thePublisher, thePublisher.getKarma()*mark, comment));//adding the new review in the review list
-
-			this.nbReviews++; //incrementing the film number counter
-			
-			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); } //computing the new mean of the review for the film. 
+			reviewsList.add(new Review(thePublisher,mark,comment));//adding the new review in the reviews list
+			this.nbReviews++; //incrementing the book reviews counter
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); }//computing the new mean of the review for the book.
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {
@@ -141,26 +141,12 @@ public class Film {
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
 				
-			}
 		}
-		return this.meanReviews;
+		}
 	}
-
-	/**
-	 * Compare a title in entry with the film's title
-	 * 
-	 * @param title
-	 *            - the title to compare
-	 * 
-	 * @return 1 if the title correspond, 0 if not
-	 */	
 	
-	public boolean compareTitle(String title) {
-		return (this.title.equalsIgnoreCase(title.trim()));
-	  }
-
 	/**
-	 * Check if a member has already added a review on the film
+	 * Check if a member has already added a review on the book
 	 * 
 	 * @param theMember
 	 *            - the Member about which we check the potential review on the film
@@ -184,15 +170,15 @@ public class Film {
 	 *            - the new mean to replace. 
 	 *            
 	 */
-	
 	public float updateMeanReview()  {
-		 this.meanReviews = this.meanReview();
-		 return this.meanReviews;
+		this.meanReviews = this.meanReview();
+		return this.meanReviews;
 }
 
+
 	/**
-	 * Computing the mean review attribute of a film by considering the karma. 
-	 *            
+	 * Computing the mean review attribute of a book by considering the karma. 
+	 *        
 	 */
 	
 	public float meanReview() {
@@ -205,11 +191,6 @@ public class Film {
 		return sum/denominator;
 	}
 	
-	/**
-	 * Computing the total karma of all the members whom a review exists for this film. 
-	 *            
-	 */	
-	
 	private float karmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
@@ -217,11 +198,9 @@ public class Film {
 		}
 		return sum;
 	}
-
+	
 	public String toString() {
 		
-		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+" / "+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
-		
-	}
+		return "Title: "+this.getTitle()+" / "+"Author: "+this.getKind()+" / "+"Kind: "+this.getKind()+" / "+"Number of pages: "+this.getNbPages()+" / "+"Mean of the reviews: "+this.meanReviews+"/5"+ " / "+"Published by: "+ this.getPublisher();
+	}	
 }
-

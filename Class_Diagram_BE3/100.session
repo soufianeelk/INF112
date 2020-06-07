@@ -2,7 +2,7 @@ window_sizes 1920 1001 284 1630 947 0
 
 diagrams
   active  classdiagram_ref 128258 // ClassDiagram
-    1630 947 80 Custom 204 108
+    1630 947 80 Custom 36 0
   sequencediagram_ref 128228 // SequenceDiagram
     508 98 100 Custom 0 0
   sequencediagram_ref 128356 // SequenceDiagram_BEE
@@ -30,7 +30,7 @@ diagrams
   sequencediagram_ref 168292 // reviewOpinion
     1578 947 68 Custom 0 0
   classdiagram_ref 174820 // ClassDiagramSNP
-    114 98 59 Custom 48 0
+    114 98 58 Custom 48 0
 end
 show_stereotypes
 marked
@@ -41,7 +41,10 @@ marked
   operation_ref 151140 // nbFilms
   operation_ref 128258 // nbMembers
 end
+selected classdiagram_ref 128258 // ClassDiagram
 open
   class_ref 169188 // OpinionReview
+  usecaseview_ref 128100 // Members
+  usecaseview_ref 134628 // Films
 end
 end

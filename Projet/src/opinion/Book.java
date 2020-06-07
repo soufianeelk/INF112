@@ -124,7 +124,7 @@ public class Book {
 	 *            - the review's mark
 	 *            
 	 */	
-	public void addReview(Member thePublisher, String comment, float mark) {
+	public float addReview(Member thePublisher, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
 		if(thePotentialReview==null) {
@@ -143,6 +143,8 @@ public class Book {
 				
 		}
 		}
+		
+		return this.meanReviews;
 	}
 	
 	/**
@@ -191,7 +193,7 @@ public class Book {
 		return sum/denominator;
 	}
 	
-	public float karmaReviewsMemberSum() {
+	private float karmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
 			sum += aReview.getPublisher().getKarma();

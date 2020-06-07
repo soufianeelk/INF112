@@ -171,7 +171,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	
 	public static void main(String args[]) {
 		 
-		try {
+		/* try {
 		SocialNetworkPremium sn = new SocialNetworkPremium();
 		sn.addMember("login", "password", "profile");
 		sn.addMember("login1", "password", "profile");
@@ -194,7 +194,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 		}
 		 
 		catch (Exception e) {
-		}
+		}*/
 	}
 	
 }
