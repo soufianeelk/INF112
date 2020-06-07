@@ -122,7 +122,9 @@ public class Book {
 	 *            
 	 * @param mark
 	 *            - the review's mark
-	 *            
+	 *
+	 * @return 	the mean of the book
+	 *
 	 */	
 	public float addReview(Member thePublisher, String comment, float mark) {
 		
@@ -153,7 +155,7 @@ public class Book {
 	 * @param theMember
 	 *            - the Member about which we check the potential review on the film
 	 *          
-	 * @return the review if it exists, null if not
+	 * @return the review if it exists, else null.
 	 */	
 	public Review checkMemberExistingReview(Member theMember) {
 
@@ -171,6 +173,7 @@ public class Book {
 	 * @param theNewMean
 	 *            - the new mean to replace. 
 	 *            
+	 * @return the new mean for this book.            
 	 */
 	public float updateMeanReview()  {
 		this.meanReviews = this.meanReview();
@@ -180,7 +183,8 @@ public class Book {
 
 	/**
 	 * Computing the mean review attribute of a book by considering the karma. 
-	 *        
+	 * 
+	 * @return the new mean for this book.            
 	 */
 	
 	public float meanReview() {
@@ -193,6 +197,12 @@ public class Book {
 		return sum/denominator;
 	}
 	
+	/**
+	 * Computing the total karma of all the members whom a review exists for this film. 
+	 * 
+	 * @return the sum of the karma of all members. 
+	 */		
+	
 	private float karmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
@@ -200,6 +210,12 @@ public class Book {
 		}
 		return sum;
 	}
+	
+	/**
+	 * Concatenate into a string value all the characteristics of a Book.
+	 * 
+	 * @return the string with all the characteristics of the Book.
+	 */	
 	
 	public String toString() {
 		

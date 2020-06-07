@@ -3,7 +3,7 @@
  * <p>
  * These classes contain the following classes :
  * 
- * 		- BadEntryException,ItemBookAlreadyExistsException, ItemFilmAlreadyExistsException,MemberAlreadyExistsException,NotItemException,NotMemberException,NotTestReportException
+ * 		- BadEntryException,ItemBookAlreadyExistsException, ItemFilmAlreadyExistsException,MemberAlreadyExistsException,NotItemException,NotMemberException,NotTestReportException,NotReviewException
  *</p>
  *
  * @since 1.0

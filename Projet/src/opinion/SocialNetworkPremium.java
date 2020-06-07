@@ -69,14 +69,14 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 
 		Member thePotentialPublisher = null;
 		
+		Member thePotentialMember=this.authenticateMember(login,password);
+		if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
+		
 		//Checking if the item is a film
 		if (type.trim().equalsIgnoreCase("film")) {
 			
 			Film thePotentialFilm = searchFilmByTitle(title);
 			if (thePotentialFilm==null) throw new NotItemException("The film was not found.");
-			
-			Member thePotentialMember=this.authenticateMember(login,password);
-			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
 			thePotentialPublisher=this.locateMember(theItemReviewer);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
@@ -96,9 +96,6 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			
 			Book thePotentialBook = searchBookByTitle(title);
 			if (thePotentialBook==null) throw new NotItemException("The book was not found.");
-			
-			Member thePotentialMember=this.authenticateMember(login,password);
-			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
 			thePotentialPublisher=this.locateMember(theItemReviewer);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
@@ -157,7 +154,8 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 * 
 	 * @param login
 	 *          - login of the member to search.
-	 * 
+	 *          
+	 * @return  the member object of the user found, else null.
 	 */
 	public Member locateMember(String login) throws NotMemberException{
 	       
@@ -167,34 +165,6 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
         	if (membersList.get(i).compareLogin(login)) return membersList.get(i);
         }
         return null;
-	}
-	
-	public static void main(String args[]) {
-		 
-		try {
-		SocialNetworkPremium sn = new SocialNetworkPremium();
-		sn.addMember("login", "password", "profile");
-		sn.addMember("login1", "password", "profile");
-		sn.addMember("login2", "password", "profile");
-		sn.addItemFilm("login", "password", "title", "kind", "author", "scenarist", 120);
-		sn.reviewItemFilm("login2", "password", "title", (float) 4, "comment");
-		//Mean = 4
-		sn.reviewItemFilm("login1", "password", "title", (float) 2, "comment");
-		//Mean = 3
-		sn.reviewOpinion("login1", "password", "title", "login2", "film", (float) 0.1, "comment");
-		//Karma login2 = 0.55
-		//Mean = (0.55*4 + 2*1)/(0.55+1) = 2.71
-		sn.reviewOpinion("login2", "password", "title", "login1", "film", (float) 2, "comment");
-		//karma login1 = 1.5
-		//Mean = (0.55*4 + 2*1.5)/(0.55+1.5) = 2.53
-		sn.reviewOpinion("login", "password", "title", "login2", "film", (float)4, "comment");
-		//karma login2 = 1.7
-		//Mean = (1.7*4 + 2*1.5)/(1.7+1.5) = 3.0625
-		System.out.println(sn.searchFilmByTitle("title").getMeanReviews());
-		}
-		 
-		catch (Exception e) {
-		}
 	}
 	
 }
