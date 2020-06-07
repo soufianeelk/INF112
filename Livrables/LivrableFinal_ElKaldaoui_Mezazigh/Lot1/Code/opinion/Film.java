@@ -11,87 +11,98 @@ import exceptions.BadEntryException;
  */
 
 /**
- * The Book class create books
+ * The Film class create films
  */
 
-public class Book {
+public class Film {
 	
 	private Member publisher;
 	private String title;
 	private String kind;
-	private String author;
-	private int nbPages;
-	private int nbReviews;
+	private String director;
+	private String scenarist;
+	private int duration;
 	private float meanReviews;
+	private int nbReviews;
 	private LinkedList<Review> reviewsList=new LinkedList<Review>();
 	
-	public Book (Member thePublisher, String title, String kind, String author, int nbPages) {
-		
+	public Film(Member thePublisher, String title, String kind, String director, String scenarist, int duration) {
+	
 		this.publisher = thePublisher;
 		this.title = title.trim();
 		this.kind = kind.trim();
-		this.author = author.trim();
-		this.nbPages = nbPages;
+		this.director = director.trim();
+		this.scenarist = scenarist.trim();
+		this.duration = duration;
 		this.meanReviews = 0;
-		this.nbReviews=0;
-	}
+	  }
 	
 	/**
-	 * Return the publisher attribute of the book
+	 * Return the publisher attribute of the film
 	 * 
 	 * @return this.publisher
 	 */	
 	public Member getPublisher() {
 		return this.publisher;
 	}
-	
+
 	/**
-	 * Return the book's title attribute
+	 * Return the title's film attribute
 	 * 
 	 * @return this.title
 	 */	
 	public String getTitle() {
 		return this.title;
-	}
-	
+	  }
+
 	/**
-	 * Return the book's kind attribute
+	 * Return the kind's film attribute
 	 * 
 	 * @return this.kind
 	 */	
 	public String getKind() {
 		return this.kind;
-	}
-	
+	  }
+
 	/**
-	 * Return the book's author attribute
+	 * Return the director's film attribute
 	 * 
-	 * @return this.author
-	 */	
-	public String getAuthor() {
-		return this.author;
-	}
-	
+	 * @return this.director
+	 */		
+	public String getDirector() {
+		return this.director;
+	  }
+
 	/**
-	 * Return the book's nbPages attribute
+	 * Return the scenarist's film attribute
 	 * 
-	 * @return this.nbPages
+	 * @return this.scenarist
 	 */	
-	public int getNbPages() {
-		return this.nbPages;
-	}
 	
+	public String getScenarist() {
+		return this.scenarist;
+	  }
+
 	/**
-	 * Return the book's meanReview attribute
+	 * Return the duration's film attribute
+	 * 
+	 * @return this.duration
+	 */	
+	public int getDuration() {
+		return duration;
+	  }
+
+	/**
+	 * Return the film's meanReview attribute
 	 * 
 	 * @return this.meanReviews
 	 */	
 	public float getMeanReviews() {
 		return this.meanReviews;
-	}
-	
+	  }
+
 	/**
-	 * Return the book's nbReviews attribute
+	 * Return the film's nbReviews attribute
 	 * 
 	 * @return this.nbReviews
 	 */	
@@ -100,19 +111,7 @@ public class Book {
 	}
 	
 	/**
-	 * Compare a title in entry with the book's title
-	 * 
-	 * @param title
-	 *            - the title to compare
-	 * 
-	 * @return 1 if the title correspond, 0 if not
-	 */	
-	public boolean compareTitle(String title) {
-		return (this.title.equalsIgnoreCase(title.trim()));
-	  }
-	
-	/**
-	 * Add a Review on the book from a Member
+	 * Add a Review on the film from a Member
 	 * 
 	 * @param thePublisher
 	 *            - the Member adding the review
@@ -123,15 +122,17 @@ public class Book {
 	 * @param mark
 	 *            - the review's mark
 	 *            
-	 */	
-	public float addReview(Member thePublisher, String comment, float mark) {
+	 */
+	public void addReview(Member thePublisher, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
 		if(thePotentialReview==null) {
 			
-			reviewsList.add(new Review(thePublisher,mark,comment));//adding the new review in the reviews list
-			this.nbReviews++; //incrementing the book reviews counter
-			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); }//computing the new mean of the review for the book.
+			reviewsList.add(new Review(thePublisher, thePublisher.getKarma()*mark, comment));//adding the new review in the review list
+
+			this.nbReviews++; //incrementing the film number counter
+			
+			this.meanReviews=((this.meanReviews*(nbReviews-1))+thePublisher.getKarma()*mark)/this.karmaReviewsMemberSum(); } //computing the new mean of the review for the film. 
 		
 		else {
 			for(Review theReviewtoReplace : reviewsList) {
@@ -141,14 +142,25 @@ public class Book {
 					theReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
 				
+			}
 		}
-		}
-		
-		return this.meanReviews;
 	}
-	
+
 	/**
-	 * Check if a member has already added a review on the book
+	 * Compare a title in entry with the film's title
+	 * 
+	 * @param title
+	 *            - the title to compare
+	 * 
+	 * @return 1 if the title correspond, 0 if not
+	 */	
+	
+	public boolean compareTitle(String title) {
+		return (this.title.equalsIgnoreCase(title.trim()));
+	  }
+
+	/**
+	 * Check if a member has already added a review on the film
 	 * 
 	 * @param theMember
 	 *            - the Member about which we check the potential review on the film
@@ -172,15 +184,15 @@ public class Book {
 	 *            - the new mean to replace. 
 	 *            
 	 */
+	
 	public float updateMeanReview()  {
-		this.meanReviews = this.meanReview();
-		return this.meanReviews;
+		 this.meanReviews = this.meanReview();
+		 return this.meanReviews;
 }
 
-
 	/**
-	 * Computing the mean review attribute of a book by considering the karma. 
-	 *        
+	 * Computing the mean review attribute of a film by considering the karma. 
+	 *            
 	 */
 	
 	public float meanReview() {
@@ -193,6 +205,11 @@ public class Book {
 		return sum/denominator;
 	}
 	
+	/**
+	 * Computing the total karma of all the members whom a review exists for this film. 
+	 *            
+	 */	
+	
 	private float karmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
@@ -200,9 +217,11 @@ public class Book {
 		}
 		return sum;
 	}
-	
+
 	public String toString() {
 		
-		return "Title: "+this.getTitle()+" / "+"Author: "+this.getKind()+" / "+"Kind: "+this.getKind()+" / "+"Number of pages: "+this.getNbPages()+" / "+"Mean of the reviews: "+this.meanReviews+"/5"+ " / "+"Published by: "+ this.getPublisher();
-	}	
+		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+" / "+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
+		
+	}
 }
+

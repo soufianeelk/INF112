@@ -124,7 +124,7 @@ public class Book {
 	 *            - the review's mark
 	 *            
 	 */	
-	public float addReview(Member thePublisher, String comment, float mark) {
+	public void addReview(Member thePublisher, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
 		if(thePotentialReview==null) {
@@ -143,8 +143,6 @@ public class Book {
 				
 		}
 		}
-		
-		return this.meanReviews;
 	}
 	
 	/**
