@@ -215,50 +215,6 @@ public class AddItemFilmTest {
 
 		System.out.println("Testing addItemFilm()");
 		
-		// <=> test n°1
-
-		// check if incorrect parameters cause addItemFilm() to throw BadEntry
-		// exception
-		
-		// 1.1 : Test with non instantiated login
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,null, new String("password"), new String("title"), new String("kind"), new String("director"), new String("scriptwriter"), 10, "1.1", "addItemFilms() doesn't reject null login.");
-		
-		//1.2 : Test with login which don't contains at least one character other than space
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn," ", new String("password"), "title", "kind", "director", "scriptwriter", 10, "1.2", "addItemFilms() doesn't reject logins that don't contain at least one character other than space.");
-		
-		//1.3: Test with non instantiated password
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), null, new String("title"), "kind", "director", "scriptwriter", 10, "1.3", "addItemFilms() doesn't reject null password.");
-		
-		//1.4: Test with password which contains less than 4 characters '
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("B"), new String("title"), "kind", "director", "scriptwriter", 10, "1.4", "addItemFilms() doesn't reject password that contains less than 4 characters.");
-		
-		//1.5: Test with a non instantiated title
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), null, "kind", "director", "scriptwriter", 10, "1.5", "addItemFilms() doesn't reject non instanciated titles.");
-		
-		//1.6: Test with a non instantiated kind
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn, new String("login"), new String("password"), new String("title"),null, "director", "scriptwriter", 10, "1.6", "addItemFilms() doesn't reject non instanciated kinds.");
-		
-		//1.7: Test with a non instantiated film director
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new String("title"),"kind", null, "scriptwriter", 10, "1.7", "addItemFilms() doesn't reject non instanciated film directors names.");
-		
-		//1.8: Test with a non instantiated scenarist 
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new String("title"),"kind", "director", null, 10, "1.8", "addItemFilms() doesn't reject non instaciated scenarist.");
-		
-		//1.9: Test with a negative duration
-		nbTests++;
-		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new String("title"),"kind", "director", "scriptwriter", -10, "1.9", "addItemFilms() doesn't reject negative film duration.");
-
-		
-		// <=> test n°2
-		
 		//Creating a member to add films
 		try {
 			sn.addMember("login", "password", "profile");
@@ -266,41 +222,89 @@ public class AddItemFilmTest {
 			e1.printStackTrace();
 		}
 		
-		//2.1: Adding 3 films
+		// <=> test n3
+
+		// check if incorrect parameters cause addItemFilm() to throw BadEntry
+		// exception
+		
+		// 3.1 : Test with non instantiated login
 		nbTests++;
-		nbErrors += addItemFilmOKTest(sn, "login", "password", "title","kind", "director", "scriptwriter", 10, "2.1a");
+		nbErrors+=addItemFilmBadEntryTest(sn,null, new String("password"), new String("title"), new String("kind"), new String("director"), new String("scriptwriter"), 10, "3.1", "addItemFilms() doesn't reject null login.");
+		
+		//3.2 : Test with login which don't contains at least one character other than space
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn," ", new String("password"), "title", "kind", "director", "scriptwriter", 10, "3.2", "addItemFilms() doesn't reject logins that don't contain at least one character other than space.");
+		
+		//3.3: Test with non instantiated password
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), null, new String("title"), "kind", "director", "scriptwriter", 10, "3.3", "addItemFilms() doesn't reject null password.");
+		
+		//3.4: Test with password which contains less than 4 characters '
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("B"), new String("title"), "kind", "director", "scriptwriter", 10, "3.4", "addItemFilms() doesn't reject password that contains less than 4 characters.");
+		
+		//3.5: Test with a non instantiated title
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), null, "kind", "director", "scriptwriter", 10, "3.5", "addItemFilms() doesn't reject non instanciated titles.");
+		
+		//3.6: Test with a title which don't contains at least one character other than space
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new  String(""), "kind", "director", "scriptwriter", 10, "3.6", "addItemFilms() doesn't reject titles that don't contain at least one character other than space.");
+		
+		//3.7: Test with a non instantiated kind
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn, new String("login"), new String("password"), new String("title"),null, "director", "scriptwriter", 10, "3.7", "addItemFilms() doesn't reject non instanciated kinds.");
+		
+		//3.8: Test with a non instantiated film director
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new String("title"),"kind", null, "scriptwriter", 10, "3.8", "addItemFilms() doesn't reject non instanciated film directors names.");
+		
+		//3.9: Test with a non instantiated scenarist 
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new String("title"),"kind", "director", null, 10, "3.9", "addItemFilms() doesn't reject non instaciated scenarist.");
+		
+		//3.10: Test with a negative duration
+		nbTests++;
+		nbErrors+=addItemFilmBadEntryTest(sn,new String("login"), new String("password"), new String("title"),"kind", "director", "scriptwriter", -10, "3.10", "addItemFilms() doesn't reject negative film duration.");
+
+		
+		// <=> test n4
+		
+		//4.1: Adding 3 films
+		nbTests++;
+		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title","kind", "director", "scriptwriter", 10, "4.1a");
 		
 		nbTests++;
-		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title1", "kind", "director", "scriptwriter", 10, "2.1b");
+		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title1", "kind", "director", "scriptwriter", 10, "4.1b");
 		
 		nbTests++;
-		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title2", "kind", "director", "scriptwriter", 10, "2.1c");
+		nbErrors += addItemFilmOKTest(sn, new String("login"), new String("password"), "title2", "kind", "director", "scriptwriter", 10, "4.1c");
 		
 		nbFilms += 3;
 		
-		//2.2: Test with an existing title
+		//4.2: Test with an existing title
 		nbTests++;
-		nbErrors += addItemFilmAlreadyExistsTest(sn, new String("login"), new String("password"), new String("title"), "kind1", "director1", "scriptwriter1", 1, "2.2", "The title of the first film was accepted as title for a new film");
+		nbErrors += addItemFilmAlreadyExistsTest(sn, new String("login"), new String("password"), new String("title"), "kind1", "director1", "scriptwriter1", 1, "4.2", "The title of the first film was accepted as title for a new film");
 		
-		//2.3: Test with an existing title
+		//4.3: Test with an existing title
 		nbTests++;
-		nbErrors += addItemFilmAlreadyExistsTest(sn, new String("login"), new String("password"), new String("title2"), "kind2", "director2", "scriptwriter2", 2, "2.3", "The title of the last film was accepted as title for a new film");
+		nbErrors += addItemFilmAlreadyExistsTest(sn, new String("login"), new String("password"), new String("title2"), "kind2", "director2", "scriptwriter2", 2, "4.3", "The title of the last film was accepted as title for a new film");
 		
-		//2.4: Test with an existing title with different case
+		//4.4: Test with an existing title with different case
 		nbTests++;
-		nbErrors += addItemFilmAlreadyExistsTest(sn, new String("login"), new String("password"), new String("TiTlE1"),"kind3", "director3", "scriptwriter3", 3, "2.4", "An already registered title, but with different case, was accepted as title for a new film");
+		nbErrors += addItemFilmAlreadyExistsTest(sn, new String("login"), new String("password"), new String("TiTlE1"),"kind3", "director3", "scriptwriter3", 3, "4.4", "An already registered title, but with different case, was accepted as title for a new film");
 		
-		//2.5: Test with leading/trailing blanks
+		//4.5: Test with leading/trailing blanks
 		nbTests++;
-		nbErrors += addItemFilmAlreadyExistsTest(sn,new String("login"), new String("password"), new String(" title1 "),"kind4", "director4", "scriptwriter4", 4, "2.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new film");
+		nbErrors += addItemFilmAlreadyExistsTest(sn,new String("login"), new String("password"), new String(" title1 "),"kind4", "director4", "scriptwriter4", 4, "4.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new film");
 		
-		//2.6: Test with not existing login
+		//4.6: Test with not existing login
 		nbTests++;
-		nbErrors += addItemFilmNotMemberExceptionTest(sn, new String("login1"), new String("password"), new String("title5"), "kind5", "director5", "scriptwriter5", 5, "2.6", "The login not existing was accepted as login to add a new film");
+		nbErrors += addItemFilmNotMemberExceptionTest(sn, new String("login1"), new String("password"), new String("title5"), "kind5", "director5", "scriptwriter5", 5, "4.6", "The login not existing was accepted as login to add a new film");
 		
-		//2.7: Test with wrong password
+		//4.7: Test with wrong password
 		nbTests++;
-		nbErrors += addItemFilmNotMemberExceptionTest(sn, new String("login"), new String("password1"), new String(" title6 "),"kind6", "director6", "scriptwriter6", 1, "2.7", "A password not corresponding to login was accepted to add a new film");
+		nbErrors += addItemFilmNotMemberExceptionTest(sn, new String("login"), new String("password1"), new String(" title6 "),"kind6", "director6", "scriptwriter6", 1, "4.7", "A password not corresponding to login was accepted to add a new film");
 
 		// check that 'sn' was not modified
 		nbTests++;

@@ -77,8 +77,8 @@ public class ConsultItemsTest {
 		try {
 			PotentialListOfItem = sn.consultItems(title); 
 			
-			if (PotentialListOfItem!=null && PotentialListOfItem.size()!=0) return 0; //The item list was returned correctly with at least one item.												
-			return 1; // return the "error" value
+			if (PotentialListOfItem!=null && PotentialListOfItem.size()==2) return 0; //The item list with the film and the book was returned correctly 
+			return 1;
 		}
 		catch (Exception e) {
 			System.out
@@ -121,17 +121,23 @@ public class ConsultItemsTest {
 		}
 		
 		
-		// <=> test n°1 : BadEntry Test
+		// <=> test n 11
 		
+		//11.1: Test with a non instantiated login
 		nbTests++;
-		nbErrors+=consultItemBadEntryTest(sn,null,"1.1", "consultItem() doesn't reject non instanciated titles.");
+		nbErrors+=consultItemBadEntryTest(sn,null,"11.1", "consultItem() doesn't reject non instanciated titles.");
 		
+		//11.2: Test with a title which don't contains at least one character other than space
 		nbTests++;
-		nbErrors+=consultItemBadEntryTest(sn,"","1.2", "consultItem() doesn't reject an empty title.");
+		nbErrors+=consultItemBadEntryTest(sn," ","11.2", "consultItem() doesn't reject an empty title.");
 		
-		// <=> test n°2 : Consulting an Item 
+		
+		// <=> test n 2 : Consulting an Item 
+		
+		//12.1: OK Test
 		nbTests++;
-		nbErrors+=consultItemOKTest(sn,"title","1.3");
+		nbErrors+=consultItemOKTest(sn,"title","12.3");
+		
 		
 		// Display final state of 'sn'
 		System.out.println("Final state of the social network : " + sn);
