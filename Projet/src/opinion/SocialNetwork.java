@@ -235,7 +235,6 @@ public class SocialNetwork implements ISocialNetwork {
         return null;
 	}
 	
-	
 	protected void checkCredentialEntries(String login,String password) throws BadEntryException {
 		
 		if (login==null) throw new BadEntryException("The login is null.");

@@ -69,14 +69,14 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 
 		Member thePotentialPublisher = null;
 		
+		Member thePotentialMember=this.authenticateMember(login,password);
+		if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
+		
 		//Checking if the item is a film
 		if (type.trim().equalsIgnoreCase("film")) {
 			
 			Film thePotentialFilm = searchFilmByTitle(title);
 			if (thePotentialFilm==null) throw new NotItemException("The film was not found.");
-			
-			Member thePotentialMember=this.authenticateMember(login,password);
-			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
 			thePotentialPublisher=this.locateMember(theItemReviewer);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
@@ -96,9 +96,6 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			
 			Book thePotentialBook = searchBookByTitle(title);
 			if (thePotentialBook==null) throw new NotItemException("The book was not found.");
-			
-			Member thePotentialMember=this.authenticateMember(login,password);
-			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
 			thePotentialPublisher=this.locateMember(theItemReviewer);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
