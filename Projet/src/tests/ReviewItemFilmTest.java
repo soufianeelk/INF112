@@ -314,7 +314,7 @@ public class ReviewItemFilmTest {
 		nbTests++;
 		nbErrors+=addReviewItemFilmBadEntryTest(sn,new String("user1"),new String("password"),new String("title"),-4, new String("thecomment"),"1.7", "addReviewItemFilm() doesn't reject marks lesser or equal to 0");
 		
-		//1.8: Test with a mark lesser or equal to 0
+		//1.8: Test with a mark higher or equal to 5
 		nbTests++;
 		nbErrors+=addReviewItemFilmBadEntryTest(sn,new String("user1"),new String("password"),new String("title"),10,new String("thecomment"),"1.8", "addReviewItemFilm() doesn't reject marks greater or equal to 5");
 

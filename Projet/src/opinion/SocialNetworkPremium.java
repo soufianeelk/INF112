@@ -67,7 +67,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 		if (comment==null) throw new BadEntryException("The comment can't be none.");
 		
 
-		Member thePotentialMember = null;
+		Member thePotentialPublisher = null;
 		
 		//Checking if the item is a film
 		if (type.trim().equalsIgnoreCase("film")) {
@@ -75,10 +75,10 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Film thePotentialFilm = searchFilmByTitle(title);
 			if (thePotentialFilm==null) throw new NotItemException("The film was not found.");
 			
-			thePotentialMember=this.authenticateMember(login,password);
+			Member thePotentialMember=this.authenticateMember(login,password);
 			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
-			Member thePotentialPublisher=this.locateMember(theItemReviewer);
+			thePotentialPublisher=this.locateMember(theItemReviewer);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
 
 			Review thePotentialReview = thePotentialFilm.checkMemberExistingReview(thePotentialPublisher);
@@ -97,10 +97,10 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Book thePotentialBook = searchBookByTitle(title);
 			if (thePotentialBook==null) throw new NotItemException("The book was not found.");
 			
-			thePotentialMember=this.authenticateMember(login,password);
+			Member thePotentialMember=this.authenticateMember(login,password);
 			if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
 			
-			Member thePotentialPublisher=this.locateMember(theItemReviewer);
+			thePotentialPublisher=this.locateMember(theItemReviewer);
 			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
 			
 			Review thePotentialReview = thePotentialBook.checkMemberExistingReview(thePotentialPublisher);
@@ -112,7 +112,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
-		return thePotentialMember.getKarma();
+		return thePotentialPublisher.getKarma();
 		}
 	
 	/**

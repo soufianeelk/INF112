@@ -10,23 +10,23 @@ classcanvas 128228 class_ref 135396 // Film
 end
 classcanvas 128386 class_ref 128386 // Member
   classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir no end
-  xyzwh 1566.9 561.7 2000 369 161
+  xyzwh 1557.9 525.9 2000 386 271
 end
-classcanvas 128740 class_ref 135524 // OpinionReview
+classcanvas 128740 class_ref 135524 // Review
   classdiagramsettings show_members_full_definition yes show_members_visibility yes show_members_stereotype no show_members_multiplicity no show_members_initialization yes member_max_width 0 show_parameter_dir no end
-  xyz 716 1094.7 2000
+  xyz 679 1087.9 2000
 end
 classcanvas 129124 class_ref 162404 // Book
   classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir no end
-  xyz 859.9 673 3005
-end
-classcanvas 136932 class_ref 169188 // Review
-  classdiagramsettings member_max_width 0 end
-  xyz 422 1102 2000
+  xyz 859.9 675 3005
 end
 classcanvas 137060 class_ref 169060 // SocialNetworkPremium
   classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
-  xyz 386.6 89.2 2000
+  xyz 394.8 61.8 2000
+end
+classcanvas 137444 class_ref 169188 // OpinionReview
+  classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir yes end
+  xyz 162.6 1159 2006
 end
 relationcanvas 128612 relation_ref 128100 // 
   decenter_begin 128
@@ -38,51 +38,70 @@ end
 relationcanvas 128770 relation_ref 128130 // <unidirectional association>
   decenter_begin 331
   decenter_end 509
-  from ref 128002 z 2001 to point 1755.2 288.4
+  from ref 128002 z 2001 to point 1755.2 280
   line 135012 z 2001 to ref 128386
-  role_a_pos 1767 538 3000 no_role_b
-  multiplicity_a_pos 1735 538 3000 no_multiplicity_b
+  role_a_pos 1767 502 3000 no_role_b
+  multiplicity_a_pos 1735 502 3000 no_multiplicity_b
 end
 relationcanvas 128868 relation_ref 134628 // <unidirectional association>
   decenter_begin 967
-  decenter_end 197
+  decenter_end 194
   from ref 128228 z 2001 to ref 128740
-  role_a_pos 813 1069 3000 no_role_b
-  multiplicity_a_pos 778 1069 3000 no_multiplicity_b
+  role_a_pos 813 1063 3000 no_role_b
+  multiplicity_a_pos 778 1063 3000 no_multiplicity_b
 end
 relationcanvas 128996 relation_ref 134756 // <unidirectional association>
-  from ref 128740 z 2001 to point 1752.6 1152.6
+  from ref 128740 z 2001 to point 1747.4 1143.4
   line 134884 z 2001 to ref 128386
-  role_a_pos 1764 730 3000 no_role_b
-  multiplicity_a_pos 1729 730 3000 no_multiplicity_b
+  role_a_pos 1762 804 3000 no_role_b
+  multiplicity_a_pos 1728 804 3000 no_multiplicity_b
 end
 relationcanvas 129252 relation_ref 147812 // <unidirectional association>
-  decenter_begin 866
-  decenter_end 504
+  decenter_begin 865
+  decenter_end 509
   from ref 128002 z 3006 to ref 129124
-  role_a_pos 1135 645 3000 no_role_b
-  multiplicity_a_pos 1104 645 3000 no_multiplicity_b
+  role_a_pos 1138 647 3000 no_role_b
+  multiplicity_a_pos 1107 647 3000 no_multiplicity_b
 end
 relationcanvas 129380 relation_ref 147940 // <unidirectional association>
   decenter_begin 222
-  decenter_end 600
+  decenter_end 446
   from ref 129124 z 3006 to ref 128740
-  role_a_pos 985 1069 3000 no_role_b
-  multiplicity_a_pos 950 1069 3000 no_multiplicity_b
+  role_a_pos 989 1063 3000 no_role_b
+  multiplicity_a_pos 954 1063 3000 no_multiplicity_b
 end
 relationcanvas 130276 relation_ref 154852 // <unidirectional association>
-  decenter_begin 172
-  decenter_end 921
+  decenter_begin 163
+  decenter_end 708
   from ref 129124 z 3006 to ref 128386
-  role_a_pos 1499 687 3000 no_role_b
-  multiplicity_a_pos 1544 718 3000 no_multiplicity_b
+  role_a_pos 1490 694 3000 no_role_b
+  multiplicity_a_pos 1536 725 3000 no_multiplicity_b
 end
 relationcanvas 132836 relation_ref 154980 // <unidirectional association>
   decenter_begin 925
-  decenter_end 340
-  from ref 128228 z 2001 to point 767 614.6
+  decenter_end 349
+  from ref 128228 z 2001 to point 767.4 614.6
   line 133732 z 2001 to ref 128386
-  role_a_pos 1499 593 3000 no_role_b
-  multiplicity_a_pos 1544 624 3000 no_multiplicity_b
+  role_a_pos 1490 597 3000 no_role_b
+  multiplicity_a_pos 1536 628 3000 no_multiplicity_b
+end
+relationcanvas 137188 relation_ref 174948 // <generalisation>
+  from ref 128002 z 2001 to ref 137060
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 137572 relation_ref 181476 // <generalisation>
+  decenter_end 621
+  from ref 128740 z 2007 to point 1005 1256
+  line 137956 z 2007 to ref 137444
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 138468 relation_ref 181732 // <unidirectional association>
+  decenter_begin 379
+  from ref 128740 z 2007 to point 388 1124
+  line 138596 z 2007 to ref 137444
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
 end
 end

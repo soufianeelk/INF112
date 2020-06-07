@@ -1,6 +1,6 @@
 format 222
 "Class_Diagram_BE3"
-  revision 16
+  revision 18
   modified_by 100 "soufi"
   java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
 
@@ -318,6 +318,14 @@ ${members}}
 	    classrelation_ref 175076 // <generalisation>
 	  b parent class_ref 169060 // SocialNetworkPremium
       end
+
+      classrelation 181604 // <generalisation>
+	relation 174948 ---|>
+	  a private
+	    java "${type}"
+	    classrelation_ref 181604 // <generalisation>
+	  b parent class_ref 169060 // SocialNetworkPremium
+      end
     end
 
     class 128130 "BadEntryException"
@@ -384,21 +392,6 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      operation 129410 "Member"
-	public explicit_return_type ""
-	nparams 3
-	  param in name "login" explicit_type "String"
-	  param in name "password" explicit_type "String"
-	  param in name "profile" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws} {
-  ${body}}
-"
-	
-	
-	
-      end
-
       attribute 128002 "login"
 	private explicit_type "String"
 	cpp_decl ""
@@ -435,12 +428,51 @@ ${members}}
 	MysqlColumn
       end
 
+      attribute 156132 "karma"
+	private explicit_type "float"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 156260 "nbReviewsReceived"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       operation 129282 "compareLogin"
-	public return_type class_ref 128386 // Member
+	public explicit_return_type "boolean"
 	nparams 1
 	  param in name "login" explicit_type "String"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129410 "Member"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	  param in name "profile" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws} {
   ${body}}
 "
 	
@@ -463,7 +495,7 @@ ${members}}
       end
 
       operation 137572 "getReviews"
-	public return_type class_ref 135524 // OpinionReview
+	public return_type class_ref 135524 // Review
 	nparams 0
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -474,6 +506,55 @@ ${members}}
 	
       end
 
+      operation 194404 "getKarma"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 194532 "computeKarma"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "mark" explicit_type "float"
+	  param in name "int" explicit_type "nbReviewsReceived"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 194660 "getNbReviewsReceived"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 194788 "setNbReviewsReceived"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
     class 128100 "ToutAvis"
@@ -592,7 +673,7 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
 	    classrelation_ref 134628 // reviewsList (<unidirectional association>)
-	  b parent class_ref 135524 // OpinionReview
+	  b parent class_ref 135524 // Review
       end
 
       operation 128484 "Film"
@@ -653,7 +734,7 @@ ${members}}
       end
 
       operation 150884 "checkMemberExistingReview"
-	public return_type class_ref 135524 // OpinionReview
+	public return_type class_ref 135524 // Review
 	nparams 1
 	  param in name "theMember" type class_ref 128386 // Member
 	
@@ -687,9 +768,44 @@ ${members}}
 	  b parent class_ref 128386 // Member
       end
 
+      operation 195044 "updateMeanReview"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195172 "meanReview"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195300 "karmaReviewsMemberSum"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
-    class 135524 "OpinionReview"
+    class 135524 "Review"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -701,31 +817,7 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      attribute 142308 "comment"
-	private explicit_type "String"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142436 "mark"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 136932 "OpinionReview"
+      operation 136932 "Review"
 	public explicit_return_type ""
 	nparams 3
 	  param in name "mark" explicit_type "int"
@@ -740,32 +832,6 @@ ${members}}
 	
       end
 
-      operation 136804 "setComment"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "comment" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 137060 "setMark"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "mark" explicit_type "int"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
       classrelation 134756 // publisher (<unidirectional association>)
 	relation 134756 --->
 	  a role_name "publisher" multiplicity "1" private
@@ -773,18 +839,6 @@ ${members}}
 "
 	    classrelation_ref 134756 // publisher (<unidirectional association>)
 	  b parent class_ref 128386 // Member
-      end
-
-      operation 137444 "getPublisher"
-	public return_type class_ref 128386 // Member
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
       end
 
       classrelation 141412 // <unidirectional association>
@@ -802,9 +856,74 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
 	    classrelation_ref 161764 // reviewsList (<unidirectional association>)
-	  b parent class_ref 135524 // OpinionReview
+	  b parent class_ref 135524 // Review
       end
 
+      operation 195556 "addToReviewsList"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "thePublisher" type class_ref 128386 // Member
+	  param in name "theOpinonReview" type class_ref 169188 // OpinionReview
+	  param in name "Member" explicit_type "theItemReviewer"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195684 "checkMemberExistingReview"
+	public return_type class_ref 169188 // OpinionReview
+	nparams 1
+	  param in name "Member" explicit_type "theMember"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195812 "getNbReviewsList"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 188132 // <generalisation>
+	relation 181476 ---|>
+	  a private
+	    java "${type}"
+	    classrelation_ref 188132 // <generalisation>
+	  b parent class_ref 169188 // OpinionReview
+      end
+
+      classrelation 188260 // (reviewsList)
+	relation 181604 ---> name "reviewsList"
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 188260 // (reviewsList)
+	  b parent class_ref 169188 // OpinionReview
+      end
+
+      classrelation 188388 // <unidirectional association>
+	relation 181732 --->
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 188388 // <unidirectional association>
+	  b parent class_ref 169188 // OpinionReview
+      end
     end
 
     classinstance 128100 "SocialNetwork"
@@ -1017,7 +1136,7 @@ ${members}}
       end
 
       operation 171492 "checkMemberExistingReview"
-	public return_type class_ref 135524 // OpinionReview
+	public return_type class_ref 135524 // Review
 	nparams 1
 	  param in name "theMember" type class_ref 128386 // Member
 	
@@ -1035,7 +1154,7 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
 	    classrelation_ref 154596 // reviewsList (<unidirectional association>)
-	  b parent class_ref 135524 // OpinionReview
+	  b parent class_ref 135524 // Review
       end
 
       operation 171748 "compareTitle"
@@ -1087,6 +1206,29 @@ ${members}}
 	  b parent class_ref 128386 // Member
       end
 
+      operation 194916 "updateMeanReview"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195428 "karmaReviewsMemberSum"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
     class 169060 "SocialNetworkPremium"
@@ -1133,9 +1275,21 @@ ${members}}
 	
       end
 
+      operation 194276 "locateMember"
+	public return_type class_ref 128386 // Member
+	nparams 1
+	  param in name "login" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
     end
 
-    class 169188 "Review"
+    class 169188 "OpinionReview"
       visibility package 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -1147,43 +1301,22 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 168420 // reviewsList (<unidirectional association>)
-	relation 161764 --->
-	  a role_name "reviewsList" multiplicity "*" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 168420 // reviewsList (<unidirectional association>)
-	  b parent class_ref 135524 // OpinionReview
-      end
-
       classrelation 168548 // <generalisation>
 	relation 161892 ---|>
 	  a private
 	    java "${type}"
 	    classrelation_ref 168548 // <generalisation>
-	  b parent class_ref 135524 // OpinionReview
+	  b parent class_ref 135524 // Review
       end
 
-      operation 180964 "ReviewL2"
-	public explicit_return_type ""
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${)}${throws} {
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 181092 "addToReviewsList"
+      operation 180964 "OpinionReview"
 	public explicit_return_type ""
 	nparams 3
-	  param in name "Member" explicit_type "theMember"
-	  param in name "SimpleReview" explicit_type "theSimpleReview"
-	  param in name "Member" explicit_type "thePublisher"
+	  param in name "thePublisher" type class_ref 128386 // Member
+	  param in name "mark" explicit_type "float"
+	  param in name "comment" explicit_type "String"
 	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws} {
   ${body}}
 "
 	
@@ -1191,10 +1324,71 @@ ${members}}
 	
       end
 
-      operation 181220 "checkMemberExistingReview"
-	public return_type class_ref 135524 // OpinionReview
+      attribute 162788 "mark"
+	private explicit_type "float"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162916 "comment"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 202340 "getMark"
+	public explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202468 "getPublisher"
+	public return_type class_ref 128386 // Member
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202596 "setComment"
+	public explicit_return_type ""
 	nparams 1
-	  param in name "Member" explicit_type "theMember"
+	  param in name "comment" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 202724 "setMark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "mark" explicit_type "float"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
@@ -1657,7 +1851,7 @@ ${package}
 ${imports}
 ${definition}"
       associated_elems
-	class_ref 135524 // OpinionReview
+	class_ref 135524 // Review
       end
     end
   end
