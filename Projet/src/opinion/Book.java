@@ -191,7 +191,7 @@ public class Book {
 		return sum/denominator;
 	}
 	
-	public float karmaReviewsMemberSum() {
+	private float karmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
 			sum += aReview.getPublisher().getKarma();

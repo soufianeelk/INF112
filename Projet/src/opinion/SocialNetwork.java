@@ -122,8 +122,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if (this.searchFilmByTitle(title) == null) throw new NotItemException("The title doesn't exists");  //Throws a NotItemException if the title doesn't exist
 		
 		Film theFilm = searchFilmByTitle(title); 
-		theFilm.addReview(thePotentialMember,comment, mark); //Adding a new review or editing an existing review. 
-		return theFilm.getMeanReviews();
+		return theFilm.addReview(thePotentialMember,comment, mark); //Adding a new review or editing an existing review. 
 
 	}
 		
@@ -137,6 +136,7 @@ public class SocialNetwork implements ISocialNetwork {
 		if (title==null) throw new BadEntryException("The password is null."); 
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty"); 
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5"); 
+		if (comment==null) throw new BadEntryException("The comment is null.");
 		
 		//Check Authentication and check that the film exists
 		Member thePotentialMember = this.authenticateMember(login, password);

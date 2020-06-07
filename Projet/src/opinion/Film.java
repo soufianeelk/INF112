@@ -1,7 +1,6 @@
 package opinion;
 import java.util.LinkedList;
 
-import exceptions.BadEntryException;
 
 /** 
  * @author - S. EL KALDAOUI
@@ -123,7 +122,7 @@ public class Film {
 	 *            - the review's mark
 	 *            
 	 */
-	public void addReview(Member thePublisher, String comment, float mark) {
+	public float addReview(Member thePublisher, String comment, float mark) {
 		
 		Review thePotentialReview = this.checkMemberExistingReview(thePublisher);
 		if(thePotentialReview==null) {
@@ -144,6 +143,7 @@ public class Film {
 				
 			}
 		}
+		return this.meanReviews;
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class Film {
 	 *            
 	 */	
 	
-	public float karmaReviewsMemberSum() {
+	private float karmaReviewsMemberSum() {
 		float sum = 0;
 		for(Review aReview: reviewsList) {
 			sum += aReview.getPublisher().getKarma();

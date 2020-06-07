@@ -169,32 +169,32 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
         return null;
 	}
 	
-	/*public static void main(String args[]) {
+	public static void main(String args[]) {
 		 
-		 try {
+		try {
 		SocialNetworkPremium sn = new SocialNetworkPremium();
 		sn.addMember("login", "password", "profile");
 		sn.addMember("login1", "password", "profile");
 		sn.addMember("login2", "password", "profile");
-		sn.addItemBook("login", "password", "title", "kind", "author", 120);
-		sn.reviewItemBook("login2", "password", "title", (float) 4, "comment");
+		sn.addItemFilm("login", "password", "title", "kind", "author", "scenarist", 120);
+		sn.reviewItemFilm("login2", "password", "title", (float) 4, "comment");
 		//Mean = 4
-		sn.reviewItemBook("login1", "password", "title", (float) 2, "comment");
+		sn.reviewItemFilm("login1", "password", "title", (float) 2, "comment");
 		//Mean = 3
-		sn.reviewOpinion("login1", "password", "title", "login2", "book", (float) 0.1, "comment");
+		sn.reviewOpinion("login1", "password", "title", "login2", "film", (float) 0.1, "comment");
 		//Karma login2 = 0.55
 		//Mean = (0.55*4 + 2*1)/(0.55+1) = 2.71
-		sn.reviewOpinion("login2", "password", "title", "login1", "book", (float) 2, "comment");
+		sn.reviewOpinion("login2", "password", "title", "login1", "film", (float) 2, "comment");
 		//karma login1 = 1.5
 		//Mean = (0.55*4 + 2*1.5)/(0.55+1.5) = 2.53
-		sn.reviewOpinion("login", "password", "title", "login2", "book", (float)4, "comment");
+		sn.reviewOpinion("login", "password", "title", "login2", "film", (float)4, "comment");
 		//karma login2 = 1.7
 		//Mean = (1.7*4 + 2*1.5)/(1.7+1.5) = 3.0625
-		System.out.println(sn.searchBookByTitle("title").getMeanReviews());
+		System.out.println(sn.searchFilmByTitle("title").getMeanReviews());
 		}
 		 
 		catch (Exception e) {
 		}
-	}*/
+	}
 	
 }
