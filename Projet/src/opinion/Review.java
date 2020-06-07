@@ -35,13 +35,10 @@ public class Review extends OpinionReview {
 		}
 		
 		else {
-			for(OpinionReview theOpinionReviewtoReplace : reviewsList) {
-				if (theOpinionReviewtoReplace==thePotentialOpinionReview) {
-					theOpinionReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
-					theOpinionReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
-				}
-			}
+			thePotentialOpinionReview.setComment(comment); //Substitute the previous comment with the new one 
+			thePotentialOpinionReview.setMark(mark); //Substitute the previous mark with the new one 	
 		}
+		
 	}
 	
 	/**
