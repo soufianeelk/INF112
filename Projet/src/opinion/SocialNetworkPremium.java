@@ -53,7 +53,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 *             <i>SocialNetwork</i>
 	 * 
 	 * @return karma of the item publisher if not null. 
-	 */	
+	 */
 	public float reviewOpinion(String login, String password, String title, String theItemReviewer, String type, float mark, String comment) throws BadEntryException, NotMemberException,NotItemException, NotReviewException  { 
 		
 		// Check parameters content (if they aren't empty, if password contains higher than 4 characters...) throws the BadEntryException if wrong
@@ -67,7 +67,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5");
 		if (comment==null) throw new BadEntryException("The comment can't be none.");
 
-		Member thePotentialPublisher = null;
+		Member thePotentialItemReviewer = null;
 		
 		Member thePotentialMember=this.authenticateMember(login,password);
 		if (thePotentialMember==null) throw new NotMemberException("The member was not found.");
@@ -78,17 +78,17 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Film thePotentialFilm = searchFilmByTitle(title);
 			if (thePotentialFilm==null) throw new NotItemException("The film was not found.");
 			
-			thePotentialPublisher=this.locateMember(theItemReviewer);
-			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
+			thePotentialItemReviewer=this.locateMember(theItemReviewer);
+			if (thePotentialItemReviewer==null) throw new NotMemberException("The publisher was not found.");
 
-			Review thePotentialReview = thePotentialFilm.checkMemberExistingReview(thePotentialPublisher);
+			Review thePotentialReview = thePotentialFilm.checkMemberExistingReview(thePotentialItemReviewer);
 			if (thePotentialReview==null) throw new NotReviewException("The review was not found.");
 			
 			//Adding the new review of the review in the attribute reviewsList 
-			thePotentialReview.addToReviewsList(thePotentialMember, thePotentialPublisher,mark,comment); //Adding or Editing a Review of a Review. 
+			thePotentialReview.addToReviewsList(thePotentialMember, thePotentialItemReviewer,mark,comment); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
-			updateItemsMeanReviews(thePotentialPublisher); 
+			updateItemsMeanReviews(thePotentialItemReviewer); 
 		}
 		
 		//Checking if the item is a book
@@ -97,19 +97,19 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			Book thePotentialBook = searchBookByTitle(title);
 			if (thePotentialBook==null) throw new NotItemException("The book was not found.");
 			
-			thePotentialPublisher=this.locateMember(theItemReviewer);
-			if (thePotentialPublisher==null) throw new NotMemberException("The publisher was not found.");
+			thePotentialItemReviewer=this.locateMember(theItemReviewer);
+			if (thePotentialItemReviewer==null) throw new NotMemberException("The publisher was not found.");
 			
-			Review thePotentialReview = thePotentialBook.checkMemberExistingReview(thePotentialPublisher);
+			Review thePotentialReview = thePotentialBook.checkMemberExistingReview(thePotentialItemReviewer);
 			if (thePotentialReview==null) throw new NotReviewException("The review was not found.");
 		
 			//Adding the new review of the review in the attribute reviewsList 
-			thePotentialReview.addToReviewsList(thePotentialMember, thePotentialPublisher, mark, comment); //Adding or Editing a Review of a Review. 
+			thePotentialReview.addToReviewsList(thePotentialMember, thePotentialItemReviewer, mark, comment); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
-			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
+			updateItemsMeanReviews(thePotentialItemReviewer); //Updating values of all items reviewed by the reviewer whom karma has changed. 
 		}
-		return thePotentialPublisher.getKarma();
+		return thePotentialItemReviewer.getKarma();
 		}
 	
 	/**

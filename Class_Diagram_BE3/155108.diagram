@@ -14,7 +14,9 @@ classinstance 130916 class_ref 128386 // Member
 note 131428 "Film not existing case:
 NotItemException
 "
-  xyzwh 953 99 2000 195 53
+  xyzwh 735 128 2000 195 53
+textcanvas 132452 "return null"
+  xyzwh 300 370 2000 57 16
 durationcanvas 128484 classinstance_ref 128100 // :Actor
   xyzwh 104 86 2010 11 404
 end
@@ -24,20 +26,20 @@ durationcanvas 128612 classinstance_ref 128228 // ToutAvis:SocialNetwork
     xyzwh 286 101 2020 11 32
   end
   overlappingdurationcanvas 129380
-    xyzwh 286 277 2020 11 134
+    xyzwh 286 279 2020 11 102
   end
   overlappingdurationcanvas 130660
-    xyzwh 286 184 2020 11 58
+    xyzwh 286 184 2020 11 62
   end
 end
 durationcanvas 129636 classinstance_ref 128356 // :Film
-  xyzwh 664 311 2010 11 34
-end
-durationcanvas 130148 classinstance_ref 130020 // e:NotItemException
-  xyzwh 833 378 2010 11 33
+  xyzwh 664 279 2010 11 81
 end
 durationcanvas 131044 classinstance_ref 130916 // :Member
   xyzwh 499 205 2010 11 41
+end
+durationcanvas 131556 classinstance_ref 130020 // e:NotItemException
+  xyzwh 833 406 2010 11 29
 end
 msg 128740 synchronous
   from durationcanvas_ref 128484
@@ -52,37 +54,27 @@ reflexivemsg 129252 synchronous
   label_xy 299 83
 reflexivemsg 129508 synchronous
   to durationcanvas_ref 129380
-  yz 277 2025 explicitmsg "Check Existing Film"
+  yz 279 2025 msg operation_ref 157668 // "searchFilmByTitle(in title : String) : Film"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 308 261
+  label_xy 308 263
 msg 129764 synchronous
   from durationcanvas_ref 129380
   to durationcanvas_ref 129636
-  yz 314 2030 explicitmsg "checkExistingTitle()"
+  yz 316 2030 explicitmsg "checkExistingTitle()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 449 294
+  label_xy 437 298
 msg 129892 return
   from durationcanvas_ref 129636
   to durationcanvas_ref 129380
-  yz 334 2025 unspecifiedmsg
+  yz 349 2025 explicitmsg "return boolean"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-msg 130276 synchronous
-  from durationcanvas_ref 129380
-  to durationcanvas_ref 130148
-  yz 379 2030 explicitmsg "new NotItemException()"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 486 361
-msg 130404 return
-  from durationcanvas_ref 130148
-  to durationcanvas_ref 129380
-  yz 400 2025 unspecifiedmsg
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 439 333
 msg 130532 return
   from durationcanvas_ref 128612
   to durationcanvas_ref 128484
-  yz 479 2015 explicitmsg "Error"
+  yz 466 2015 explicitmsg "Error"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 183 463
+  label_xy 183 450
 reflexivemsg 130788 synchronous
   to durationcanvas_ref 130660
   yz 184 2025 explicitmsg "Check Authentification"
@@ -97,6 +89,18 @@ msg 131172 synchronous
 msg 131300 return
   from durationcanvas_ref 131044
   to durationcanvas_ref 130660
-  yz 230 2025 unspecifiedmsg
+  yz 235 2025 explicitmsg "return boolean"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 357 219
+msg 131684 synchronous
+  from durationcanvas_ref 128612
+  to durationcanvas_ref 131556
+  yz 406 2015 explicitmsg "new NotItemException"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 498 390
+msg 132068 return
+  from durationcanvas_ref 131556
+  to durationcanvas_ref 128612
+  yz 423 2020 unspecifiedmsg
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
 end

@@ -8,48 +8,51 @@ end
 classinstance 130148 class_ref 135396 // Film
   name ""   xyz 692 4 2005 life_line_z 2000
 classinstance 130660 class_ref 142052 // ItemFilmAlreadyExistsException
-  name "e"   xyz 768 369 2005 life_line_z 2000
-classinstancecanvas 131556 classinstance_ref 155876 // theMember
-  xyz 526 4 2010 life_line_z 2000
+  name "e"   xyz 773 422 2005 life_line_z 2000
+classinstancecanvas 131556 classinstance_ref 155876 // 
+  xyz 558 4 2010 life_line_z 2000
 end
 note 132068 "Film already existing case:
 ItemFilmAlreadyExistsException"
-  xyzwh 1038 86 2000 231 65
+  xyzwh 890 137 2000 231 65
 durationcanvas 128484 classinstance_ref 128228 // ToutAvis:SocialNetwork
-  xyzwh 338 146 2010 11 361
+  xyzwh 338 146 2010 11 395
   overlappingdurationcanvas 128612
-    xyzwh 344 165 2020 11 37
+    xyzwh 344 166 2020 11 78
+    overlappingdurationcanvas 132196
+      xyzwh 350 207 2030 11 25
+    end
   end
   overlappingdurationcanvas 129892
-    xyzwh 344 332 2020 11 125
+    xyzwh 344 382 2020 11 76
   end
   overlappingdurationcanvas 131300
-    xyzwh 344 233 2020 11 56
+    xyzwh 344 286 2020 11 56
   end
 end
 durationcanvas 128740 classinstance_ref 128100 // :Actor
-  xyzwh 126 141 2010 11 366
+  xyzwh 126 141 2010 11 400
 end
 durationcanvas 130276 classinstance_ref 130148 // :Film
-  xyzwh 711 361 2010 11 35
+  xyzwh 711 408 2010 11 50
 end
-durationcanvas 130788 classinstance_ref 130660 // e:ItemFilmAlreadyExistsException
-  xyzwh 868 420 2010 11 36
+durationcanvas 131684 classinstance_ref 131556 // :Member
+  xyzwh 584 311 2010 11 31
 end
-durationcanvas 131684 classinstance_ref 131556 // theMember:Member
-  xyzwh 584 258 2010 11 31
+durationcanvas 132452 classinstance_ref 130660 // e:ItemFilmAlreadyExistsException
+  xyzwh 873 479 2010 11 33
 end
 reflexivemsg 129252 synchronous
   to durationcanvas_ref 128612
-  yz 165 2025 explicitmsg "Check Parameters"
+  yz 166 2025 explicitmsg "Check Parameters"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 353 147
+  label_xy 353 148
 msg 129380 return
   from durationcanvas_ref 128484
   to durationcanvas_ref 128740
-  yz 477 2015 explicitmsg "Error"
+  yz 530 2015 explicitmsg "Error"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 206 460
+  label_xy 211 513
 msg 129508 synchronous
   from durationcanvas_ref 128740
   to durationcanvas_ref 128484
@@ -58,45 +61,51 @@ msg 129508 synchronous
   label_xy 182 130
 reflexivemsg 130020 synchronous
   to durationcanvas_ref 129892
-  yz 332 2025 explicitmsg "Check Existing Film"
+  yz 382 2025 msg operation_ref 157668 // "searchFilmByTitle(in title : String) : Film"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 359 312
+  label_xy 364 362
 msg 130404 synchronous
   from durationcanvas_ref 129892
   to durationcanvas_ref 130276
-  yz 369 2025 explicitmsg "checkExistingTitle()"
+  yz 408 2025 msg operation_ref 171876 // "compareTitle(in title : String) : boolean"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 415 353
+  label_xy 420 392
 msg 130532 return
   from durationcanvas_ref 130276
   to durationcanvas_ref 129892
-  yz 385 2025 unspecifiedmsg
+  yz 444 2025 explicitmsg "return boolean"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-msg 130916 synchronous
-  from durationcanvas_ref 129892
-  to durationcanvas_ref 130788
-  yz 423 2025 explicitmsg "new ItemFilmAlreadyExistsException()"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 470 407
-msg 131044 return
-  from durationcanvas_ref 130788
-  to durationcanvas_ref 129892
-  yz 445 2025 unspecifiedmsg
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 492 428
 reflexivemsg 131428 synchronous
   to durationcanvas_ref 131300
-  yz 233 2025 explicitmsg "Check Authentification"
+  yz 286 2025 msg operation_ref 164196 // "authenticateMember(in login : String, in password : String) : Member"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 352 216
+  label_xy 357 269
 msg 131812 synchronous
   from durationcanvas_ref 131300
   to durationcanvas_ref 131684
-  yz 258 2025 explicitmsg "checkCredentials()"
+  yz 311 2025 explicitmsg "checkCredentials()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 416 242
+  label_xy 421 295
 msg 131940 return
   from durationcanvas_ref 131684
   to durationcanvas_ref 131300
-  yz 278 2025 unspecifiedmsg
+  yz 331 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+reflexivemsg 132324 synchronous
+  to durationcanvas_ref 132196
+  yz 207 2035 msg operation_ref 187748 // "checkCredentialEntries(in login : String, in password : String)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 360 189
+msg 132580 synchronous
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 132452
+  yz 479 2015 explicitmsg "new ItemFilmAlreadyExistsException"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 503 463
+msg 132708 return
+  from durationcanvas_ref 132452
+  to durationcanvas_ref 128484
+  yz 501 2015 unspecifiedmsg
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
 end

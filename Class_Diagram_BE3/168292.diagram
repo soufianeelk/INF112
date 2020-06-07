@@ -1,93 +1,97 @@
 format 222
 
 classinstance 128100 class_ref 135140 // Actor
-  name ""   xyz 134.42 4.86 2000 life_line_z 2000
+  name ""   xyz 134.92 4.86 2000 life_line_z 2000
 classinstancecanvas 128228 classinstance_ref 162532 // ToutAvis
-  xyz 292.1 5.02 0 life_line_z 4055
+  xyz 265.6 5.02 4060 life_line_z 4055
 end
 classinstance 129252 class_ref 128386 // Member
-  name ""   xyz 1237.2 4.24 2005 life_line_z 2010
-fragment 130020 "if film"
-  xyzwh 370.66 299.96 2005 1148 481
-end
+  name ""   xyz 1288.18 2.68 2005 life_line_z 2010
 classinstance 130148 class_ref 135396 // Film
-  name ""   xyz 787.98 11.3 2015 life_line_z 2010
+  name ""   xyz 765.66 3.54 2015 life_line_z 2010
 classinstancecanvas 131812 classinstance_ref 162660 // theFilm
-  xyz 925.24 5.02 2005 life_line_z 2000
+  xyz 924.24 3 2005 life_line_z 2000
 end
 classinstance 132580 class_ref 135524 // Review
-  name ""   xyz 1129.92 4.24 2005 life_line_z 2000
-fragment 134244 "if book"
-  xyzwh 372.52 823.28 1995 1143 509
-end
+  name ""   xyz 1149.06 3.54 2005 life_line_z 2000
 classinstance 134628 class_ref 162404 // Book
-  name ""   xyz 853.72 7.3 2010 life_line_z 2000
+  name ""   xyz 853.72 4.24 2010 life_line_z 2000
 classinstancecanvas 135396 classinstance_ref 162788 // theBook
-  xyz 1012.12 5.02 2010 life_line_z 2000
+  xyz 1022.18 3 2010 life_line_z 2000
+end
+fragment 139236 "alt"
+  xyzwh 1185.4 797.92 1995 722 431
+  separator 4709
+end
+classinstancecanvas 139620 classinstance_ref 169572 // theOpinionReview
+  xyz 1698.72 785.74 2000 life_line_z 2000
+end
+classinstancecanvas 140388 classinstance_ref 169700 // theItemReviewer
+  xyz 1394.12 4.64 2000 life_line_z 2000
+end
+classinstancecanvas 140900 classinstance_ref 169444 // thePotentialOpinionReview
+  xyz 1560.32 3.64 2005 life_line_z 2000
 end
 durationcanvas 128356 classinstance_ref 128100 // :Actor
-  xyzwh 148 75.08 2010 11 57
+  xyzwh 148 73.64 2010 11 2450
 end
-durationcanvas 128484 classinstance_ref 128228 // ToutAvis:SocialNetwork
-  xyzwh 361 76.36 6060 11 2251
+durationcanvas 128484 classinstance_ref 128228 // ToutAvis:SocialNetworkPremium
+  xyzwh 360 77.36 6060 11 2253
   overlappingdurationcanvas 128740
-    xyzwh 367 107.84 4070 11 25
+    xyzwh 366 107.5 8130 11 25
   end
   overlappingdurationcanvas 128996
-    xyzwh 367 181.2 4070 11 80
+    xyzwh 366 179.72 10125 11 87
   end
   overlappingdurationcanvas 130916
-    xyzwh 367 344.44 6065 11 71
+    xyzwh 366 356.1 10125 11 68
   end
   overlappingdurationcanvas 133988
-    xyzwh 367 725.32 6065 11 25
+    xyzwh 366 1308.46 10125 11 51
   end
-  overlappingdurationcanvas 134372
-    xyzwh 367 884.48 6070 11 70
-  end
-  overlappingdurationcanvas 137316
-    xyzwh 367 1279.76 6070 11 25
+  overlappingdurationcanvas 137828
+    xyzwh 366 465.28 6070 11 78
   end
 end
 durationcanvas 129380 classinstance_ref 129252 // :Member
-  xyzwh 1263 218.6 2010 11 35
+  xyzwh 1314 217.38 2010 11 50
 end
 durationcanvas 131172 classinstance_ref 130148 // :Film
-  xyzwh 806 373.4 2020 11 36
+  xyzwh 784 371.3 2020 11 54
 end
 durationcanvas 131940 classinstance_ref 131812 // theFilm:Film
-  xyzwh 962 450.28 2010 11 148
-  overlappingdurationcanvas 132324
-    xyzwh 968 479.72 2020 11 97
+  xyzwh 960 600.36 2010 11 58
+end
+durationcanvas 138084 classinstance_ref 129252 // :Member
+  xyzwh 1314 505.78 2020 11 37
+end
+durationcanvas 138468 classinstance_ref 132580 // :Review
+  xyzwh 1174 698.4 2010 11 577
+  overlappingdurationcanvas 138724
+    xyzwh 1180 724.42 2020 11 48
+  end
+  overlappingdurationcanvas 140132
+    xyzwh 1180 896.04 2020 11 25
   end
 end
-durationcanvas 132708 classinstance_ref 132580 // :Review
-  xyzwh 1154 496.44 2010 11 68
+durationcanvas 139748 classinstance_ref 139620 // theOpinionReview:Review
+  xyzwh 1778 838.08 2010 11 36
 end
-durationcanvas 132964 classinstance_ref 129252 // :Member
-  xyzwh 1263 506.2 2020 11 30
+durationcanvas 140516 classinstance_ref 140388 // theItemReviewer:Member
+  xyzwh 1468 963.96 2010 11 36
 end
-durationcanvas 134756 classinstance_ref 130148 // :Film
-  xyzwh 806 910.28 2020 11 28
+durationcanvas 141028 classinstance_ref 140900 // thePotentialOpinionReview:Review
+  xyzwh 1667 1079.56 2010 11 44
 end
-durationcanvas 135524 classinstance_ref 135396 // theBook:Book
-  xyzwh 1053 986.24 2010 11 147
-  overlappingdurationcanvas 135780
-    xyzwh 1059 1014.4 2020 11 104
-  end
-end
-durationcanvas 136036 classinstance_ref 132580 // :Review
-  xyzwh 1154 1053.8 2010 11 55
-end
-durationcanvas 136292 classinstance_ref 129252 // :Member
-  xyzwh 1263 1069.88 2020 11 29
+durationcanvas 141412 classinstance_ref 140900 // thePotentialOpinionReview:Review
+  xyzwh 1667 1168.16 2010 11 37
 end
 msg 128612 synchronous
   from durationcanvas_ref 128356
   to durationcanvas_ref 128484
-  yz 76 4040 explicitmsg "reviewOpinion()"
+  yz 78 8100 explicitmsg "reviewOpinion()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 220 60
+  label_xy 220 62
 reflexivemsg 128868 synchronous
   to durationcanvas_ref 128740
   yz 107 4050 explicitmsg "Check Parameters"
@@ -95,136 +99,139 @@ reflexivemsg 128868 synchronous
   label_xy 380 90
 reflexivemsg 129124 synchronous
   to durationcanvas_ref 128996
-  yz 181 4050 explicitmsg "Check Authentication"
+  yz 179 4050 msg operation_ref 164196 // "authenticateMember(in login : String, in password : String) : Member"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 388 161
+  label_xy 387 160
 msg 129508 synchronous
   from durationcanvas_ref 128996
   to durationcanvas_ref 129380
-  yz 219 4050 explicitmsg "checkCredentials()"
+  yz 218 4050 explicitmsg "checkCredentials()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 497 203
+  label_xy 497 202
 msg 129636 return
   from durationcanvas_ref 129380
   to durationcanvas_ref 128996
-  yz 236 4050 unspecifiedmsg
+  yz 252 4050 explicitmsg "return boolean"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 780 236
 reflexivemsg 131044 synchronous
   to durationcanvas_ref 130916
-  yz 344 6070 explicitmsg "searchFilmByTitle()"
+  yz 356 6070 explicitmsg "searchFilmByTitle()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 373 326
+  label_xy 385 333
 msg 131300 synchronous
   from durationcanvas_ref 130916
   to durationcanvas_ref 131172
-  yz 375 6070 explicitmsg "compareTitle()"
+  yz 376 6070 explicitmsg "compareTitle()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 634 359
+  label_xy 547 358
 msg 131428 return
   from durationcanvas_ref 131172
   to durationcanvas_ref 130916
-  yz 400 6075 unspecifiedmsg
+  yz 412 6075 explicitmsg "return boolean"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 548 396
 msg 132068 synchronous
   from durationcanvas_ref 128484
   to durationcanvas_ref 131940
-  yz 453 6060 explicitmsg "checkMemberExistingReview()"
+  yz 603 10120 explicitmsg "checkMemberExistingReview()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 672 437
+  label_xy 597 584
 msg 132196 return
   from durationcanvas_ref 131940
   to durationcanvas_ref 128484
-  yz 588 6065 unspecifiedmsg
+  yz 645 10125 explicitmsg "return theReview"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-reflexivemsg 132452 synchronous
-  to durationcanvas_ref 132324
-  yz 479 6065 explicitmsg "Check Reviews"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 979 459
-msg 132836 synchronous
-  from durationcanvas_ref 132324
-  to durationcanvas_ref 132708
-  yz 501 6070 explicitmsg "getMember()"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 1015 485
-msg 133092 synchronous
-  from durationcanvas_ref 132708
-  to durationcanvas_ref 132964
-  yz 508 6075 explicitmsg "compareLogin()"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 1183 492
-msg 133220 return
-  from durationcanvas_ref 132964
-  to durationcanvas_ref 132708
-  yz 526 6080 unspecifiedmsg
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-msg 133348 return
-  from durationcanvas_ref 132708
-  to durationcanvas_ref 132324
-  yz 550 6085 unspecifiedmsg
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 613 629
 reflexivemsg 134116 synchronous
   to durationcanvas_ref 133988
-  yz 725 6070 explicitmsg "updateMeanReviews"
+  yz 1308 6070 explicitmsg "updateMeanReviews()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 381 704
-reflexivemsg 134500 synchronous
-  to durationcanvas_ref 134372
-  yz 884 6075 explicitmsg "searchBookByTitle()"
+  label_xy 394 1287
+reflexivemsg 137956 synchronous
+  to durationcanvas_ref 137828
+  yz 465 6075 msg operation_ref 194276 // "locateMember(in login : String) : Member"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 375 864
-msg 134884 synchronous
-  from durationcanvas_ref 134372
-  to durationcanvas_ref 134756
-  yz 911 6080 explicitmsg "compareTitle()"
+  label_xy 377 446
+msg 138212 synchronous
+  from durationcanvas_ref 137828
+  to durationcanvas_ref 138084
+  yz 507 6075 msg operation_ref 129282 // "compareLogin(in login : String) : boolean"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 549 895
-msg 135012 return
-  from durationcanvas_ref 134756
-  to durationcanvas_ref 134372
-  yz 927 6085 unspecifiedmsg
+  label_xy 801 491
+msg 138340 return
+  from durationcanvas_ref 138084
+  to durationcanvas_ref 137828
+  yz 530 6080 unspecifiedmsg
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-msg 135652 synchronous
+msg 138596 synchronous
   from durationcanvas_ref 128484
-  to durationcanvas_ref 135524
-  yz 986 6065 explicitmsg "checkMemberExistingReview()"
+  to durationcanvas_ref 138468
+  yz 701 6065 msg operation_ref 195556 // "addToReviewsList(in thePublisher : Member, in theOpinonReview : OpinionReview, in Member : theItemReviewer) : void"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 624 970
-reflexivemsg 135908 synchronous
-  to durationcanvas_ref 135780
-  yz 1014 2025 explicitmsg "Check Reviews"
+  label_xy 717 685
+reflexivemsg 138852 synchronous
+  to durationcanvas_ref 138724
+  yz 724 2025 msg operation_ref 195684 // "checkMemberExistingReview(in Member : theMember) : OpinionReview"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 1079 991
-msg 136164 synchronous
-  from durationcanvas_ref 135780
-  to durationcanvas_ref 136036
-  yz 1054 2025 explicitmsg "getMember()"
+  label_xy 1196 706
+selfreflexivemsg 139108
+  to durationcanvas_ref 138724
+  yz 764 2025 explicitmsg "return the PotentialOpinionReview"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 1078 1038
-msg 136420 synchronous
-  from durationcanvas_ref 136036
-  to durationcanvas_ref 136292
-  yz 1068 2025 explicitmsg "compareLogin()"
+  label_xy 1201 743
+msg 139876 synchronous
+  from durationcanvas_ref 138468
+  to durationcanvas_ref 139748
+  yz 841 2035 explicitmsg "new OpinionReview"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 1172 1052
-msg 136548 return
-  from durationcanvas_ref 136292
-  to durationcanvas_ref 136036
-  yz 1086 2030 unspecifiedmsg
+  label_xy 1409 825
+msg 140004 return
+  from durationcanvas_ref 139748
+  to durationcanvas_ref 138468
+  yz 860 2040 unspecifiedmsg
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-msg 136676 return
-  from durationcanvas_ref 136036
-  to durationcanvas_ref 135780
-  yz 1097 2025 unspecifiedmsg
+reflexivemsg 140260 synchronous
+  to durationcanvas_ref 140132
+  yz 896 2025 explicitmsg "Add the OpinionReview in reviewsList"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-msg 136804 return
-  from durationcanvas_ref 135524
+  label_xy 1166 882
+msg 140644 synchronous
+  from durationcanvas_ref 138468
+  to durationcanvas_ref 140516
+  yz 966 2015 msg operation_ref 194532 // "computeKarma(in mark : float, in int : nbReviewsReceived) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1295 948
+msg 140772 return
+  from durationcanvas_ref 140516
+  to durationcanvas_ref 138468
+  yz 985 2015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 141156 synchronous
+  from durationcanvas_ref 138468
+  to durationcanvas_ref 141028
+  yz 1083 2015 explicitmsg "setComment()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1386 1066
+msg 141284 return
+  from durationcanvas_ref 141028
+  to durationcanvas_ref 138468
+  yz 1110 2020 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 141540 synchronous
+  from durationcanvas_ref 138468
+  to durationcanvas_ref 141412
+  yz 1171 2015 explicitmsg "setMark()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1399 1153
+msg 141668 return
+  from durationcanvas_ref 141412
+  to durationcanvas_ref 138468
+  yz 1191 2015 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+msg 142052 return
+  from durationcanvas_ref 138468
   to durationcanvas_ref 128484
-  yz 1122 6065 unspecifiedmsg
+  yz 1260 6065 unspecifiedmsg
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-reflexivemsg 137444 synchronous
-  to durationcanvas_ref 137316
-  yz 1279 6075 explicitmsg "updateMeanReviews"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 377 1263
 end

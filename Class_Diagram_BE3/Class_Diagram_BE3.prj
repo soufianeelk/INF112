@@ -1,6 +1,6 @@
 format 222
 "Class_Diagram_BE3"
-  revision 19
+  revision 20
   modified_by 100 "soufi"
   java_root_dir "S:\\Soufiane\\Documents\\Cours\\IMT\\1A\\S2\\INF110\\INF112\\CodeGeneration\\"
 
@@ -173,20 +173,6 @@ ${members}}
 	
       end
 
-      operation 164196 "authenticateMember"
-	protected return_type class_ref 128386 // Member
-	nparams 2
-	  param in name "login" explicit_type "String"
-	  param in name "password" explicit_type "String"
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
       operation 128100 "addItemFilm"
 	public explicit_return_type ""
 	nparams 7
@@ -299,6 +285,20 @@ ${members}}
 
       operation 187748 "checkCredentialEntries"
 	protected explicit_return_type ""
+	nparams 2
+	  param in name "login" explicit_type "String"
+	  param in name "password" explicit_type "String"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 164196 "authenticateMember"
+	protected return_type class_ref 128386 // Member
 	nparams 2
 	  param in name "login" explicit_type "String"
 	  param in name "password" explicit_type "String"
@@ -667,6 +667,18 @@ ${members}}
 	MysqlColumn
       end
 
+      operation 195300 "karmaReviewsMemberSum"
+	private explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       classrelation 134628 // reviewsList (<unidirectional association>)
 	relation 134628 --->
 	  a role_name "reviewsList" multiplicity "*" private
@@ -791,18 +803,6 @@ ${members}}
 	
 	
       end
-
-      operation 195300 "karmaReviewsMemberSum"
-	public explicit_return_type "float"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
     end
 
     class 135524 "Review"
@@ -916,12 +916,12 @@ ${members}}
 	  b parent class_ref 169188 // OpinionReview
       end
 
-      classrelation 188388 // <unidirectional association>
-	relation 181732 --->
-	  a role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+      classrelation 188388 // (reviewsList)
+	relation 181732 ---> name "reviewsList"
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
-	    classrelation_ref 188388 // <unidirectional association>
+	    classrelation_ref 188388 // (reviewsList)
 	  b parent class_ref 169188 // OpinionReview
       end
     end
@@ -1079,6 +1079,18 @@ ${members}}
 	MysqlColumn
       end
 
+      operation 195428 "karmaReviewsMemberSum"
+	private explicit_return_type "float"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 171620 "Book"
 	public explicit_return_type ""
 	nparams 5
@@ -1217,18 +1229,6 @@ ${members}}
 	
 	
       end
-
-      operation 195428 "karmaReviewsMemberSum"
-	public explicit_return_type "float"
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
     end
 
     class 169060 "SocialNetworkPremium"
@@ -1243,6 +1243,19 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
+      operation 180324 "updateItemsMeanReviews"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "theItemReviewer" type class_ref 128386 // Member
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
       operation 180196 "reviewOpinion"
 	public explicit_return_type "void"
 	nparams 7
@@ -1255,19 +1268,6 @@ ${members}}
 	  param in name "comment" explicit_type "String"
 	
 	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 180324 "updateItemsMeanReviews"
-	private explicit_return_type "void"
-	nparams 1
-	  param in name "theItemReviewer" type class_ref 128386 // Member
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1632,7 +1632,7 @@ ${members}}
         end
     end
 
-    classinstance 141796 "theMember"
+    classinstance 141796 ""
       type class_ref 128386 // Member
       attributes
         end
@@ -1746,7 +1746,7 @@ ${members}}
         end
     end
 
-    classinstance 155876 "theMember"
+    classinstance 155876 ""
       type class_ref 128386 // Member
       attributes
         end
@@ -1783,7 +1783,7 @@ ${members}}
     end
 
     classinstance 162532 "ToutAvis"
-      type class_ref 128002 // SocialNetwork
+      type class_ref 169060 // SocialNetworkPremium
       attributes
         end
       relations
@@ -1800,6 +1800,38 @@ ${members}}
 
     classinstance 162788 "theBook"
       type class_ref 162404 // Book
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 169316 "thePublisher"
+      type class_ref 128386 // Member
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 169444 "thePotentialOpinionReview"
+      type class_ref 135524 // Review
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 169572 "theOpinionReview"
+      type class_ref 135524 // Review
+      attributes
+        end
+      relations
+        end
+    end
+
+    classinstance 169700 "theItemReviewer"
+      type class_ref 128386 // Member
       attributes
         end
       relations

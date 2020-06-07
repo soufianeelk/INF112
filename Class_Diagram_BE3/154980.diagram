@@ -8,18 +8,21 @@ end
 classinstance 128996 class_ref 128130 // BadEntryException
   name "e"   xyz 593 90 2005 life_line_z 2000
 note 129636 "Wrong parameters case: BadEntryException"
-  xyzwh 821 61.5 2000 191 63
+  xyzwh 755 117.5 2000 191 63
 durationcanvas 128356 classinstance_ref 128100 // :Actor
-  xyzwh 103 82 2010 11 175
+  xyzwh 103 82 2010 11 188
 end
 durationcanvas 128484 classinstance_ref 128228 // ToutAvis:SocialNetwork
-  xyzwh 336 84 2010 11 132
+  xyzwh 336 84 2010 11 186
   overlappingdurationcanvas 128740
-    xyzwh 342 112 2020 11 56
+    xyzwh 342 112 2020 11 58
+    overlappingdurationcanvas 130148
+      xyzwh 348 139 2030 11 25
+    end
   end
 end
-durationcanvas 129124 classinstance_ref 128996 // e:BadEntryException
-  xyzwh 655 140 2010 11 28
+durationcanvas 129764 classinstance_ref 128996 // e:BadEntryException
+  xyzwh 655 211 2010 11 31
 end
 msg 128612 synchronous
   from durationcanvas_ref 128356
@@ -32,20 +35,26 @@ reflexivemsg 128868 synchronous
   yz 112 2025 explicitmsg "Check Paramaters"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 352 94
-msg 129252 synchronous
-  from durationcanvas_ref 128740
-  to durationcanvas_ref 129124
-  yz 140 2025 explicitmsg "new BadEntryException()"
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 425 124
-msg 129380 return
-  from durationcanvas_ref 129124
-  to durationcanvas_ref 128740
-  yz 157 2030 unspecifiedmsg
-  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
 msg 129508 return
   from durationcanvas_ref 128484
   to durationcanvas_ref 128356
-  yz 196 2015 unspecifiedmsg
+  yz 259 2015 explicitmsg "Error"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 211 243
+msg 129892 synchronous
+  from durationcanvas_ref 128484
+  to durationcanvas_ref 129764
+  yz 211 2020 explicitmsg "new BadEntryException"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 430 193
+msg 130020 return
+  from durationcanvas_ref 129764
+  to durationcanvas_ref 128484
+  yz 231 2025 unspecifiedmsg
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+reflexivemsg 130276 synchronous
+  to durationcanvas_ref 130148
+  yz 139 2035 msg operation_ref 187748 // "checkCredentialEntries(in login : String, in password : String)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 364 123
 end

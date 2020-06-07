@@ -8,18 +8,21 @@ note 133860 "Wrong parameters case: BadEntryException"
 classinstance 133988 class_ref 128612 // User
   name ""   xyz 229 5 2000 life_line_z 2000
 classinstance 134244 class_ref 128130 // BadEntryException
-  name "e"   xyz 748 69 2005 life_line_z 2000
+  name "e"   xyz 743 139 2005 life_line_z 2000
 durationcanvas 134500 classinstance_ref 133988 // :User
   xyzwh 241 57 2010 11 221
 end
 durationcanvas 134628 classinstance_ref 133732 // SocialNetwork:ToutAvis
-  xyzwh 513 75 2010 11 163
+  xyzwh 513 75 2010 11 184
   overlappingdurationcanvas 134756
-    xyzwh 519 89 2020 11 74
+    xyzwh 519 91 2020 11 85
+    overlappingdurationcanvas 137188
+      xyzwh 525 135 2030 11 25
+    end
   end
 end
-durationcanvas 136804 classinstance_ref 134244 // e:BadEntryException
-  xyzwh 810 119 2010 11 41
+durationcanvas 137700 classinstance_ref 134244 // e:BadEntryException
+  xyzwh 805 205 2010 11 32
 end
 msg 135396 synchronous
   from durationcanvas_ref 134500
@@ -29,24 +32,29 @@ msg 135396 synchronous
   label_xy 348 44
 reflexivemsg 135524 synchronous
   to durationcanvas_ref 134756
-  yz 89 2025 explicitmsg "Check Paramaters"
+  yz 91 2025 explicitmsg "Check Paramaters"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 553 84
+  label_xy 553 86
 msg 135908 return
   from durationcanvas_ref 134628
   to durationcanvas_ref 134500
-  yz 183 2025 explicitmsg "Error"
+  yz 248 2025 explicitmsg "Error"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 368 167
-msg 136932 synchronous
-  from durationcanvas_ref 134756
-  to durationcanvas_ref 136804
-  yz 120 2025 explicitmsg "new BadEntryException"
+  label_xy 368 232
+reflexivemsg 137316 synchronous
+  to durationcanvas_ref 137188
+  yz 135 2035 explicitmsg "checkCredentialEntries ()"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 594 104
-msg 137060 return
-  from durationcanvas_ref 136804
-  to durationcanvas_ref 134756
-  yz 149 2025 unspecifiedmsg
+  label_xy 543 118
+msg 137828 synchronous
+  from durationcanvas_ref 134628
+  to durationcanvas_ref 137700
+  yz 205 2015 explicitmsg "new BadEntryException"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 595 189
+msg 137956 return
+  from durationcanvas_ref 137700
+  to durationcanvas_ref 134628
+  yz 226 2015 unspecifiedmsg
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
 end
