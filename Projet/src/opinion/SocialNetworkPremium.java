@@ -60,12 +60,12 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 		checkCredentialEntries(login,password);
 		if (title == null) throw new BadEntryException("The title must be instanciated");
 		if (title.replaceAll("\\s", "").length()<1) throw new BadEntryException("The title is empty");
+		if (login.equals(theItemReviewer)) throw new NotReviewException("The login to review can't be the same as yours.");
 		if (theItemReviewer == null) throw new BadEntryException("The login of the item reviewer must be instanciated");
 		if (theItemReviewer.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login of the item reviewer must be instantiated with at least one non-space character");
 		if (type.equalsIgnoreCase("film")==false && type.equalsIgnoreCase("book")==false)  throw new BadEntryException("Type must be a 'film' or a 'book'.");
 		if (mark<0 || mark>5) throw new BadEntryException("The mark doesn't have a number between 0 and 5");
 		if (comment==null) throw new BadEntryException("The comment can't be none.");
-		
 
 		Member thePotentialPublisher = null;
 		

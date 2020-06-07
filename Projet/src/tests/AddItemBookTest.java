@@ -224,77 +224,87 @@ public class AddItemBookTest {
 		}
 		
 		
-		// <=> test n°1
+		// <=> test n 5
 
 		// check if incorrect parameters cause addItemBook() to throw BadEntry
 		// exception
 		
-		// 1.1 : Test with non instantiated login
+		// 5.1 : Test with non instantiated login
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,null, new String("password"),new String("title"),"kind", "author", 100, "1.1", "addItemBook() doesn't reject null login.");
+		nbErrors+=addItemBookBadEntryTest(sn,null, new String("password"),new String("title"),"kind", "author", 100, "5.1", "addItemBook() doesn't reject null login.");
 		
-		//1.2 : Test with login which don't contains at least one character other than space
+		//5.2 : Test with login which don't contains at least one character other than space
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn," ", new String("password"), "title","kind", "author", 100, "1.2", "addItemBook() doesn't reject logins that don't contain at least one character other than space.");
+		nbErrors+=addItemBookBadEntryTest(sn," ", new String("password"), new String("title"),"kind", "author", 100, "5.2", "addItemBook() doesn't reject logins that don't contain at least one character other than space.");
 		
-		//1.3: Test with non instantiated password
+		//5.3: Test with non instantiated password
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,new String("user"), null, new String("title"),"kind", "author", 100, "1.3", "addItemBook() doesn't reject null password.");
+		nbErrors+=addItemBookBadEntryTest(sn,new String("user"), null, new String("title"),"kind", "author", 100, "5.3", "addItemBook() doesn't reject null password.");
 		
-		//1.4: Test with password which contains less than 4 characters '
+		//5.4: Test with password which contains less than 4 characters '
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,new String("user"), new String("B"),new String("title"),"kind", "author", 100, "1.4", "addItemBook() doesn't reject password that contains less than 4 characters.");
+		nbErrors+=addItemBookBadEntryTest(sn,new String("user"), new String("B"),new String("title"),"kind", "author", 100, "5.4", "addItemBook() doesn't reject password that contains less than 4 characters.");
 		
-		//1.5: Test with a non instantiated title
+		//5.5: Test with a non instantiated title
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), null,"kind", "author", 100, "1.5", "addItemBook() doesn't reject non instanciated titles.");
+		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), null,"kind", "author", 100, "5.5", "addItemBook() doesn't reject non instanciated titles.");
 		
-		//1.6: Test with a non instantiated kind
+		//5.6: Test with a title which don't contains at least one character other than space
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), new String("title"),null, "author", 100, "1.6", "addItemBook() doesn't reject non instanciated kinds.");
+		nbErrors+=addItemBookBadEntryTest(sn,new String("login"), new String("password"), new  String(""), "kind", "author", 100, "5.6", "addItemFilms() doesn't reject titles that don't contain at least one character other than space.");
 		
-		//1.7: Test with a non instantiated film author
-		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), new String("title"),"kind", null, 100, "1.7", "addItemBook() doesn't reject non instanciated film directors names.");
 		
-		//1.8: Test with a negative duration
+		//5.7: Test with a non instantiated kind
 		nbTests++;
-		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), new String("title"),"kind", "author", -100, "1.8", "addItemBook() doesn't reject negative film duration.");
+		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), new String("title"),null, "author", 100, "5.7", "addItemBook() doesn't reject non instanciated kinds.");
+		
+		//5.8: Test with a non instantiated author
+		nbTests++;
+		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), new String("title"),"kind", null, 100, "5.8", "addItemBook() doesn't reject non instanciated film directors names.");
+		
+		//5.9: Test with a negative duration
+		nbTests++;
+		nbErrors+=addItemBookBadEntryTest(sn,new String("user"),new String("password"), new String("title"),"kind", "author", -100, "5.9", "addItemBook() doesn't reject negative film duration.");
 
 		
-		// <=> test n°2
+		// <=> test n 6
 		
 		//2.1: Adding a Book
 		nbTests++;
-		nbErrors += addItemBookOKTest(sn,new String("login"),new String("password"),new String("title"),"kind","author", 100, "2.1a");
-		nbBooks++;
+		nbErrors += addItemBookOKTest(sn, new String("login"), new String("password"), "title","kind", "author", 10, "6.1a");
 		
-		
-		//2.2: Test with an existing title
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, new String("login"),new String("password"), new String("title"), "kind","author", 100, "2.2", "The title of the first book was accepted as title for a new book");
+		nbErrors += addItemBookOKTest(sn, new String("login"), new String("password"), "title10", "kind", "author", 10, "6.1b");
 		
-		//2.3: Test with an existing title
 		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn,new String("login"), new String("password"), new String("title"), "kind","author",100, "2.3", "The title of the last book was accepted as title for a new book");
+		nbErrors += addItemBookOKTest(sn, new String("login"), new String("password"), "title20", "kind", "author", 10, "6.1c");
 		
-		//2.4: Test with an existing title with different case
-		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn, new String("login"), new String("password"),new String("TiTlE"),"kind", "author", 100, "2.4", "An already registered title, but with different case, was accepted as title for a new book");
+		nbBooks += 3;
 		
-		//2.5: Test with leading/trailing blanks
-		nbTests++;
-		nbErrors += addItemBookAlreadyExistsTest(sn,new String("login"),new String("password"), new String(" title "),"kind", "author", 100, "2.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new book");
 		
-		//2.6: Test with not existing login
+		//6.2: Test with an existing title
 		nbTests++;
-		nbErrors += addItemBookNotMemberExceptionTest(sn, new String("login1"),new String("password"),new String("title1"), "kind","author", 100, "2.6", "The login not existing was accepted as login to add a new book");
+		nbErrors += addItemBookAlreadyExistsTest(sn, new String("login"),new String("password"), new String("title"), "kind","author", 100, "6.2", "The title of the first book was accepted as title for a new book");
 		
-		//2.7: Test with wrong password
+		//6.3: Test with an existing title
 		nbTests++;
-		nbErrors += addItemBookNotMemberExceptionTest(sn,new String("login"),new String("false_password"),new String("title1"),"kind", "author", 100, "2.7", "A password not corresponding to login was accepted to add a new book");
-
-		//3.1: 
+		nbErrors += addItemBookAlreadyExistsTest(sn,new String("login"), new String("password"), new String("title"), "kind","author",100, "6.3", "The title of the last book was accepted as title for a new book");
+		
+		//6.4: Test with an existing title with different case
+		nbTests++;
+		nbErrors += addItemBookAlreadyExistsTest(sn, new String("login"), new String("password"),new String("TiTlE"),"kind", "author", 100, "6.4", "An already registered title, but with different case, was accepted as title for a new book");
+		
+		//6.5: Test with leading/trailing blanks
+		nbTests++;
+		nbErrors += addItemBookAlreadyExistsTest(sn,new String("login"),new String("password"), new String(" title "),"kind", "author", 100, "6.5", "An already registered title, surrounded by leading/trailing blanks, was accepted as title for a new book");
+		
+		//6.6: Test with not existing login
+		nbTests++;
+		nbErrors += addItemBookNotMemberExceptionTest(sn, new String("login1"),new String("password"),new String("title1"), "kind","author", 100, "6.6", "The login not existing was accepted as login to add a new book");
+		
+		//6.7: Test with wrong password
+		nbTests++;
+		nbErrors += addItemBookNotMemberExceptionTest(sn,new String("login"),new String("false_password"),new String("title1"),"kind", "author", 100, "6.7", "A password not corresponding to login was accepted to add a new book");
 		
 		// check that 'sn' was not modified
 		nbTests++;
