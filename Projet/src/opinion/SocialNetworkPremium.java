@@ -85,7 +85,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			if (thePotentialReview==null) throw new NotReviewException("The review was not found.");
 			
 			//Adding the new review of the review in the attribute reviewsList 
-			thePotentialReview.addToReviewsList(thePotentialMember, new OpinionReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
+			thePotentialReview.addToReviewsList(thePotentialMember, thePotentialPublisher,mark,comment); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); 
@@ -104,7 +104,7 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 			if (thePotentialReview==null) throw new NotReviewException("The review was not found.");
 		
 			//Adding the new review of the review in the attribute reviewsList 
-			thePotentialReview.addToReviewsList(thePotentialMember, new OpinionReview(thePotentialMember,mark,comment), thePotentialPublisher); //Adding or Editing a Review of a Review. 
+			thePotentialReview.addToReviewsList(thePotentialMember, thePotentialPublisher, mark, comment); //Adding or Editing a Review of a Review. 
 			
 			//Updating all the item's mean review because the karma of the item reviewer changed
 			updateItemsMeanReviews(thePotentialPublisher); //Updating values of all items reviewed by the reviewer whom karma has changed. 
@@ -154,7 +154,8 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	 * 
 	 * @param login
 	 *          - login of the member to search.
-	 * 
+	 *          
+	 * @return  the member object of the user found, else null.
 	 */
 	public Member locateMember(String login) throws NotMemberException{
 	       
@@ -167,31 +168,31 @@ public class SocialNetworkPremium extends SocialNetwork implements ISocialNetwor
 	}
 	
 	public static void main(String args[]) {
-		 
-		try {
-		SocialNetworkPremium sn = new SocialNetworkPremium();
-		sn.addMember("login", "password", "profile");
-		sn.addMember("login1", "password", "profile");
-		sn.addMember("login2", "password", "profile");
-		sn.addItemFilm("login", "password", "title", "kind", "author", "scenarist", 120);
-		sn.reviewItemFilm("login2", "password", "title", (float) 4, "comment");
-		//Mean = 4
-		sn.reviewItemFilm("login1", "password", "title", (float) 2, "comment");
-		//Mean = 3
-		sn.reviewOpinion("login1", "password", "title", "login2", "film", (float) 0.1, "comment");
-		//Karma login2 = 0.55
-		//Mean = (0.55*4 + 2*1)/(0.55+1) = 2.71
-		sn.reviewOpinion("login2", "password", "title", "login1", "film", (float) 2, "comment");
-		//karma login1 = 1.5
-		//Mean = (0.55*4 + 2*1.5)/(0.55+1.5) = 2.53
-		sn.reviewOpinion("login", "password", "title", "login2", "film", (float)4, "comment");
-		//karma login2 = 1.7
-		//Mean = (1.7*4 + 2*1.5)/(1.7+1.5) = 3.0625
-		System.out.println(sn.searchFilmByTitle("title").getMeanReviews());
-		}
-		 
-		catch (Exception e) {
-		}
-	}
+
+        try {
+        SocialNetworkPremium sn = new SocialNetworkPremium();
+        sn.addMember("login", "password", "profile");
+        sn.addMember("login1", "password", "profile");
+        sn.addMember("login2", "password", "profile");
+        sn.addItemBook("login", "password", "title", "kind", "author", 120);
+        sn.reviewItemBook("login2", "password", "title", (float) 4, "comment");
+        //Mean = 4
+        sn.reviewItemBook("login1", "password", "title", (float) 2, "comment");
+        //Mean = 3
+        sn.reviewOpinion("login1", "password", "title", "login2", "book", (float) 0.1, "comment");
+        //Karma login2 = 0.55
+        //Mean = (0.554 + 21)/(0.55+1) = 2.71
+        sn.reviewOpinion("login2", "password", "title", "login1", "book", (float) 2, "comment");
+        //karma login1 = 1.5
+        //Mean = (0.554 + 21.5)/(0.55+1.5) = 2.53
+        sn.reviewOpinion("login", "password", "title", "login2", "book", (float)4, "comment");
+        //karma login2 = 1.7
+        //Mean = (1.74 + 21.5)/(1.7+1.5) = 3.0625
+        System.out.println(sn.searchBookByTitle("title").getMeanReviews());
+        }
+
+        catch (Exception e) {
+        }
+    }
 	
 }

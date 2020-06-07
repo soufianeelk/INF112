@@ -235,10 +235,24 @@ public class SocialNetwork implements ISocialNetwork {
         return null;
 	}
 	
+	
+	/**
+	 * Check if the credentials given in parameters doesn't throw bad entry exception. 
+	 * 
+	 * @param login
+	 *            member's login.
+	 * 
+	 * @param password
+	 *            member's password.  
+	 *                
+	 * @throws BadEntryException
+	 *            <br> -if login is not instantiated or doesn't contain at least one non-space characters.<br> 
+	 *             -if password is not instantiated or is empty or contains less than 4 characters.
+	 *             
+	 */	
 	protected void checkCredentialEntries(String login,String password) throws BadEntryException {
 		
 		if (login==null) throw new BadEntryException("The login is null.");
-		if (login.equals("")) throw new BadEntryException("The login doesn't contains character other than space"); 
 		if (login.replaceAll("\\s", "").length() < 1) throw new BadEntryException("The login must be instanciated with at least one non-space character");
 		if (password==null) throw new BadEntryException("The password is null.");
 		if (password.replaceAll("\\s", "").length()<1) throw new BadEntryException("The password is empty");

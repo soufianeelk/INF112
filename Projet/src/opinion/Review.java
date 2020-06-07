@@ -24,21 +24,21 @@ public class Review extends OpinionReview {
 	 * 		- login of the publisher of the review of review.
 	 * 
 	 */
-	public void addToReviewsList(Member thePublisher, OpinionReview theOpinionReview, Member theItemReviewer) {
+	public void addToReviewsList(Member thePublisher, Member theItemReviewer, float mark, String comment) {
 		
 		OpinionReview thePotentialOpinionReview = this.checkMemberExistingReview(thePublisher);
 		if(thePotentialOpinionReview==null) {
 			
-			this.reviewsList.add(theOpinionReview); //adding the new review in the review list		
-			theItemReviewer.computeKarma(theOpinionReview.getMark(), theItemReviewer.getNbReviewsReceived());
+			this.reviewsList.add(new OpinionReview(thePublisher, mark, comment)); //adding the new review in the review list		
+			theItemReviewer.computeKarma(mark, theItemReviewer.getNbReviewsReceived());
 			theItemReviewer.setNbReviewsReceived(theItemReviewer.getNbReviewsReceived()+1);
 		}
 		
 		else {
 			for(OpinionReview theOpinionReviewtoReplace : reviewsList) {
 				if (theOpinionReviewtoReplace==thePotentialOpinionReview) {
-					theOpinionReviewtoReplace.setComment(theOpinionReview.getComment()); //Substitute the previous comment with the new one 
-					theOpinionReviewtoReplace.setMark(theOpinionReview.getMark()); //Substitute the previous mark with the new one 
+					theOpinionReviewtoReplace.setComment(comment); //Substitute the previous comment with the new one 
+					theOpinionReviewtoReplace.setMark(mark); //Substitute the previous mark with the new one 
 				}
 			}
 		}

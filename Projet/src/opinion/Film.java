@@ -121,6 +121,7 @@ public class Film {
 	 * @param mark
 	 *            - the review's mark
 	 *            
+	 * @return 	the mean of the film
 	 */
 	public float addReview(Member thePublisher, String comment, float mark) {
 		
@@ -180,8 +181,7 @@ public class Film {
 	/**
 	 * Updating the mean review attribute by the one given in parameters. 
 	 * 
-	 * @param theNewMean
-	 *            - the new mean to replace. 
+	 * @return the mean of the film
 	 *            
 	 */
 	
@@ -192,7 +192,8 @@ public class Film {
 
 	/**
 	 * Computing the mean review attribute of a film by considering the karma. 
-	 *            
+	 * 
+	 * @return the new mean of the film         
 	 */
 	
 	public float meanReview() {
@@ -207,7 +208,8 @@ public class Film {
 	
 	/**
 	 * Computing the total karma of all the members whom a review exists for this film. 
-	 *            
+	 * 
+	 * @return the sum of the karma of all members. 
 	 */	
 	
 	private float karmaReviewsMemberSum() {
@@ -217,7 +219,13 @@ public class Film {
 		}
 		return sum;
 	}
-
+	
+	/**
+	 * Concatenate into a string value all the characteristics of a Film
+	 * 
+	 * @return the string with all the characteristics of the Film
+	 */	
+	
 	public String toString() {
 		
 		return "Title: "+this.getTitle()+" / "+"Director: "+this.getDirector()+" / "+"Scenarist: "+this.getScenarist()+" / "+"Kind: "+this.getKind()+" / "+"Duration: "+this.getDuration()+" / "+"Mean of the Reviews: "+this.meanReviews+"/5"+" / "+"Published by: "+this.getPublisher();
