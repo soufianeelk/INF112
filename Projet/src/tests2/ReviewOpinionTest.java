@@ -1,7 +1,6 @@
 package tests2;
 
 import opinion.*;
-import tests.TestReport;
 import exceptions.*;
 
 /**

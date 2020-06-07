@@ -1,14 +1,5 @@
 package tests2;
 
-import tests.AddItemBookTest;
-import tests.AddItemFilmTest;
-import tests.AddMemberTest;
-import tests.ConsultItemsTest;
-import tests.InitTest;
-import tests.ReviewItemBookTest;
-import tests.ReviewItemFilmTest;
-import tests.TestReport;
-
 /** 
  * This class launches a test suite for the SocialNetwork
  * @author B. Prou, GO
@@ -30,31 +21,6 @@ public class SocialNetworkTest {
 			testSuiteReport.add(tr);
 			
 			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = AddMemberTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			// 
-			tr = AddItemFilmTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = AddItemBookTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = ReviewItemFilmTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = ReviewItemBookTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
-			tr = ConsultItemsTest.test();
-			testSuiteReport.add(tr);
-			System.out.println("\n\n **********************************************************************************************\n");
-			//
 			tr = ReviewOpinionTest.test();
 			testSuiteReport.add(tr);
 			System.out.println("\n\n **********************************************************************************************\n");

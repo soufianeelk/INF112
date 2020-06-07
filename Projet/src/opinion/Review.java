@@ -35,11 +35,10 @@ public class Review extends OpinionReview {
 		}
 		
 		else {
-			
+
 			thePotentialOpinionReview.setComment(comment); //Substitute the previous comment with the new one 
-			thePotentialOpinionReview.setMark(mark); //Substitute the previous mark with the new one 
-			
-			}
+			thePotentialOpinionReview.setMark(mark); //Substitute the previous mark with the new one 	
+		}
 		
 	}
 	
