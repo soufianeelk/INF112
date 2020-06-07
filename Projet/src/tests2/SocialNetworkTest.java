@@ -7,7 +7,6 @@ import tests.ConsultItemsTest;
 import tests.InitTest;
 import tests.ReviewItemBookTest;
 import tests.ReviewItemFilmTest;
-import tests.ReviewOpinionTest;
 import tests.TestReport;
 
 /** 
